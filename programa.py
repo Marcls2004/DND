@@ -327,23 +327,8 @@ while not flg_salir:
                 flg_crear_pers = True
                 flg_menu2 = False
             elif opc == 2:
-                nombre_arma = input("Nombre para l'arma:\n")
-                # probar_nombre = nombre_arma.replace(" ","")
-                # if not probar_nombre.isalpha():
-                #     while not probar_nombre.isalpha():
-                #         print("Este nombre no es valido")
-                #         input("Enter to continue")
-                #         nombre_arma = input("Nombre para l'arma:\n")
-                #         probar_nombre = nombre_arma.replace(" ", "")
-                # else:
-                #     while True:
-                #         nombre_igual = nombre_arma
-                #         for i in range(len(arma)):
-                #             if arma[i + 1]["nombre"] == nombre_arma:
-                #                 print("Este nombre ya existe")
-                #                 nombre_arma = input("Nombre para l'arma:\n")
-                #         if nombre_igual == nombre_arma:
-                #             break
+                flg_crear_arma = True
+                flg_menu2 = False   
 
             else:
                 flg_menu0 = True
@@ -674,12 +659,15 @@ while not flg_salir:
         print(nueva_arma)
         clase = 0
         nombre_arma = ""
+        nombre_estadistica1 = ""
+        nombre_estadistica2 = ""
         estadistica1 = 0
         estadistica2 = 0
+        nombre_debufo = ""
         debuff = 0
         
         for i in range(len(clases)):
-            eleccion_clase = eleccion_clase + "{}) ".format(i + 1) + clases[i + 1] + "\n"
+            eleccion_clase_arma = eleccion_clase_arma + "{}) ".format(i + 1) + clases[i + 1] + "\n"
         flg_clase = True  
 
         while flg_clase:
@@ -693,7 +681,7 @@ while not flg_salir:
                 input("Enter to continue")
             else:
                 clase = int(clase)
-                print("Clase para arma seleccionada {}".format(clases[clase]))
+                print("Clase de {} para l'arma".format(clases[clase]))
                 input("Enter to continue")
                 flg_clase = False
                 flg_nombre = True
@@ -716,8 +704,85 @@ while not flg_salir:
                 input("Enter to continue")
                 flg_estadisticas = True
                 flg_nombre = False
-        
         while flg_estadisticas:
             if estadistica1 == 0 or estadistica2 == 0:
                 print(eleccion_estadisticas_arma)
-                
+                opc = input("Opcion:\n")
+                if not opc.isdigit():
+                    print(formato_invalido)
+                    input("Enter to continue")
+                elif not int(opc) in range(1,6):
+                    print(fuera_rango)
+                    input("Enter to continue")
+                else:
+                    opc = int(opc)
+                    if opc == 1:
+                        if estadistica1 == 0:
+                            nombre_estadistica1 = "fuerza"
+                            estadistica1 = random.randint(1,6)
+                        else:
+                            nombre_estadistica2 = "fuerza"
+                            estadistica2 = random.randint(1,6)
+
+                    elif opc == 2:
+                        if estadistica1 == 0:
+                            nombre_estadistica1 = "magia"
+                            estadistica1 = random.randint(1,6)
+                        else:
+                            nombre_estadistica2 = "magia"
+                            estadistica2 = random.randint(1,6)
+                    
+                    elif opc == 3:
+                        if estadistica1 == 0:
+                            nombre_estadistica1 = "defensa"
+                            estadistica1 = random.randint(1,6)
+                        else:
+                            nombre_estadistica2 = "defensa"
+                            estadistica2 = random.randint(1,6)
+                        
+                    elif opc == 4:
+                        if estadistica1 == 0:
+                            nombre_estadistica1 = "agilidad"
+                            estadistica1 = random.randint(1,6)
+                        else:
+                            nombre_estadistica2 = "agilidad"
+                            estadistica2 = random.randint(1,6)
+                    
+                    else:
+                        if estadistica1 == 0:
+                            nombre_estadistica1 = "vida"
+                            estadistica1 = random.randint(1,6)
+                        else:
+                            nombre_estadistica2 = "vida"
+                            estadistica2 = random.randint(1,6)
+            else:
+                dec_deb = input("Quieres poner un debuff aleatorio? S/N (Si pones un debuff en alguna estadistica tendras un buffo de un 20% en las estadisticas.) ")
+                if dec_deb == "S":
+                    estadistica1 = estadistica1 * 0.2
+                    estadistica2 = estadistica2 * 0.2
+                    estadistica_random = random.randint(1,5)
+
+                    if estadistica_random == 1:
+                        nombre_debufo = "fuerza"
+                        debuff = random.randint(1,6)
+                    
+                    elif estadistica_random == 2:
+                        nombre_debufo = "magia"
+                        debuff = random.randint(1,6)
+                    
+                    elif estadistica_random == 3:
+                        nombre_debufo = "defensa"
+                        debuff = random.randint(1,6)
+
+                    elif estadistica_random == 4:
+                        nombre_debufo = "agilidad"
+                        debuff = random.randint(1,6)
+
+                    else:
+                        nombre_debufo = "vida"
+                        debuff = random.randint(1,6)
+                #elif dec_deb == "N":
+
+                else:
+                    print(opcion_invalida)
+                    input("Enter to continue")
