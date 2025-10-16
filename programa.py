@@ -24,18 +24,18 @@ clases = {
     9:"Monje",
     10:"Nigromante"
 }
-#al subir de nivel se multiplican a todos los stats entre 1,1 y 1,5
+#al subir de nivel se multiplican a todos los estadisticas entre 1,1 y 1,5
 heroes = {
-    1:{"nivel": 1,"nombre":"Guerrero","clase":1,"arma":1,"fuerza":6,"magia":1,"defensa":6,"agilidad":3,"vida": 13,"xp": 0},
-    2:{"nivel": 1,"nombre":"Paladin","clase":2,"arma":2,"fuerza":4,"magia":4,"defensa":4,"agilidad":4,"vida": 12,"xp": 0},
-    3:{"nivel": 1,"nombre":"Picaro","clase":3,"arma":3,"fuerza":4,"magia":3,"defensa":2,"agilidad":7,"vida": 8,"xp": 0},
-    4:{"nivel": 1,"nombre":"Cazador","clase":4,"arma":4,"fuerza":7,"magia":4,"defensa":3,"agilidad":5,"vida": 9,"xp": 0},
-    5:{"nivel": 1,"nombre":"Mago","clase":5,"arma":5,"fuerza":1,"magia":7,"defensa":3,"agilidad":2,"vida": 6,"xp": 0},
-    6:{"nivel": 1,"nombre":"Clerigo","clase":6,"arma":6,"fuerza":1,"magia":5,"defensa":5,"agilidad":3,"vida": 7,"xp": 0},
-    7:{"nivel": 1,"nombre":"Druida","clase":7,"arma":7,"fuerza":3,"magia":5,"defensa":4,"agilidad":4,"vida": 10,"xp": 0},
-    8:{"nivel": 1,"nombre":"Bardo","clase":8,"arma":8,"fuerza":2,"magia":6,"defensa":5,"agilidad":3,"vida": 9,"xp": 0},
-    9:{"nivel": 1,"nombre":"Monje","clase":9,"arma":9,"fuerza":5,"magia":4,"defensa":2,"agilidad":4,"vida": 10,"xp": 0},
-    10:{"nivel": 1,"nombre":"Nigromante","clase":10,"arma":10,"fuerza":1,"magia":8,"defensa":2,"agilidad":3,"vida": 7,"xp": 0}
+    1:{"nivel": 1,"nombre":"Guerrero","clase":1,"arma":"Escudo pesado","fuerza":6,"magia":1,"defensa":6,"agilidad":3,"vida": 13,"xp": 0},
+    2:{"nivel": 1,"nombre":"Paladin","clase":2,"arma":"Espada larga","fuerza":4,"magia":4,"defensa":4,"agilidad":4,"vida": 12,"xp": 0},
+    3:{"nivel": 1,"nombre":"Picaro","clase":3,"arma":"Dagas","fuerza":4,"magia":3,"defensa":2,"agilidad":7,"vida": 8,"xp": 0},
+    4:{"nivel": 1,"nombre":"Cazador","clase":4,"arma":"Cuchillos de caza","fuerza":7,"magia":4,"defensa":3,"agilidad":5,"vida": 9,"xp": 0},
+    5:{"nivel": 1,"nombre":"Mago","clase":5,"arma":"Baston Magico","fuerza":1,"magia":7,"defensa":3,"agilidad":2,"vida": 6,"xp": 0},
+    6:{"nivel": 1,"nombre":"Clerigo","clase":6,"arma":"Stigma sagrado","fuerza":1,"magia":5,"defensa":5,"agilidad":3,"vida": 7,"xp": 0},
+    7:{"nivel": 1,"nombre":"Druida","clase":7,"arma":"Totem","fuerza":3,"magia":5,"defensa":4,"agilidad":4,"vida": 10,"xp": 0},
+    8:{"nivel": 1,"nombre":"Bardo","clase":8,"arma":"Laúd","fuerza":2,"magia":6,"defensa":5,"agilidad":3,"vida": 9,"xp": 0},
+    9:{"nivel": 1,"nombre":"Monje","clase":9,"arma":"Nudilleras","fuerza":5,"magia":4,"defensa":2,"agilidad":4,"vida": 10,"xp": 0},
+    10:{"nivel": 1,"nombre":"Nigromante","clase":10,"arma":"Baston oscuro","fuerza":1,"magia":8,"defensa":2,"agilidad":3,"vida": 7,"xp": 0}
 }
 
 armas = {
@@ -117,7 +117,7 @@ menu2 = "Menu de creacion".center(40,"=") + "\n"+ \
 nuevo_personaje = "Nuevo personaje".center(40,"=") + "\n"
 eleccion_clase = "Eleccion de clase".center(40,"=") + "\n"
 eleccion_arma = "Eleccion de arma".center(40,"=") + "\n"
-eleccion_stats = "Selecciona un stat".center(40,"=") + "\n" + \
+eleccion_estadisticas = "Selecciona una estadistica".center(40,"=") + "\n" + \
     "1) Fuerza" + "\n" + \
     "2) Magia" + "\n" + \
     "3) Defensa" + "\n" + \
@@ -127,7 +127,7 @@ muestra = "Personaje creado".center(40,"-") + "\n" \
     "Nombre: {}" + "\n" + \
     "Clase: {}" + "\n" + \
     "Arma: {}" + "\n" + \
-    "Stats".center(40,"·") + "\n" \
+    "estadisticas".center(40,"·") + "\n" \
     "Fuerza: {}" + "\n" + \
     "Magia: {}" + "\n" + \
     "Defensa: {}" + "\n" + \
@@ -135,6 +135,13 @@ muestra = "Personaje creado".center(40,"-") + "\n" \
     "Vida: {}" + "\n"
 
 nueva_arma = "Nueva arma".center(40,"=") + "\n"
+eleccion_clase_arma = "Eleccion de clase de arma".center(40,"=") + "\n"
+eleccion_estadisticas_arma = "Selecciona una estadistica".center(40,"=") + "\n" + \
+    "1) Fuerza" + "\n" + \
+    "2) Magia" + "\n" + \
+    "3) Defensa" + "\n" + \
+    "4) Agilidad" + "\n" + \
+    "5) Vida" + "\n"
 
 #--------------------Menu3--------------------
 menu3 = "Menu de editar".center(40,"=") + "\n" + \
@@ -240,12 +247,13 @@ flg_menu0 = True
 #CREAR
 flg_menu2 = False
 flg_crear_pers = False
-flg_crear_arma = False
 flg_nombre = False
 flg_clase = False
 flg_arma = False
-flg_stats = False
+flg_estadisticas = False
 flg_muestra_personaje = False
+
+flg_crear_arma = False
 
 #EDITAR
 flg_menu3 = False
@@ -509,11 +517,11 @@ while not flg_salir:
         clase = 0
         armas_disponible = []
         arma_personaje = 0
-        stat_frz = 0
-        stat_mag = 0
-        stat_def = 0
-        stat_agi = 0
-        stat_vid = 0
+        estadistica_frz = 0
+        estadistica_mag = 0
+        estadistica_def = 0
+        estadistica_agi = 0
+        estadistica_vid = 0
 
         for i in range(len(clases)):
             eleccion_clase = eleccion_clase + "{}) ".format(i + 1) + clases[i + 1] + "\n"
@@ -566,24 +574,24 @@ while not flg_salir:
                 print("Arma seleccionada {}.".format(armas[opc]["nombre"]))
                 input("Enter to continue")
                 arma_personaje = opc
-                stat_frz = 0
-                stat_mag = 0
-                stat_def = 0
-                stat_agi = 0
-                stat_vid = 0
+                estadistica_frz = 0
+                estadistica_mag = 0
+                estadistica_def = 0
+                estadistica_agi = 0
+                estadistica_vid = 0
                 dado = 0
-                flg_stats = True
+                flg_estadisticas = True
                 flg_arma = False
 
-        while flg_stats:
-            if stat_frz > 0 and stat_mag > 0 and stat_def > 0 and stat_agi > 0 and stat_vid > 0:
-                print("\n"+"Stats Definitivos".center(40,"=") + "\nFuerza: {}\nMagia: {}\nDefensa: {}\nAgilidad: {}\nVida: {}\n".format(stat_frz,stat_mag,stat_def,stat_agi,stat_vid))
+        while flg_estadisticas:
+            if estadistica_frz > 0 and estadistica_mag > 0 and estadistica_def > 0 and estadistica_agi > 0 and estadistica_vid > 0:
+                print("\n"+"estadisticas Definitivos".center(40,"=") + "\nFuerza: {}\nMagia: {}\nDefensa: {}\nAgilidad: {}\nVida: {}\n".format(estadistica_frz,estadistica_mag,estadistica_def,estadistica_agi,estadistica_vid))
                 input("Enter to continue")
                 flg_muestra_personaje = True
-                flg_stats = False
+                flg_estadisticas = False
             else:
-                print(eleccion_stats)
-                print("Stats Actuales".center(40,"=") + "\nFuerza: {} Magia: {} Defensa: {} Agilidad: {} Vida: {}\n".format(stat_frz, stat_mag, stat_def, stat_agi, stat_vid))
+                print(eleccion_estadisticas)
+                print("estadisticas Actuales".center(40,"=") + "\nFuerza: {} Magia: {} Defensa: {} Agilidad: {} Vida: {}\n".format(estadistica_frz, estadistica_mag, estadistica_def, estadistica_agi, estadistica_vid))
                 opc = input("Opcion:\n")
                 if not opc.isdigit():
                     print(opcion_invalida)
@@ -594,53 +602,53 @@ while not flg_salir:
                 else:
                     opc = int(opc)
                     if opc == 1:
-                        if stat_frz > 0:
+                        if estadistica_frz > 0:
                             print("No puedes cambiar el destino.")
                             input("Enter to continue")
                         else:
                             dado = random.randint(10,20)
                             print("La fuerza sera de {} puntos.".format(dado))
                             input("Enter to continue")
-                            stat_frz = dado
+                            estadistica_frz = dado
                     elif opc == 2:
-                        if stat_mag > 0:
+                        if estadistica_mag > 0:
                             print("No puedes cambiar el destino.")
                             input("Enter to continue")
                         else:
                             dado = random.randint(10, 20)
                             print("La magia sera de {} puntos.".format(dado))
                             input("Enter to continue")
-                            stat_mag = dado
+                            estadistica_mag = dado
                     elif opc == 3:
-                        if stat_def > 0:
+                        if estadistica_def > 0:
                             print("No puedes cambiar el destino.")
                             input("Enter to continue")
                         else:
                             dado = random.randint(10, 20)
                             print("La defensa sera de {} puntos.".format(dado))
                             input("Enter to continue")
-                            stat_def = dado
+                            estadistica_def = dado
                     elif opc == 4:
-                        if stat_agi > 0:
+                        if estadistica_agi > 0:
                             print("No puedes cambiar el destino.")
                             input("Enter to continue")
                         else:
                             dado = random.randint(10, 20)
                             print("La agilidad sera de {} puntos.".format(dado))
                             input("Enter to continue")
-                            stat_agi = dado
+                            estadistica_agi = dado
                     else:
-                        if stat_vid > 0:
+                        if estadistica_vid > 0:
                             print("No puedes cambiar el destino.")
                             input("Enter to continue")
                         else:
                             dado = random.randint(10, 20)
                             print("La vida sera de {} puntos.".format(dado))
                             input("Enter to continue")
-                            stat_vid = dado
+                            estadistica_vid = dado
 
         while flg_muestra_personaje:
-            print(muestra.format(nombre, clases[clase], armas[arma_personaje]["nombre"], stat_frz, stat_mag, stat_def, stat_agi, stat_vid))
+            print(muestra.format(nombre, clases[clase], armas[arma_personaje]["nombre"], estadistica_frz, estadistica_mag, estadistica_def, estadistica_agi, estadistica_vid))
             opc = input("Quieres empezar la aventura? S/N\n")
             if opc != "S" and opc != "N":
                 print("Tienes que poner una 'S' para aceptar o una 'N' para rechazar.")
@@ -654,11 +662,62 @@ while not flg_salir:
                     print("Personaje creado")
                     input("Enter to continue")
                     heroes[len(heroes) + 1] = {"nivel":1, "nombre": nombre, "clase":clase, "arma":arma_personaje,
-                                               "fuerza":stat_frz, "magia":stat_mag, "defensa":stat_def, "agilidad":stat_agi,
-                                               "vida":stat_vid, "xp":0}
+                                               "fuerza":estadistica_frz, "magia":estadistica_mag, "defensa":estadistica_def, "agilidad":estadistica_agi,
+                                               "vida":estadistica_vid, "xp":0}
                     flg_muestra_personaje = False
 
         flg_menu0 = True
         flg_crear_pers = False
 
-    #Creacion de arma while flg_crear_arma:
+    #Creacion de arma 
+    while flg_crear_arma:
+        print(nueva_arma)
+        clase = 0
+        nombre_arma = ""
+        estadistica1 = 0
+        estadistica2 = 0
+        debuff = 0
+        
+        for i in range(len(clases)):
+            eleccion_clase = eleccion_clase + "{}) ".format(i + 1) + clases[i + 1] + "\n"
+        flg_clase = True  
+
+        while flg_clase:
+            print(eleccion_clase_arma)
+            clase = input("Opcion:\n")
+            if not clase.isdigit():
+                print(opcion_invalida)
+                input("Enter to continue")
+            elif not int(clase) in range(1,len(clases) + 1):
+                print(fuera_rango)
+                input("Enter to continue")
+            else:
+                clase = int(clase)
+                print("Clase para arma seleccionada {}".format(clases[clase]))
+                input("Enter to continue")
+                flg_clase = False
+                flg_nombre = True
+        #1:{"clase":1,"nombre":"Escudo pesado","fuerza":1,"defensa":6,"agilidad":-2},
+        while flg_nombre:
+            nombre_arma = input("Nombre para l'arma:\n")
+            probar_nombre = nombre_arma.replace(" ","")
+            if not probar_nombre.isalpha():
+                print(formato_invalido)
+            else:
+                while True:
+                    nombre_igual = nombre_arma
+                    for i in range(len(armas)):
+                        if armas[i + 1]["nombre"] == nombre_arma:
+                            print("Este nombre ya existe.")
+                            nombre_arma = input("Nombre para l'arma:\n")
+                    if nombre_igual == nombre_arma:
+                        break
+                print("Nuevo nombre creado {}".format(nombre_arma))
+                input("Enter to continue")
+                flg_estadisticas = True
+                flg_nombre = False
+        
+        while flg_estadisticas:
+            if estadistica1 == 0 or estadistica2 == 0:
+                print(eleccion_estadisticas_arma)
+                
