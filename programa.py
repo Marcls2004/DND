@@ -123,7 +123,7 @@ eleccion_estadisticas = "Selecciona una estadistica".center(40,"=") + "\n" + \
     "3) Defensa" + "\n" + \
     "4) Agilidad" + "\n" + \
     "5) Vida" + "\n"
-muestra = "Personaje creado".center(40,"-") + "\n" \
+muestra_pers = "Personaje creado".center(40,"-") + "\n" \
     "Nombre: {}" + "\n" + \
     "Clase: {}" + "\n" + \
     "Arma: {}" + "\n" + \
@@ -142,6 +142,19 @@ eleccion_estadisticas_arma = "Selecciona una estadistica".center(40,"=") + "\n" 
     "3) Defensa" + "\n" + \
     "4) Agilidad" + "\n" + \
     "5) Vida" + "\n"
+#1:{"clase":1,"nombre":"Escudo pesado","fuerza":1,"defensa":6,"agilidad":-2},
+muestra_arma = "Arma creada".center(40,"=") + "\n" \
+    "Nombre: {}" + "\n" + \
+    "Requisito de clase: {}" + "\n" + \
+    "Primera estadistica: {} = {}" + "\n" + \
+    "Segunda estadistica: {} = {}" + "\n"
+
+muestra_arma_deb = "Arma creada".center(40,"=") + "\n" \
+    "Nombre: {}" + "\n" + \
+    "Requisito de clase: {}" + "\n" + \
+    "Primera estadistica: {} = {}" + "\n" + \
+    "Segunda estadistica: {} = {}" + "\n" + \
+    "Estadistica debuff: {} = {}" + "\n"
 
 #--------------------Menu3--------------------
 menu3 = "Menu de editar".center(40,"=") + "\n" + \
@@ -251,7 +264,7 @@ flg_nombre = False
 flg_clase = False
 flg_arma = False
 flg_estadisticas = False
-flg_muestra_personaje = False
+flg_muestra = False
 
 flg_crear_arma = False
 
@@ -289,15 +302,15 @@ while not flg_salir:
 
         if not opc.isdigit():
             print(opcion_invalida)
-            input("Enter to continue")
+            input("Enter para continuar")
         elif not int(opc) in range(1,6):
             print(fuera_rango)
-            input("Enter to continue")
+            input("Enter para continuar")
         else:
             opc = int(opc)
             if opc == 1:
                 print("Esta opcion de momento no esta implementada")
-                input("Enter to continue")
+                input("Enter para continuar")
             elif opc == 2:
                 flg_menu2 = True
                 flg_menu0 = False
@@ -317,10 +330,10 @@ while not flg_salir:
 
         if not opc.isdigit():
             print(opcion_invalida)
-            input("Enter to continue")
+            input("Enter para continuar")
         elif not int(opc) in range(1,4):
             print(fuera_rango)
-            input("Enter to continue")
+            input("Enter para continuar")
         else:
             opc = int(opc)
             if opc == 1:
@@ -340,18 +353,18 @@ while not flg_salir:
 
         if not opc.isdigit():
             print(opcion_invalida)
-            input("Enter to continue")
+            input("Enter para continuar")
         elif not int(opc) in range(1,4):
             print(fuera_rango)
-            input("Enter to continue")
+            input("Enter para continuar")
         else:
             opc = int(opc)
             if opc == 1:
                 print("Esta opcion de momento no esta implementada")
-                input("Enter to continue")
+                input("Enter para continuar")
             elif opc == 2:
                 print("Esta opcion de momento no esta implementada")
-                input("Enter to continue")
+                input("Enter para continuar")
             else:
                 flg_menu0 = True
                 flg_menu3 = False
@@ -362,10 +375,10 @@ while not flg_salir:
 
         if not opc.isdigit():
             print(opcion_invalida)
-            input("Enter to continue")
+            input("Enter para continuar")
         elif not int(opc) in range(1,5):
             print(fuera_rango)
-            input("Enter to continue")
+            input("Enter para continuar")
         else:
             opc = int(opc)
             if opc == 1:
@@ -373,10 +386,10 @@ while not flg_salir:
                 flg_menu4 = False
             elif opc == 2:
                 print("Esta opcion de momento no esta implementada")
-                input("Enter to continue")
+                input("Enter para continuar")
             elif opc == 3:
                 print("Esta opcion de momento no esta implementada")
-                input("Enter to continue")
+                input("Enter para continuar")
             else:
                 flg_menu0 = True
                 flg_menu4 = False
@@ -492,10 +505,10 @@ while not flg_salir:
                 input("Pulsa para continuar")
             else:
                 print(fuera_rango)
-                input("Enter to continue")
+                input("Enter para continuar")
         else:
             print(opcion_invalida)
-            input("Enter to continue")
+            input("Enter para continuar")
     #Creacion de personaje
     while flg_crear_pers:
         nombre = ""
@@ -520,7 +533,7 @@ while not flg_salir:
                 print(formato_invalido)
             else:
                 print("Nuevo nombre creado {}".format(nombre))
-                input("Enter to continue")
+                input("Enter para continuar")
                 flg_clase = True
                 flg_nombre = False
 
@@ -529,15 +542,15 @@ while not flg_salir:
             opc = input("Opcion:\n")
             if not opc.isdigit():
                 print(opcion_invalida)
-                input("Enter to continue")
+                input("Enter para continuar")
 
             elif int(opc) < 1 or int(opc) > len(clases):
                 print(fuera_rango)
-                input("Enter to continue")
+                input("Enter para continuar")
             else:
                 opc = int(opc)
                 print("Clase seleccionada {}".format(clases[opc]))
-                input("Enter to continue")
+                input("Enter para continuar")
                 clase = opc
                 flg_arma = True
                 flg_clase = False
@@ -557,7 +570,7 @@ while not flg_salir:
             else:
                 opc = int(opc)
                 print("Arma seleccionada {}.".format(armas[opc]["nombre"]))
-                input("Enter to continue")
+                input("Enter para continuar")
                 arma_personaje = opc
                 estadistica_frz = 0
                 estadistica_mag = 0
@@ -571,8 +584,8 @@ while not flg_salir:
         while flg_estadisticas:
             if estadistica_frz > 0 and estadistica_mag > 0 and estadistica_def > 0 and estadistica_agi > 0 and estadistica_vid > 0:
                 print("\n"+"estadisticas Definitivos".center(40,"=") + "\nFuerza: {}\nMagia: {}\nDefensa: {}\nAgilidad: {}\nVida: {}\n".format(estadistica_frz,estadistica_mag,estadistica_def,estadistica_agi,estadistica_vid))
-                input("Enter to continue")
-                flg_muestra_personaje = True
+                input("Enter para continuar")
+                flg_muestra = True
                 flg_estadisticas = False
             else:
                 print(eleccion_estadisticas)
@@ -580,76 +593,76 @@ while not flg_salir:
                 opc = input("Opcion:\n")
                 if not opc.isdigit():
                     print(opcion_invalida)
-                    input("Enter to continue")
+                    input("Enter para continuar")
                 elif not int(opc) in range(1,6):
                     print(fuera_rango)
-                    input("Enter to continue")
+                    input("Enter para continuar")
                 else:
                     opc = int(opc)
                     if opc == 1:
                         if estadistica_frz > 0:
                             print("No puedes cambiar el destino.")
-                            input("Enter to continue")
+                            input("Enter para continuar")
                         else:
                             dado = random.randint(10,20)
                             print("La fuerza sera de {} puntos.".format(dado))
-                            input("Enter to continue")
+                            input("Enter para continuar")
                             estadistica_frz = dado
                     elif opc == 2:
                         if estadistica_mag > 0:
                             print("No puedes cambiar el destino.")
-                            input("Enter to continue")
+                            input("Enter para continuar")
                         else:
                             dado = random.randint(10, 20)
                             print("La magia sera de {} puntos.".format(dado))
-                            input("Enter to continue")
+                            input("Enter para continuar")
                             estadistica_mag = dado
                     elif opc == 3:
                         if estadistica_def > 0:
                             print("No puedes cambiar el destino.")
-                            input("Enter to continue")
+                            input("Enter para continuar")
                         else:
                             dado = random.randint(10, 20)
                             print("La defensa sera de {} puntos.".format(dado))
-                            input("Enter to continue")
+                            input("Enter para continuar")
                             estadistica_def = dado
                     elif opc == 4:
                         if estadistica_agi > 0:
                             print("No puedes cambiar el destino.")
-                            input("Enter to continue")
+                            input("Enter para continuar")
                         else:
                             dado = random.randint(10, 20)
                             print("La agilidad sera de {} puntos.".format(dado))
-                            input("Enter to continue")
+                            input("Enter para continuar")
                             estadistica_agi = dado
                     else:
                         if estadistica_vid > 0:
                             print("No puedes cambiar el destino.")
-                            input("Enter to continue")
+                            input("Enter para continuar")
                         else:
                             dado = random.randint(10, 20)
                             print("La vida sera de {} puntos.".format(dado))
-                            input("Enter to continue")
+                            input("Enter para continuar")
                             estadistica_vid = dado
 
-        while flg_muestra_personaje:
-            print(muestra.format(nombre, clases[clase], armas[arma_personaje]["nombre"], estadistica_frz, estadistica_mag, estadistica_def, estadistica_agi, estadistica_vid))
+        while flg_muestra:
+            print(muestra_pers.format(nombre, clases[clase], armas[arma_personaje]["nombre"], estadistica_frz, estadistica_mag, estadistica_def, estadistica_agi, estadistica_vid))
             opc = input("Quieres empezar la aventura? S/N\n")
             if opc != "S" and opc != "N":
                 print("Tienes que poner una 'S' para aceptar o una 'N' para rechazar.")
-                input("Enter to continue")
+                input("Enter para continuar")
             else:
                 if opc == "N":
                     print("Mala suerte la proxima intenta jugar con lo que te salga.")
-                    input("Enter to continue")
-                    flg_muestra_personaje = False
+                    input("Enter para continuar")
+                    flg_muestra = False
                 else:
                     print("Personaje creado")
-                    input("Enter to continue")
-                    heroes[len(heroes) + 1] = {"nivel":1, "nombre": nombre, "clase":clase, "arma":arma_personaje,
+                    input("Enter para continuar")
+                    heroes[len(heroes) + 1] = {"nivel":1, "nombre": nombre, "clase":clase, "arma" : armas[arma_personaje]["nombre"],
                                                "fuerza":estadistica_frz, "magia":estadistica_mag, "defensa":estadistica_def, "agilidad":estadistica_agi,
                                                "vida":estadistica_vid, "xp":0}
-                    flg_muestra_personaje = False
+                    flg_muestra = False
 
         flg_menu0 = True
         flg_crear_pers = False
@@ -675,17 +688,17 @@ while not flg_salir:
             clase = input("Opcion:\n")
             if not clase.isdigit():
                 print(opcion_invalida)
-                input("Enter to continue")
+                input("Enter para continuar")
             elif not int(clase) in range(1,len(clases) + 1):
                 print(fuera_rango)
-                input("Enter to continue")
+                input("Enter para continuar")
             else:
                 clase = int(clase)
-                print("Clase de {} para l'arma".format(clases[clase]))
-                input("Enter to continue")
+                print("Requisito de {} para l'arma creado".format(clases[clase]))
+                input("Enter para continuar")
                 flg_clase = False
                 flg_nombre = True
-        #1:{"clase":1,"nombre":"Escudo pesado","fuerza":1,"defensa":6,"agilidad":-2},
+        
         while flg_nombre:
             nombre_arma = input("Nombre para l'arma:\n")
             probar_nombre = nombre_arma.replace(" ","")
@@ -701,19 +714,20 @@ while not flg_salir:
                     if nombre_igual == nombre_arma:
                         break
                 print("Nuevo nombre creado {}".format(nombre_arma))
-                input("Enter to continue")
+                input("Enter para continuar")
                 flg_estadisticas = True
                 flg_nombre = False
+        
         while flg_estadisticas:
             if estadistica1 == 0 or estadistica2 == 0:
                 print(eleccion_estadisticas_arma)
                 opc = input("Opcion:\n")
                 if not opc.isdigit():
                     print(formato_invalido)
-                    input("Enter to continue")
+                    input("Enter para continuar")
                 elif not int(opc) in range(1,6):
                     print(fuera_rango)
-                    input("Enter to continue")
+                    input("Enter para continuar")
                 else:
                     opc = int(opc)
                     if opc == 1:
@@ -758,31 +772,88 @@ while not flg_salir:
             else:
                 dec_deb = input("Quieres poner un debuff aleatorio? S/N (Si pones un debuff en alguna estadistica tendras un buffo de un 20% en las estadisticas.) ")
                 if dec_deb == "S":
-                    estadistica1 = estadistica1 * 0.2
-                    estadistica2 = estadistica2 * 0.2
+                    estadistica1 = int(estadistica1 * 1.2)
+                    estadistica2 = int(estadistica2 * 1.2)
                     estadistica_random = random.randint(1,5)
+                    flg_muestra = True
+                    flg_estadisticas = False
 
                     if estadistica_random == 1:
                         nombre_debufo = "fuerza"
-                        debuff = random.randint(1,6)
+                        debuff = -random.randint(1,6)
+                        flg_muestra = True
+                        flg_estadisticas = False
                     
                     elif estadistica_random == 2:
                         nombre_debufo = "magia"
-                        debuff = random.randint(1,6)
-                    
+                        debuff = -random.randint(1,6)
+                        flg_muestra = True
+                        flg_estadisticas = False                   
+
                     elif estadistica_random == 3:
                         nombre_debufo = "defensa"
-                        debuff = random.randint(1,6)
+                        debuff = -random.randint(1,6)
+                        flg_muestra = True
+                        flg_estadisticas = False
 
                     elif estadistica_random == 4:
                         nombre_debufo = "agilidad"
-                        debuff = random.randint(1,6)
+                        debuff = -random.randint(1,6)
+                        flg_muestra = True
+                        flg_estadisticas = False
 
                     else:
                         nombre_debufo = "vida"
-                        debuff = random.randint(1,6)
-                #elif dec_deb == "N":
+                        debuff = -random.randint(1,6)
+                        flg_muestra = True
+                        flg_estadisticas = False
+                    
+                    print("Las estadisticas del arma son:\n{} = {}\n{} = {}\n{} = {}".format(nombre_estadistica1, estadistica1, nombre_estadistica2, estadistica2, nombre_debufo, debuff))
+                    input("Enter para continuar")
+                    flg_muestra = True
+                    flg_estadisticas = False
+
+                elif dec_deb == "N":
+                    print("Las estadisticas del arma son:\n{} = {}\n{} = {}\n".format(nombre_estadistica1, estadistica1, nombre_estadistica2, estadistica2))
+                    input("Enter para continuar")
+                    flg_muestra = True
+                    flg_estadisticas = False
 
                 else:
                     print(opcion_invalida)
-                    input("Enter to continue")
+                    input("Enter para continuar")
+        
+        while flg_muestra:
+            if debuff == 0:
+                print("Esta es la nueva arma:\n" + muestra_arma.format(nombre_arma, clases[clase], nombre_estadistica1, estadistica1, nombre_estadistica2, estadistica2))
+            
+            else:
+                print("Esta es la nueva arma:\n" + muestra_arma_deb.format(nombre_arma, clases[clase], nombre_estadistica1, estadistica1, nombre_estadistica2, estadistica2, nombre_debufo, debuff))
+
+            opc = input("Quieres crear esta arma? S/N\n")
+            if opc != "S" and opc != "N":
+                print("Tienes que poner una 'S' para aceptar o una 'N' para rechazar.")
+                input("Enter para continuar")
+            else:
+                if opc == "N":
+                    print("Mala suerte la proxima intenta jugar con lo que te salga.")
+                    input("Enter para continuar")
+                    flg_muestra = False
+                else:
+                    print("Arma creada")
+                    input("Enter para continuar")
+                    #1:{"clase":1,"nombre":"Escudo pesado","fuerza":1,"defensa":6,"agilidad":-2},
+                    print(debuff == 0)
+                    input
+                    if debuff == 0:
+                        armas[len(armas) + 1] = {"clase" : clase, "nombre": nombre_arma,
+                                               nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2}
+                    else:
+                        armas[len(armas) + 1] = {"clase" : clase, "nombre": nombre_arma,
+                                               nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2, nombre_debufo : debuff}
+                                                
+                    flg_muestra = False
+        print(armas)
+        input()
+        flg_menu0 = True
+        flg_crear_arma = False
