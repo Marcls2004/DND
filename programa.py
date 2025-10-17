@@ -853,7 +853,7 @@ while not flg_salir:
                                                nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2, nombre_debufo : debuff}
                                                 
                     flg_muestra = False
-        print(armas)
+        print(len(armas))
         input()
         flg_menu0 = True
         flg_crear_arma = False
