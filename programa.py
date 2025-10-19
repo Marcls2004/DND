@@ -159,25 +159,14 @@ menu4 = "Listas".center(40,"=") + "\n" + \
     "3) Monstruos" + "\n" + \
     "4) Volver" + "\n"
 
-menu41 = "\n" + " Lista personajes".center(40,"=") + "\n" +\
-          "\n1)Listar por nivel\n2)Listar por nombre\n3)Listar por fuerza\n4)Listar por magia\n5)Listar por defensa\n6)Listar por agilidad"\
-          "\n7)Listar por vida\n8)Listar por xp\n9)Go back"
-menu042 = "Menu  042 (List Weapons)".center(50,"=")+"\n"\
-          +"1)List by ID\n2)List by name\n3)List by Strength\n4)List by speed\n5)Go back"
+
 
 
 #HAY QUE LISTAR POR PERSONAJES, ARMAS Y MONSTRUOS
 
-listar_personajes = "Listar personajes".center(40,"=") + "\n" + \
-    "1) Listar por ID" + "\n" + \
-    "2) Listar por nombre" + "\n" + \
-    "3) Listar por vida" + "\n" + \
-    "4) Listar por XP" + "\n" + \
-    "5) Listar por fuerza" + "\n" + \
-    "6) Listar por defensa" + "\n" + \
-    "7) Listar por agilidad" + "\n" + \
-    "8) Listar por magia" + "\n" + \
-    "9) Volver" + "\n"
+listar_personajes = " Lista personajes".center(40,"=") + "\n" +\
+          "\n1)Listar por nivel\n2)Listar por nombre\n3)Listar por fuerza\n4)Listar por magia\n5)Listar por defensa\n6)Listar por agilidad"\
+          "\n7)Listar por vida\n8)Listar por xp\n9)Volver"
 
 listar_armas = "Listar armas".center(40,"=") + "\n" + \
     "1) Listar por ID" + "\n" + \
@@ -253,6 +242,7 @@ flg_menu3 = False
 #LISTAR
 flg_menu4 = False
 flg_menu41 = False
+flg_menu42 = False
 
 opcion_invalida = "Opcion invalida"
 fuera_rango = "Opcion fuera de rango"
@@ -274,6 +264,17 @@ encabezado_ranking_personajes = (
     "".center(106, "*")
 )
 
+encabezado_ranking_armas = (
+    "Ranking Armas".center(68, "=") + "\n" +
+    "Id".ljust(5) +
+    "Nombre".ljust(15) +
+    "Clase".ljust(12) +
+    "Fuerza".rjust(8) +
+    "Magia".rjust(8) +
+    "Defensa".rjust(10) +
+    "Agilidad".rjust(10) + "\n"+
+    "".center(68, "*")
+)
 while not flg_salir:
     while flg_menu0:
         print(menu0)
@@ -379,8 +380,8 @@ while not flg_salir:
                 flg_menu41 = True
                 flg_menu4 = False
             elif opc == 2:
-                print("Esta opcion de momento no esta implementada")
-                input("Enter to continue")
+                flg_menu42 = True
+                flg_menu4 = False
             elif opc == 3:
                 print("Esta opcion de momento no esta implementada")
                 input("Enter to continue")
@@ -389,7 +390,7 @@ while not flg_salir:
                 flg_menu4 = False
     # Listar personajes
     while flg_menu41:
-        print(menu41)
+        print(listar_personajes)
         opc = input("Opcion: \n")
         if opc.isdigit():
             opc = int(opc)
@@ -486,8 +487,8 @@ while not flg_salir:
                         if not cambios:
                             break
                 else:
-                    flg_salir = True
-                    flg_menu0 = False
+                    flg_0 = True
+                    flg_menu41 = False
                 print(encabezado_ranking_personajes)
                 for i in range(len(heroes)):
                     print(str(lista_ordenar[i]).ljust(5) +
@@ -503,6 +504,57 @@ while not flg_salir:
         else:
             print(opcion_invalida)
             input("Enter to continue")
+    # Listar armas
+    while flg_menu42:
+        print(listar_armas)
+        opc = input("Opcion :")
+        if not opc.isdigit():
+            print("Opcion no numerica:")
+            input("Enter to Continue")
+        elif not int(opc) in range(1, 8):
+            print("Opcion numerica fuera de rango")
+            input("Enter to Continue")
+        else:
+            lista_ordenar = []
+            for key in armas:
+                lista_ordenar.append(key)
+            opc = int(opc)
+            if opc == 1:
+                for pasadas in range(len(lista_ordenar)):
+                    cambios = False
+                    for i in range(len(lista_ordenar) - 1 - pasadas):
+                        if lista_ordenar[i] > lista_ordenar[i + 1]:
+                            aux = lista_ordenar[i]
+                            lista_ordenar[i] = lista_ordenar[i + 1]
+                            lista_ordenar[i + 1] = aux
+                            cambios = True
+                    if not cambios:
+                        break
+            elif opc == 2:
+                print("Quieres restar")
+                input("Enter to Continue")
+            elif opc == 3:
+                print("Quieres multiplicar")
+                input("Enter to Continue")
+            elif opc == 4:
+                print("Quieres dividir")
+                input("Enter to Continue")
+            elif opc == 5:
+                print("Quieres dividir")
+                input("Enter to Continue")
+            elif opc == 6:
+                print("Quieres dividir")
+                input("Enter to Continue")
+
+            else:
+                flg_0 = True
+                flg_menu42 = False
+            print(encabezado_ranking_armas)
+            for i in range(len(armas)):
+                print(str(lista_ordenar[i]).ljust(5) +
+                      str(heroes[lista_ordenar[i]]["nombre"]).ljust(15)  + str(heroes[lista_ordenar[i]]["fuerza"]).rjust(8) +
+                      str(heroes[lista_ordenar[i]]["magia"]).rjust(8) +str(heroes[lista_ordenar[i]]["defensa"]).rjust(10) +
+                      str( heroes[lista_ordenar[i]]["agilidad"]).rjust(10))
     #Creacion de personaje
     while flg_crear_pers:
         nombre = ""
