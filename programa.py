@@ -38,23 +38,26 @@ heroes = {
     10:{"nivel": 1,"nombre":"Nigromante","clase":10,"arma":"Baston oscuro","fuerza":1,"magia":8,"defensa":2,"agilidad":3,"vida": 7,"xp": 0}
 }
 
+"""
+1:{"clase":1,"nombre":"Escudo pesado","caracteristicas":{"fuerza":1,"defensa":6},"debuffo":{"agilidad":-2}}
+"""
 armas = {
-    1:{"clase":1,"nombre":"Escudo pesado","fuerza":1,"defensa":6,"agilidad":-2},
-    2:{"clase":2,"nombre":"Espada larga","fuerza":4,"velocidad":2},
-    3:{"clase":3,"nombre":"Dagas","fuerza":2,"agilidad":4},
-    4:{"clase":4,"nombre":"Cuchillos de caza","fuerza":3,"agilidad":3},
-    5:{"clase":5,"nombre":"Baston Magico","magia":5,"defensa":1},
-    6:{"clase":6,"nombre":"Stigma sagrado","magia":4,"defensa":2, "vida": -2},
-    7:{"clase":7,"nombre":"Totem","fuerza":2,"defensa":4},
-    8:{"clase":8,"nombre":"Laúd","defensa":2,"agilidad":4},
-    9:{"clase":9,"nombre":"Nudilleras","fuerza":2,"magia":4},
-    10:{"clase":10,"nombre":"Baston oscuro","magia":1,"defensa":5, "vida": -3}
+    1:{"clase":1,"nombre":"Escudo pesado","caracteristicas":{"fuerza":1,"defensa":6},"debuffo":{"agilidad":-2}},
+    2:{"clase":2,"nombre":"Espada larga","caracteristicas":{"fuerza":4,"velocidad":2}},
+    3:{"clase":3,"nombre":"Dagas","caracteristicas":{"fuerza":2,"agilidad":4}},
+    4:{"clase":4,"nombre":"Cuchillos de caza","caracteristicas":{"fuerza":3,"agilidad":3}},
+    5:{"clase":5,"nombre":"Baston Magico","caracteristicas":{"magia":5,"defensa":1}},
+    6:{"clase":6,"nombre":"Stigma sagrado","caracteristicas":{"magia":4,"defensa":2},"debuffo":{"vida": -2}},
+    7:{"clase":7,"nombre":"Totem","caracteristicas":{"fuerza":2,"defensa":4}},
+    8:{"clase":8,"nombre":"Laúd","caracteristicas":{"defensa":2,"agilidad":4}},
+    9:{"clase":9,"nombre":"Nudilleras","caracteristicas":{"fuerza":2,"magia":4}},
+    10:{"clase":10,"nombre":"Baston oscuro","caracteristicas":{"magia":1,"defensa":5},"debuffo":{"vida": -3}}
 }
 
 #MONSTRUOS
 monstruos_debiles = {
     #mountruos faciles de vencer
-    1:{"nombre":"Rata Gigante","fuerza":5,"defensa":2,"agilidad":2,"vida":20},
+    1:{"nombre":"Rata Gigante","fuerza":5,"defensa":2,"vida":20},
     2:{"nombre":"Slime","fuerza":4,"defensa":3,"vida":25},
     3:{"nombre":"Goblin","fuerza":7,"defensa":2,"vida":30},
     4:{"nombre":"Esqueleto","fuerza":6,"defensa":3,"vida":35},
@@ -681,6 +684,9 @@ while not flg_salir:
         
         for i in range(len(clases)):
             eleccion_clase_arma = eleccion_clase_arma + "{}) ".format(i + 1) + clases[i + 1] + "\n"
+            if i + 1 == len(clases):
+                break
+       
         flg_clase = True  
 
         while flg_clase:
@@ -718,6 +724,8 @@ while not flg_salir:
                 flg_estadisticas = True
                 flg_nombre = False
         
+
+        contador_stats = 0
         while flg_estadisticas:
             if estadistica1 == 0 or estadistica2 == 0:
                 print(eleccion_estadisticas_arma)
@@ -730,84 +738,88 @@ while not flg_salir:
                     input("Enter para continuar")
                 else:
                     opc = int(opc)
-                    if opc == 1:
+                    if opc == 1 and contador_stats !=1:
                         if estadistica1 == 0:
                             nombre_estadistica1 = "fuerza"
                             estadistica1 = random.randint(1,6)
+                            contador_stats = 1
                         else:
                             nombre_estadistica2 = "fuerza"
                             estadistica2 = random.randint(1,6)
 
-                    elif opc == 2:
+                    elif opc == 2 and contador_stats != 2:
                         if estadistica1 == 0:
                             nombre_estadistica1 = "magia"
                             estadistica1 = random.randint(1,6)
+                            contador_stats = 2
                         else:
                             nombre_estadistica2 = "magia"
                             estadistica2 = random.randint(1,6)
                     
-                    elif opc == 3:
+                    elif opc == 3 and contador_stats != 3:
                         if estadistica1 == 0:
                             nombre_estadistica1 = "defensa"
                             estadistica1 = random.randint(1,6)
+                            contador_stats = 3
                         else:
                             nombre_estadistica2 = "defensa"
                             estadistica2 = random.randint(1,6)
                         
-                    elif opc == 4:
+                    elif opc == 4 and contador_stats != 4:
                         if estadistica1 == 0:
                             nombre_estadistica1 = "agilidad"
                             estadistica1 = random.randint(1,6)
+                            contador_stats = 4
                         else:
                             nombre_estadistica2 = "agilidad"
                             estadistica2 = random.randint(1,6)
                     
-                    else:
+                    elif opc == 5 and contador_stats != 5:
                         if estadistica1 == 0:
                             nombre_estadistica1 = "vida"
                             estadistica1 = random.randint(1,6)
+                            contador_stats = 5
                         else:
                             nombre_estadistica2 = "vida"
                             estadistica2 = random.randint(1,6)
+                    else:
+                        print("Esta caracteristica ya la has elegido, elige otra.")
             else:
-                print(estadistica2)
-                print(int(estadistica2 * 1.2))
-                print(estadistica1)
-                dec_deb = input("Quieres poner un debuff aleatorio? S/N (Si pones un debuff en alguna estadistica tendras un buffo de un 20% en las estadisticas.) ")
+                dec_deb = input("Quieres poner un debuff aleatorio? S/N \n(Si pones un debuff las estadistica tendran un aumento de un 50% en las estadisticas.\nPero el debuffo no son como las carecterisi) ")
                 if dec_deb == "S":
-                    estadistica1 = estadistica1 * 1.2
-                    estadistica2 = estadistica2 * 1.2
+                    estadistica1 = int(estadistica1 * 1.5)
+                    estadistica2 = int(estadistica2 * 1.5)
                     estadistica_random = random.randint(1,5)
                     flg_muestra = True
                     flg_estadisticas = False
 
                     if estadistica_random == 1:
                         nombre_debufo = "fuerza"
-                        debuff = -random.randint(1,6)
+                        debuff = -int(random.randint(1,6) * 1.5)
                         flg_muestra = True
                         flg_estadisticas = False
                     
                     elif estadistica_random == 2:
                         nombre_debufo = "magia"
-                        debuff = -random.randint(1,6)
+                        debuff = -int(random.randint(1,6) * 1.5)
                         flg_muestra = True
                         flg_estadisticas = False                   
 
                     elif estadistica_random == 3:
                         nombre_debufo = "defensa"
-                        debuff = -random.randint(1,6)
+                        debuff = -int(random.randint(1,6) * 1.5)
                         flg_muestra = True
                         flg_estadisticas = False
 
                     elif estadistica_random == 4:
                         nombre_debufo = "agilidad"
-                        debuff = -random.randint(1,6)
+                        debuff = -int(random.randint(1,6) * 1.5)
                         flg_muestra = True
                         flg_estadisticas = False
 
                     else:
                         nombre_debufo = "vida"
-                        debuff = -random.randint(1,6)
+                        debuff = -int(random.randint(1,6) * 1.5)
                         flg_muestra = True
                         flg_estadisticas = False
                     
@@ -852,10 +864,11 @@ while not flg_salir:
                                                nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2}
                     else:
                         armas[len(armas) + 1] = {"clase" : clase, "nombre": nombre_arma,
-                                               nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2, nombre_debufo : debuff}
+                                               nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2}
+                        armas[len(armas)][nombre_debufo] = debuff
                                                 
                     flg_muestra = False
-        print(armas)
+        print(armas[len(armas)])
         input()
         flg_menu0 = True
         flg_crear_arma = False
