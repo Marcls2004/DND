@@ -38,9 +38,6 @@ heroes = {
     10:{"nivel": 1,"nombre":"Nigromante","clase":10,"arma":"Baston oscuro","fuerza":1,"magia":8,"defensa":2,"agilidad":3,"vida": 7,"xp": 0}
 }
 
-"""
-1:{"clase":1,"nombre":"Escudo pesado","caracteristicas":{"fuerza":1,"defensa":6},"debuffo":{"agilidad":-2}}
-"""
 armas = {
     1:{"clase":1,"nombre":"Escudo pesado","caracteristicas":{"fuerza":1,"defensa":6},"debuffo":{"agilidad":-2}},
     2:{"clase":2,"nombre":"Espada larga","caracteristicas":{"fuerza":4,"velocidad":2}},
@@ -145,7 +142,6 @@ eleccion_estadisticas_arma = "Selecciona una estadistica".center(40,"=") + "\n" 
     "3) Defensa" + "\n" + \
     "4) Agilidad" + "\n" + \
     "5) Vida" + "\n"
-#1:{"clase":1,"nombre":"Escudo pesado","fuerza":1,"defensa":6,"agilidad":-2},
 muestra_arma = "Arma creada".center(40,"=") + "\n" \
     "Nombre: {}" + "\n" + \
     "Requisito de clase: {}" + "\n" + \
@@ -169,11 +165,14 @@ menu_personaje = "Selecciona personaje".center(40,"=")
 
 menu_arma = "Selecciona arma".center(40,"=")
 
+pers_seleccion = "Editar {}".center(40,"=") + "\n" + \
+    "1) Nombre" + "\n" + \
+    "3) Cambiar arma" + "\n" + \
+    "2) Salir" + "\n"
+
 arma_seleccion = "Editar {}".center(40,"=") + "\n" + \
     "1) Nombre" + "\n" + \
-    "2) Característica 1" + "\n" + \
-    "3) Característica 2" + "\n" + \
-    "4) Salir" + "\n"
+    "2) Salir" + "\n"
 
 #--------------------Menu4--------------------
 menu4 = "Listas".center(40,"=") + "\n" + \
@@ -273,6 +272,8 @@ flg_crear_arma = False
 
 #EDITAR
 flg_menu3 = False
+flg_edit_pers = False
+flg_edit_arma = False
 
 #LISTAR
 flg_menu4 = False
@@ -326,6 +327,7 @@ while not flg_salir:
             else:
                 flg_salir = True
                 flg_menu0 = False
+   
     # Crear
     while flg_menu2:
         print(menu2)
@@ -349,6 +351,7 @@ while not flg_salir:
             else:
                 flg_menu0 = True
                 flg_menu2 = False
+  
     # Editar
     while flg_menu3:
         print(menu3)
@@ -366,11 +369,12 @@ while not flg_salir:
                 print("Esta opcion de momento no esta implementada")
                 input("Enter para continuar")
             elif opc == 2:
-                print("Esta opcion de momento no esta implementada")
-                input("Enter para continuar")
+                flg_edit_arma = True
+                flg_menu3 = False
             else:
                 flg_menu0 = True
                 flg_menu3 = False
+  
     #Listar
     while flg_menu4:
         print(menu4)
@@ -396,6 +400,7 @@ while not flg_salir:
             else:
                 flg_menu0 = True
                 flg_menu4 = False
+   
     # Listar personajes
     while flg_menu41:
         print(menu41)
@@ -512,6 +517,7 @@ while not flg_salir:
         else:
             print(opcion_invalida)
             input("Enter para continuar")
+    
     #Creacion de personaje
     while flg_crear_pers:
         nombre = ""
@@ -873,3 +879,49 @@ while not flg_salir:
                     flg_muestra = False
         flg_menu0 = True
         flg_crear_arma = False
+    
+    #Editar armas
+    while flg_edit_arma:
+        for i in range(len(armas)):
+            eleccion_arma = eleccion_arma + "{}) ".format(i + 1) + armas[i + 1]["nombre"] + "\n"
+        print(eleccion_arma)
+        opc = input("Opcion:\n")
+        if not opc.isdigit():
+            print(formato_invalido)
+            input("Enter para continuar")
+        elif not int(opc) in range(1,len(armas) + 1):
+            print(fuera_rango)
+            input("Enter para continuar")
+        else:
+            
+            opc = int(opc)
+            nombre = armas[opc]["nombre"]
+
+            print(arma_seleccion.format(nombre))
+            opc_e = input("Opcion:\n")
+
+            if not opc_e.isdigit():
+                print(formato_invalido)
+                input("Enter para continuar")
+            elif not int(opc_e) in range(1,3):
+                print(fuera_rango)
+                input("Enter para continuar")
+            else:
+                
+                opc_e = int(opc_e)
+                if opc_e == 1:
+                    nuevo_nombre = input("Nuevo nombre:\n")
+                    if not nuevo_nombre.isalpha():
+                            print(formato_invalido)
+                            input("Enter to continue")
+                    else:
+                        print("El nombre: {}\nHa combiado por: {}".format(nombre,nuevo_nombre))
+                        input("Enter para continuar")
+                        armas[opc]["nombre"] = nuevo_nombre
+                        flg_menu3 = True
+                        flg_edit_arma = False
+                else:
+                    flg_menu3 = True
+                    flg_edit_arma = False
+
+
