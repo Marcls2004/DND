@@ -770,10 +770,13 @@ while not flg_salir:
                             nombre_estadistica2 = "vida"
                             estadistica2 = random.randint(1,6)
             else:
+                print(estadistica2)
+                print(int(estadistica2 * 1.2))
+                print(estadistica1)
                 dec_deb = input("Quieres poner un debuff aleatorio? S/N (Si pones un debuff en alguna estadistica tendras un buffo de un 20% en las estadisticas.) ")
                 if dec_deb == "S":
-                    estadistica1 = int(estadistica1 * 1.2)
-                    estadistica2 = int(estadistica2 * 1.2)
+                    estadistica1 = estadistica1 * 1.2
+                    estadistica2 = estadistica2 * 1.2
                     estadistica_random = random.randint(1,5)
                     flg_muestra = True
                     flg_estadisticas = False
@@ -844,7 +847,6 @@ while not flg_salir:
                     input("Enter para continuar")
                     #1:{"clase":1,"nombre":"Escudo pesado","fuerza":1,"defensa":6,"agilidad":-2},
                     print(debuff == 0)
-                    input
                     if debuff == 0:
                         armas[len(armas) + 1] = {"clase" : clase, "nombre": nombre_arma,
                                                nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2}
@@ -853,7 +855,7 @@ while not flg_salir:
                                                nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2, nombre_debufo : debuff}
                                                 
                     flg_muestra = False
-        print(len(armas))
+        print(armas)
         input()
         flg_menu0 = True
         flg_crear_arma = False
