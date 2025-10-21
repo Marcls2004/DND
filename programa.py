@@ -280,7 +280,7 @@ flg_menu41 = False
 
 opcion_invalida = "Opcion invalida"
 fuera_rango = "Opcion fuera de rango"
-formato_invalido = "Formato invalido tienen que ser letras."
+formato_invalido = "Formato invalido."
 arma_seleccionada = ""
 encabezado_ranking_personajes = (
     "Ranking Personajes".center(106, "=") + "\n" +
@@ -558,9 +558,11 @@ while not flg_salir:
                 flg_arma = True
                 flg_clase = False
 
+        identificador = 0
         for i in range(len(armas)):
             if armas[i + 1]["clase"] == clase:
-                eleccion_arma = eleccion_arma + "{}) ".format(i + 1) + armas[i + 1]["nombre"] + "\n"
+                identificador = identificador + 1
+                eleccion_arma = eleccion_arma + "{}) ".format(identificador) + armas[i + 1]["nombre"] + "\n"
                 armas_disponible.append(i + 1)
 
         while flg_arma:
@@ -784,8 +786,10 @@ while not flg_salir:
                             estadistica2 = random.randint(1,6)
                     else:
                         print("Esta caracteristica ya la has elegido, elige otra.")
+                        input("Enter para continuar")
             else:
-                dec_deb = input("Quieres poner un debuff aleatorio? S/N \n(Si pones un debuff las estadistica tendran un aumento de un 50% en las estadisticas.\nPero el debuffo no son como las carecterisi) ")
+                dec_deb = input("Quieres poner un debuff aleatorio? S/N \n(Si pones un debuff las estadistica tendran un aumento de un 50% en las estadisticas.\n" \
+                "Pero el debuffo tembien sera de un aumento de 50%) ")
                 if dec_deb == "S":
                     estadistica1 = int(estadistica1 * 1.5)
                     estadistica2 = int(estadistica2 * 1.5)
@@ -855,20 +859,17 @@ while not flg_salir:
                     input("Enter para continuar")
                     flg_muestra = False
                 else:
-                    print("Arma creada")
+                    print("Arma guardada en el arsenal")
                     input("Enter para continuar")
-                    #1:{"clase":1,"nombre":"Escudo pesado","fuerza":1,"defensa":6,"agilidad":-2},
                     print(debuff == 0)
                     if debuff == 0:
                         armas[len(armas) + 1] = {"clase" : clase, "nombre": nombre_arma,
-                                               nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2}
+                                               "caracteristicas":{nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2}}
                     else:
                         armas[len(armas) + 1] = {"clase" : clase, "nombre": nombre_arma,
-                                               nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2}
-                        armas[len(armas)][nombre_debufo] = debuff
-                                                
+                                               "caracteristicas":{nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2},
+                                               "debuffo":{nombre_debufo:debuff}}
+                                        
                     flg_muestra = False
-        print(armas[len(armas)])
-        input()
         flg_menu0 = True
         flg_crear_arma = False
