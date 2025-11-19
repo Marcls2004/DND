@@ -115,8 +115,10 @@ menu2 = "Menu de creacion".center(40,"=") + "\n"+ \
     "3) Volver" + "\n"
 
 nuevo_personaje = "Nuevo personaje".center(40,"=") + "\n"
-eleccion_clase = "Eleccion de clase".center(40,"=") + "\n"
-eleccion_arma = "Eleccion de arma".center(40,"=") + "\n"
+cabezera_eleccion_clase = "Eleccion de clase".center(40,"=") + "\n"
+eleccion_clase = ""
+cabezera_eleccion_arma = "Eleccion de arma".center(40,"=") + "\n"
+eleccion_arma = ""
 eleccion_estadisticas = "Selecciona una estadistica".center(40,"=") + "\n" + \
     "1) Fuerza" + "\n" + \
     "2) Magia" + "\n" + \
@@ -529,9 +531,13 @@ while not flg_salir:
         estadistica_def = 0
         estadistica_agi = 0
         estadistica_vid = 0
+        eleccion_clase = ""
 
         for i in range(len(clases)):
-            eleccion_clase = eleccion_clase + "{}) ".format(i + 1) + clases[i + 1] + "\n"
+            if eleccion_clase == "":
+                eleccion_clase = cabezera_eleccion_clase + "{}) ".format(i + 1) + clases[i + 1] + "\n"
+            else:
+                eleccion_clase = eleccion_clase + "{}) ".format(i + 1) + clases[i + 1] + "\n"
         flg_nombre = True
 
         while flg_nombre:
@@ -568,7 +574,10 @@ while not flg_salir:
         for i in range(len(armas)):
             if armas[i + 1]["clase"] == clase:
                 identificador = identificador + 1
-                eleccion_arma = eleccion_arma + "{}) ".format(identificador) + armas[i + 1]["nombre"] + "\n"
+                if eleccion_arma == "":
+                    eleccion_arma = cabezera_eleccion_arma + "{}) ".format(identificador) + armas[i + 1]["nombre"] + "\n"
+                else:
+                    eleccion_arma = eleccion_arma + "{}) ".format(identificador) + armas[i + 1]["nombre"] + "\n"
                 armas_disponible.append(i + 1)
 
         while flg_arma:
@@ -674,7 +683,8 @@ while not flg_salir:
                                                "fuerza":estadistica_frz, "magia":estadistica_mag, "defensa":estadistica_def, "agilidad":estadistica_agi,
                                                "vida":estadistica_vid, "xp":0}
                     flg_muestra = False
-
+        
+        eleccion_clase = ""
         flg_menu0 = True
         flg_crear_pers = False
 
@@ -691,6 +701,7 @@ while not flg_salir:
         debuff = 0
         
         for i in range(len(clases)):
+
             eleccion_clase_arma = eleccion_clase_arma + "{}) ".format(i + 1) + clases[i + 1] + "\n"
             if i + 1 == len(clases):
                 break
@@ -882,8 +893,12 @@ while not flg_salir:
     
     #Editar armas
     while flg_edit_arma:
+        eleccion_arma = ""
         for i in range(len(armas)):
-            eleccion_arma = eleccion_arma + "{}) ".format(i + 1) + armas[i + 1]["nombre"] + "\n"
+            if eleccion_arma == "":
+                eleccion_arma = cabezera_eleccion_arma + "{}) ".format(i + 1) + armas[i + 1]["nombre"] + "\n"
+            else:
+                eleccion_arma = eleccion_arma + "{}) ".format(i + 1) + armas[i + 1]["nombre"] + "\n"
         print(eleccion_arma)
         opc = input("Opcion:\n")
         if not opc.isdigit():
@@ -908,6 +923,7 @@ while not flg_salir:
                 input("Enter para continuar")
             else:
                 
+
                 opc_e = int(opc_e)
                 if opc_e == 1:
                     nuevo_nombre = input("Nuevo nombre:\n")
