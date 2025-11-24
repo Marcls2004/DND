@@ -1,17 +1,4 @@
-"""
-Simulador de mazmorra (Dungeon RPG) 🏰
-
-Héroes (fuerza, magia, defensa, agilidad).
-
-Monstruos (categorías: goblins, dragones, etc.).
-
-Armas y pociones como ítems.
-
-“Play” sería explorar habitaciones, encontrando enemigos aleatorios.
-
-"""
 import random
-
 #--------------------DICCIONARIOS--------------------
 clases = {
     1:"Guerrero",
@@ -39,9 +26,6 @@ heroes = {
     10:{"nivel": 1,"nombre":"Nigromante","clase":10,"arma":"Baston oscuro","fuerza":1,"magia":8,"defensa":2,"agilidad":3,"vida": 7,"xp": 0}
 }
 
-"""
-1:{"clase":1,"nombre":"Escudo pesado","caracteristicas":{"fuerza":1,"defensa":6},"debuffo":{"agilidad":-2}}
-"""
 armas = {
     1:{"clase":1,"nombre":"Escudo pesado","caracteristicas":{"fuerza":1,"defensa":6},"debuffo":{"agilidad":-2}},
     2:{"clase":2,"nombre":"Espada larga","caracteristicas":{"fuerza":4,"velocidad":2}},
@@ -146,7 +130,6 @@ eleccion_estadisticas_arma = "Selecciona una estadistica".center(40,"=") + "\n" 
     "3) Defensa" + "\n" + \
     "4) Agilidad" + "\n" + \
     "5) Vida" + "\n"
-#1:{"clase":1,"nombre":"Escudo pesado","fuerza":1,"defensa":6,"agilidad":-2},
 muestra_arma = "Arma creada".center(40,"=") + "\n" \
     "Nombre: {}" + "\n" + \
     "Requisito de clase: {}" + "\n" + \
@@ -175,6 +158,14 @@ arma_seleccion = "Editar {}".center(40,"=") + "\n" + \
     "2) Característica 1" + "\n" + \
     "3) Característica 2" + "\n" + \
     "4) Salir" + "\n"
+pers_seleccion = "Editar {}".center(40,"=") + "\n" + \
+    "1) Nombre" + "\n" + \
+    "3) Cambiar arma" + "\n" + \
+    "2) Salir" + "\n"
+
+arma_seleccion = "Editar {}".center(40,"=") + "\n" + \
+    "1) Nombre" + "\n" + \
+    "2) Salir" + "\n"
 
 #--------------------Menu4--------------------
 menu4 = "Listas".center(40,"=") + "\n" + \
@@ -190,6 +181,25 @@ menu4 = "Listas".center(40,"=") + "\n" + \
 listar_personajes = "\n" + " Lista personajes".center(40,"=") + "\n" +\
           "\n1)Listar por nivel\n2)Listar por nombre\n3)Listar por fuerza\n4)Listar por magia\n5)Listar por defensa\n6)Listar por agilidad"\
           "\n7)Listar por vida\n8)Listar por xp\n9Volver"
+menu41 = "\n" + " Lista personajes".center(40,"=") + "\n" +\
+          "\n1)Listar por nivel\n2)Listar por nombre\n3)Listar por fuerza\n4)Listar por magia\n5)Listar por defensa\n6)Listar por agilidad"\
+          "\n7)Listar por vida\n8)Listar por xp\n9)Go back"
+menu042 = "Menu  042 (List Weapons)".center(50,"=")+"\n"\
+          +"1)List by ID\n2)List by name\n3)List by Strength\n4)List by speed\n5)Go back"
+
+
+#HAY QUE LISTAR POR PERSONAJES, ARMAS Y MONSTRUOS
+
+listar_personajes = "Listar personajes".center(40,"=") + "\n" + \
+    "1) Listar por ID" + "\n" + \
+    "2) Listar por nombre" + "\n" + \
+    "3) Listar por vida" + "\n" + \
+    "4) Listar por XP" + "\n" + \
+    "5) Listar por fuerza" + "\n" + \
+    "6) Listar por defensa" + "\n" + \
+    "7) Listar por agilidad" + "\n" + \
+    "8) Listar por magia" + "\n" + \
+    "9) Volver" + "\n"
 
 listar_armas = "Listar armas".center(40,"=") + "\n" + \
     "1) Listar por ID" + "\n" + \
@@ -209,6 +219,41 @@ menu_lista_monstruos = "Listas monstruos".center(40,"=") + "\n" + \
     "6) Jefes" + "\n" + \
     "7) Volver" + "\n"
 
+listar_debiles = "Monstruos debiles".center(40,"=") + "\n" + \
+    "1) Por vida" + "\n" + \
+    "2) Por ataque" + "\n" + \
+    "3) Por defensa" + "\n" + \
+    "4) Volver" + "\n"
+
+listar_bestia = "Monstruos Bestia".center(40,"=") + "\n" + \
+    "1) Por vida" + "\n" + \
+    "2) Por ataque" + "\n" + \
+    "3) Por defensa" + "\n" + \
+    "4) Volver" + "\n"
+
+listar_humanoides = "Monstruos humanoides".center(40,"=") + "\n" + \
+    "1) Por vida" + "\n" + \
+    "2) Por ataque" + "\n" + \
+    "3) Por defensa" + "\n" + \
+    "4) Volver" + "\n"
+
+listar_oscuros = "Monstruos oscuros".center(40,"=") + "\n" + \
+    "1) Por vida" + "\n" + \
+    "2) Por ataque" + "\n" + \
+    "3) Por defensa" + "\n" + \
+    "4) Volver" + "\n"
+
+listar_criaturas = "Criaturas magicas".center(40,"=") + "\n" + \
+    "1) Por vida" + "\n" + \
+    "2) Por ataque" + "\n" + \
+    "3) Por defensa" + "\n" + \
+    "4) Volver" + "\n"
+
+listar_jefes = "Jefes".center(40,"=") + "\n" + \
+    "1) Por vida" + "\n" + \
+    "2) Por ataque" + "\n" + \
+    "3) Por defensa" + "\n" + \
+    "4) Volver" + "\n"
 
 #PRINCIPAL
 flg_salir = False
@@ -227,6 +272,8 @@ flg_crear_arma = False
 
 #EDITAR
 flg_menu3 = False
+flg_edit_pers = False
+flg_edit_arma = False
 
 #LISTAR
 flg_menu4 = False
@@ -291,6 +338,7 @@ while not flg_salir:
             else:
                 flg_salir = True
                 flg_menu0 = False
+   
     # Crear
     while flg_menu2:
         print(menu2)
@@ -314,10 +362,12 @@ while not flg_salir:
             else:
                 flg_menu0 = True
                 flg_menu2 = False
+  
     # Editar
     while flg_menu3:
         print(menu3)
         opc = input("Opcion: \n")
+
         if not opc.isdigit():
             print(opcion_invalida)
             input("Enter para continuar")
@@ -330,11 +380,12 @@ while not flg_salir:
                 print("Esta opcion de momento no esta implementada")
                 input("Enter para continuar")
             elif opc == 2:
-                print("Esta opcion de momento no esta implementada")
-                input("Enter para continuar")
+                flg_edit_arma = True
+                flg_menu3 = False
             else:
                 flg_menu0 = True
                 flg_menu3 = False
+  
     #Listar
     while flg_menu4:
         print(menu4)
@@ -903,9 +954,11 @@ while not flg_salir:
                 flg_arma = True
                 flg_clase = False
 
+        identificador = 0
         for i in range(len(armas)):
             if armas[i + 1]["clase"] == clase:
-                eleccion_arma = eleccion_arma + "{}) ".format(i + 1) + armas[i + 1]["nombre"] + "\n"
+                identificador = identificador + 1
+                eleccion_arma = eleccion_arma + "{}) ".format(identificador) + armas[i + 1]["nombre"] + "\n"
                 armas_disponible.append(i + 1)
 
         while flg_arma:
@@ -1129,8 +1182,10 @@ while not flg_salir:
                             estadistica2 = random.randint(1,6)
                     else:
                         print("Esta caracteristica ya la has elegido, elige otra.")
+                        input("Enter para continuar")
             else:
-                dec_deb = input("Quieres poner un debuff aleatorio? S/N \n(Si pones un debuff las estadistica tendran un aumento de un 50% en las estadisticas.\nPero el debuffo no son como las carecterisi) ")
+                dec_deb = input("Quieres poner un debuff aleatorio? S/N \n(Si pones un debuff las estadistica tendran un aumento de un 50% en las estadisticas.\n" \
+                "Pero el debuffo tembien sera de un aumento de 50%) ")
                 if dec_deb == "S":
                     estadistica1 = int(estadistica1 * 1.5)
                     estadistica2 = int(estadistica2 * 1.5)
@@ -1200,20 +1255,63 @@ while not flg_salir:
                     input("Enter para continuar")
                     flg_muestra = False
                 else:
-                    print("Arma creada")
+                    print("Arma guardada en el arsenal")
                     input("Enter para continuar")
-                    #1:{"clase":1,"nombre":"Escudo pesado","fuerza":1,"defensa":6,"agilidad":-2},
                     print(debuff == 0)
                     if debuff == 0:
                         armas[len(armas) + 1] = {"clase" : clase, "nombre": nombre_arma,
-                                               nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2}
+                                               "caracteristicas":{nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2}}
                     else:
                         armas[len(armas) + 1] = {"clase" : clase, "nombre": nombre_arma,
-                                               nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2}
-                        armas[len(armas)][nombre_debufo] = debuff
-                                                
+                                               "caracteristicas":{nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2},
+                                               "debuffo":{nombre_debufo:debuff}}
+                                        
                     flg_muestra = False
-        print(armas[len(armas)])
-        input()
         flg_menu0 = True
         flg_crear_arma = False
+    
+    #Editar armas
+    while flg_edit_arma:
+        for i in range(len(armas)):
+            eleccion_arma = eleccion_arma + "{}) ".format(i + 1) + armas[i + 1]["nombre"] + "\n"
+        print(eleccion_arma)
+        opc = input("Opcion:\n")
+        if not opc.isdigit():
+            print(formato_invalido)
+            input("Enter para continuar")
+        elif not int(opc) in range(1,len(armas) + 1):
+            print(fuera_rango)
+            input("Enter para continuar")
+        else:
+            
+            opc = int(opc)
+            nombre = armas[opc]["nombre"]
+
+            print(arma_seleccion.format(nombre))
+            opc_e = input("Opcion:\n")
+
+            if not opc_e.isdigit():
+                print(formato_invalido)
+                input("Enter para continuar")
+            elif not int(opc_e) in range(1,3):
+                print(fuera_rango)
+                input("Enter para continuar")
+            else:
+                
+                opc_e = int(opc_e)
+                if opc_e == 1:
+                    nuevo_nombre = input("Nuevo nombre:\n")
+                    if not nuevo_nombre.isalpha():
+                            print(formato_invalido)
+                            input("Enter to continue")
+                    else:
+                        print("El nombre: {}\nHa combiado por: {}".format(nombre,nuevo_nombre))
+                        input("Enter para continuar")
+                        armas[opc]["nombre"] = nuevo_nombre
+                        flg_menu3 = True
+                        flg_edit_arma = False
+                else:
+                    flg_menu3 = True
+                    flg_edit_arma = False
+
+
