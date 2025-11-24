@@ -676,7 +676,7 @@ while not flg_salir:
                         "Magia".ljust(10) +
                         "Defensa".ljust(10) +
                         "Agilidad".ljust(10) +
-                        "Vida".ljust(10) +  # Columna para mostrar debuffos de vida
+                        "Vida".ljust(10) +
                         "\n" + "".center(80, "*")
                 )
                 print(encabezado_ranking_armas)
@@ -685,13 +685,11 @@ while not flg_salir:
                     caract = arma.get("caracteristicas", {})
                     debuffo = arma.get("debuffo", {})
 
-                    # 1. Obtener valores base (usando 0 para cálculos, '-' para mostrar si no existen)
                     fuerza_base = caract.get("fuerza", 0)
                     magia_base = caract.get("magia", 0)
                     defensa_base = caract.get("defensa", 0)
                     agilidad_base = caract.get("agilidad", 0)
 
-                    # 2. Obtener valores de debuffo (usando 0 para cálculos)
                     fuerza_debuffo = debuffo.get("fuerza", 0)
                     magia_debuffo = debuffo.get("magia", 0)
                     defensa_debuffo = debuffo.get("defensa", 0)
