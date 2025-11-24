@@ -1,15 +1,3 @@
-"""
-Simulador de mazmorra (Dungeon RPG) 🏰
-
-Héroes (fuerza, magia, defensa, agilidad).
-
-Monstruos (categorías: goblins, dragones, etc.).
-
-Armas y pociones como ítems.
-
-“Play” sería explorar habitaciones, encontrando enemigos aleatorios.
-
-"""
 import random
 #--------------------DICCIONARIOS--------------------
 clases = {
@@ -167,6 +155,11 @@ menu_personaje = "Selecciona personaje".center(40,"=")
 
 menu_arma = "Selecciona arma".center(40,"=")
 
+arma_seleccion = "Editar {}".center(40,"=") + "\n" + \
+    "1) Nombre" + "\n" + \
+    "2) Característica 1" + "\n" + \
+    "3) Característica 2" + "\n" + \
+    "4) Salir" + "\n"
 pers_seleccion = "Editar {}".center(40,"=") + "\n" + \
     "1) Nombre" + "\n" + \
     "3) Cambiar arma" + "\n" + \
@@ -183,6 +176,13 @@ menu4 = "Listas".center(40,"=") + "\n" + \
     "3) Monstruos" + "\n" + \
     "4) Volver" + "\n"
 
+
+
+
+#HAY QUE LISTAR POR PERSONAJES, ARMAS Y MONSTRUOS
+listar_personajes = "\n" + " Lista personajes".center(40,"=") + "\n" +\
+          "\n1)Listar por nivel\n2)Listar por nombre\n3)Listar por fuerza\n4)Listar por magia\n5)Listar por defensa\n6)Listar por agilidad"\
+          "\n7)Listar por vida\n8)Listar por xp\n9Volver"
 menu41 = "\n" + " Lista personajes".center(40,"=") + "\n" +\
           "\n1)Listar por nivel\n2)Listar por nombre\n3)Listar por fuerza\n4)Listar por magia\n5)Listar por defensa\n6)Listar por agilidad"\
           "\n7)Listar por vida\n8)Listar por xp\n9)Go back"
@@ -280,26 +280,37 @@ flg_edit_arma = False
 #LISTAR
 flg_menu4 = False
 flg_menu41 = False
+flg_menu42 = False
+flg_menu43 = False
+nombre = ""
+opc2 = ""
+lista_ordenar = []
 
 opcion_invalida = "Opcion invalida"
 fuera_rango = "Opcion fuera de rango"
-formato_invalido = "Formato invalido."
+formato_invalido = "Formato invalido tienen que ser letras."
 arma_seleccionada = ""
 encabezado_ranking_personajes = (
-    "Ranking Personajes".center(106, "=") + "\n" +
-    "Id".ljust(5) +
-    "Nivel".ljust(10) +
-    "Nombre".ljust(15) +
-    "Clase".ljust(12) +
-    "Arma".ljust(12) +
-    "Fuerza".rjust(8) +
-    "Magia".rjust(8) +
-    "Defensa".rjust(10) +
-    "Agilidad".rjust(10) +
-    "Vida".rjust(8) +
-    "Xp".rjust(8) + "\n" +
-    "".center(106, "*")
+        "Ranking Personajes".center(115, "=") + "\n" +
+        "Id".ljust(5) +
+        "Nivel".ljust(10) +
+        "Nombre".ljust(20) +
+        "Clase".ljust(12) +
+        "Arma".ljust(21) +
+        "Fuerza".ljust(8) +
+        "Magia".ljust(8) +
+        "Defensa".ljust(10) +
+        "Agilidad".ljust(10) +
+        "Vida".ljust(8) +
+        "Xp".ljust(8) + "\n" +
+        "".center(115, "*")
 )
+encabezado_ranking_armas = (
+    "Ranking Armas".center(106, "=") + "\n" +
+    "Id".ljust(5) +
+    "Nombre".ljust(15)
+)
+
 
 while not flg_salir:
     while flg_menu0:
@@ -394,18 +405,17 @@ while not flg_salir:
                 flg_menu41 = True
                 flg_menu4 = False
             elif opc == 2:
-                print("Esta opcion de momento no esta implementada")
-                input("Enter para continuar")
+                flg_menu42 = True
+                flg_menu4 = False
             elif opc == 3:
-                print("Esta opcion de momento no esta implementada")
-                input("Enter para continuar")
+                flg_menu43 = True
+                flg_menu4 = False
             else:
                 flg_menu0 = True
                 flg_menu4 = False
-   
     # Listar personajes
     while flg_menu41:
-        print(menu41)
+        print(listar_personajes)
         opc = input("Opcion: \n")
         if opc.isdigit():
             opc = int(opc)
@@ -502,24 +512,404 @@ while not flg_salir:
                         if not cambios:
                             break
                 else:
-                    flg_salir = True
-                    flg_menu0 = False
-                print(encabezado_ranking_personajes)
-                for i in range(len(heroes)):
-                    print(str(lista_ordenar[i]).ljust(5) +
-                          str(heroes[lista_ordenar[i]]["nivel"]).ljust(10) + str(heroes[lista_ordenar[i]]["nombre"]).ljust(15) +
-                          str(heroes[lista_ordenar[i]]["clase"]).ljust(12) + str( heroes[lista_ordenar[i]]["arma"]).ljust(12) +
-                          str(heroes[lista_ordenar[i]]["fuerza"]).rjust(8) + str(heroes[lista_ordenar[i]]["magia"]).rjust(8) +
-                          str(heroes[lista_ordenar[i]]["defensa"]).rjust(10) + str(heroes[lista_ordenar[i]]["agilidad"]).rjust(10) +
-                          str(heroes[lista_ordenar[i]]["vida"]).rjust(8) + str(heroes[lista_ordenar[i]]["xp"]).rjust(8))
-                input("Pulsa para continuar")
+                    flg_menu41 = False
+                    flg_menu4 = True
+                    break
+                if flg_menu41:
+
+                    print(encabezado_ranking_personajes)
+                    for i in range(len(heroes)):
+                        print(str(lista_ordenar[i]).ljust(5) +
+                              str(heroes[lista_ordenar[i]]["nivel"]).ljust(10) +
+                              str( heroes[lista_ordenar[i]]["nombre"]).ljust(20) +
+                              str(heroes[lista_ordenar[i]]["clase"]).ljust(12) +
+                              str(heroes[lista_ordenar[i]]["arma"]).ljust(21) +
+                              str(heroes[lista_ordenar[i]]["fuerza"]).ljust(8) +
+                              str(heroes[lista_ordenar[i]]["magia"]).ljust(8) +
+                              str(heroes[lista_ordenar[i]]["defensa"]).ljust(10) +
+                              str(heroes[lista_ordenar[i]]["agilidad"]).ljust(10) +
+                              str(heroes[lista_ordenar[i]]["vida"]).ljust(8) + str(heroes[lista_ordenar[i]]["xp"]).ljust(8))
+                    print("".center(115,"="))
+                    input("Pulsa para continuar")
             else:
                 print(fuera_rango)
                 input("Enter para continuar")
         else:
             print(opcion_invalida)
             input("Enter para continuar")
-    
+    # Listar armas
+    while flg_menu42:
+        print(listar_armas)
+        opc_input = input("Opcion :")
+
+        if not opc_input.isdigit():
+            print("Opcion no numerica:")
+            input("Enter to Continue")
+        elif not int(opc_input) in range(1, 8):
+            print("Opcion numerica fuera de rango")
+            input("Enter to Continue")
+        else:
+            opc = int(opc_input)
+            lista_ordenar = []
+            propiedad_ordenar = ""
+
+            for key in armas:
+                lista_ordenar.append(key)
+
+
+            if opc == 1:
+                propiedad_ordenar = "ID"
+                for pasadas in range(len(lista_ordenar)):
+                    cambios = False
+                    for i in range(len(lista_ordenar) - 1 - pasadas):
+                        if lista_ordenar[i] < lista_ordenar[i + 1]:
+                            aux = lista_ordenar[i]
+                            lista_ordenar[i] = lista_ordenar[i + 1]
+                            lista_ordenar[i + 1] = aux
+                            cambios = True
+                    if not cambios:
+                        break
+
+            elif opc == 2:
+                propiedad_ordenar = "nombre"
+                for pasadas in range(len(lista_ordenar)):
+                    cambios = False
+                    for i in range(len(lista_ordenar) - 1 - pasadas):
+                        if armas[lista_ordenar[i]].get("nombre", "") < armas[lista_ordenar[i + 1]].get("nombre", ""):
+                            aux = lista_ordenar[i]
+                            lista_ordenar[i] = lista_ordenar[i + 1]
+                            lista_ordenar[i + 1] = aux
+                            cambios = True
+                    if not cambios:
+                        break
+
+            elif opc == 3:
+                propiedad_ordenar = "fuerza"
+
+                lista_filtrada = []
+                for key in lista_ordenar:
+                    if propiedad_ordenar in armas[key].get("caracteristicas", {}) or \
+                            propiedad_ordenar in armas[key].get("debuffo", {}):
+                        lista_filtrada.append(key)
+                lista_ordenar = lista_filtrada
+
+
+                if lista_ordenar:
+                    for pasadas in range(len(lista_ordenar)):
+                        cambios = False
+                        for i in range(len(lista_ordenar) - 1 - pasadas):
+                            # Obtener el valor, priorizando el debuffo si existe, si no la característica
+                            valor1 = armas[lista_ordenar[i]].get("debuffo", {}).get(propiedad_ordenar,
+                                                                                    armas[lista_ordenar[i]].get(
+                                                                                        "caracteristicas", {}).get(
+                                                                                        propiedad_ordenar, 0))
+                            valor2 = armas[lista_ordenar[i + 1]].get("debuffo", {}).get(propiedad_ordenar,
+                                                                                        armas[lista_ordenar[i + 1]].get(
+                                                                                            "caracteristicas", {}).get(
+                                                                                            propiedad_ordenar, 0))
+
+                            if valor1 < valor2:
+                                aux = lista_ordenar[i]
+                                lista_ordenar[i] = lista_ordenar[i + 1]
+                                lista_ordenar[i + 1] = aux
+                                cambios = True
+                        if not cambios:
+                            break
+
+            elif opc == 4:
+                propiedad_ordenar = "magia"
+
+                # FILTRADO
+                lista_filtrada = []
+                for key in lista_ordenar:
+                    if propiedad_ordenar in armas[key].get("caracteristicas", {}) or \
+                            propiedad_ordenar in armas[key].get("debuffo", {}):
+                        lista_filtrada.append(key)
+                lista_ordenar = lista_filtrada
+
+
+                if lista_ordenar:
+                    for pasadas in range(len(lista_ordenar)):
+                        cambios = False
+                        for i in range(len(lista_ordenar) - 1 - pasadas):
+                            valor1 = armas[lista_ordenar[i]].get("debuffo", {}).get(propiedad_ordenar,
+                                                                                    armas[lista_ordenar[i]].get(
+                                                                                        "caracteristicas", {}).get(
+                                                                                        propiedad_ordenar, 0))
+                            valor2 = armas[lista_ordenar[i + 1]].get("debuffo", {}).get(propiedad_ordenar,
+                                                                                        armas[lista_ordenar[i + 1]].get(
+                                                                                            "caracteristicas", {}).get(
+                                                                                            propiedad_ordenar, 0))
+
+                            if valor1 < valor2:
+                                aux = lista_ordenar[i]
+                                lista_ordenar[i] = lista_ordenar[i + 1]
+                                lista_ordenar[i + 1] = aux
+                                cambios = True
+                        if not cambios:
+                            break
+
+            elif opc == 5:
+                propiedad_ordenar = "defensa"
+
+                # FILTRADO
+                lista_filtrada = []
+                for key in lista_ordenar:
+                    if propiedad_ordenar in armas[key].get("caracteristicas", {}) or \
+                            propiedad_ordenar in armas[key].get("debuffo", {}):
+                        lista_filtrada.append(key)
+                lista_ordenar = lista_filtrada
+
+
+                if lista_ordenar:
+                    for pasadas in range(len(lista_ordenar)):
+                        cambios = False
+                        for i in range(len(lista_ordenar) - 1 - pasadas):
+                            valor1 = armas[lista_ordenar[i]].get("debuffo", {}).get(propiedad_ordenar,
+                                                                                    armas[lista_ordenar[i]].get(
+                                                                                        "caracteristicas", {}).get(
+                                                                                        propiedad_ordenar, 0))
+                            valor2 = armas[lista_ordenar[i + 1]].get("debuffo", {}).get(propiedad_ordenar,
+                                                                                        armas[lista_ordenar[i + 1]].get(
+                                                                                            "caracteristicas", {}).get(
+                                                                                            propiedad_ordenar, 0))
+
+                            if valor1 < valor2:
+                                aux = lista_ordenar[i]
+                                lista_ordenar[i] = lista_ordenar[i + 1]
+                                lista_ordenar[i + 1] = aux
+                                cambios = True
+                        if not cambios:
+                            break
+
+            elif opc == 6:
+                propiedad_ordenar = "agilidad"
+
+                lista_filtrada = []
+                for key in lista_ordenar:
+                    if propiedad_ordenar in armas[key].get("caracteristicas", {}) or \
+                            propiedad_ordenar in armas[key].get("debuffo", {}):
+                        lista_filtrada.append(key)
+                lista_ordenar = lista_filtrada
+
+
+                if lista_ordenar:
+                    for pasadas in range(len(lista_ordenar)):
+                        cambios = False
+                        for i in range(len(lista_ordenar) - 1 - pasadas):
+                            valor1 = armas[lista_ordenar[i]].get("debuffo", {}).get(propiedad_ordenar,
+                                                                                    armas[lista_ordenar[i]].get(
+                                                                                        "caracteristicas", {}).get(
+                                                                                        propiedad_ordenar, 0))
+                            valor2 = armas[lista_ordenar[i + 1]].get("debuffo", {}).get(propiedad_ordenar,
+                                                                                        armas[lista_ordenar[i + 1]].get(
+                                                                                            "caracteristicas", {}).get(
+                                                                                            propiedad_ordenar, 0))
+
+                            if valor1 < valor2:
+                                aux = lista_ordenar[i]
+                                lista_ordenar[i] = lista_ordenar[i + 1]
+                                lista_ordenar[i + 1] = aux
+                                cambios = True
+                        if not cambios:
+                            break
+
+            elif opc == 7:
+                flg_menu4 = True
+                flg_menu42 = False
+
+            if flg_menu42 and lista_ordenar:
+
+                encabezado_ranking_armas = (
+                        f"Ranking Armas por {propiedad_ordenar.capitalize()}".center(80, "=") + "\n" +
+                        "ID".ljust(5) +
+                        "Nombre".ljust(20) +
+                        "Clase".ljust(10) +
+                        "Fuerza".ljust(10) +
+                        "Magia".ljust(10) +
+                        "Defensa".ljust(10) +
+                        "Agilidad".ljust(10) +
+                        "Vida".ljust(10) +
+                        "\n" + "".center(80, "*")
+                )
+                print(encabezado_ranking_armas)
+                for key in lista_ordenar:
+                    arma = armas[key]
+                    caract = arma.get("caracteristicas", {})
+                    debuffo = arma.get("debuffo", {})
+
+                    fuerza_base = caract.get("fuerza", 0)
+                    magia_base = caract.get("magia", 0)
+                    defensa_base = caract.get("defensa", 0)
+                    agilidad_base = caract.get("agilidad", 0)
+
+                    fuerza_debuffo = debuffo.get("fuerza", 0)
+                    magia_debuffo = debuffo.get("magia", 0)
+                    defensa_debuffo = debuffo.get("defensa", 0)
+                    agilidad_debuffo = debuffo.get("agilidad", 0)
+                    vida_debuffo = debuffo.get("vida", 0)
+
+
+                    fuerza_efectiva = fuerza_base + fuerza_debuffo
+                    if fuerza_base != 0 or fuerza_debuffo != 0:
+                        fuerza_val = str(fuerza_efectiva)
+                    else:
+                        fuerza_val = "-"
+
+                    magia_efectiva = magia_base + magia_debuffo
+                    if magia_base != 0 or magia_debuffo != 0:
+                        magia_val = str(magia_efectiva)
+                    else:
+                        magia_val = "-"
+
+                    # DEFENSA
+                    defensa_efectiva = defensa_base + defensa_debuffo
+                    if defensa_base != 0 or defensa_debuffo != 0:
+                        defensa_val = str(defensa_efectiva)
+                    else:
+                        defensa_val = "-"
+
+                    agilidad_efectiva = agilidad_base + agilidad_debuffo
+                    if agilidad_base != 0 or agilidad_debuffo != 0:
+                        agilidad_val = str(agilidad_efectiva)
+                    else:
+                        agilidad_val = "-"
+
+                    if vida_debuffo != 0:
+                        vida_val = str(vida_debuffo)
+                    else:
+                        vida_val = "-"
+
+
+                    print(str(key).ljust(5) +
+                          arma.get("nombre", "N/A").ljust(20) +
+                          str(arma.get("clase", "-")).ljust(10) +
+                          fuerza_val.ljust(10) +
+                          magia_val.ljust(10) +
+                          defensa_val.ljust(10) +
+                          agilidad_val.ljust(10) +
+                          vida_val.ljust(10))
+
+                print("".center(80, "="))
+                input("Pulsa para continuar")
+    # Listar Monstruos
+    while flg_menu43:
+        print(menu_lista_monstruos)
+        opc = input("Opcion :")
+        if not opc.isdigit():
+            print("Opcion no numerica:")
+            input("Enter to Continue")
+        elif not int(opc) in range(1, 8):
+            print("Opcion numerica fuera de rango")
+            input("Enter to Continue")
+        else:
+            opc = int(opc)
+            if opc == 1:
+                nombre= "Monstruos Debiles"
+                opc2 = monstruos_debiles
+                lista_ordenar = []
+                for key in monstruos_debiles:
+                    lista_ordenar.append(key)
+            elif opc == 2:
+                nombre= "Bestias "
+                opc2 = bestias
+                lista_ordenar = []
+                for key in bestias:
+                    lista_ordenar.append(key)
+            elif opc == 3:
+                nombre= "Monstruo Enemigos Humanoides "
+                opc2 = monstruos_enemigos_humanoides
+                lista_ordenar = []
+                for key in monstruos_enemigos_humanoides:
+                    lista_ordenar.append(key)
+            elif opc == 4:
+                nombre = "Monstruos Oscuros"
+                opc2 = monstruos_oscuros
+                lista_ordenar = []
+                for key in monstruos_oscuros:
+                    lista_ordenar.append(key)
+            elif opc == 5:
+                nombre = "Criaturas Magicas"
+                opc2 = criaturas_magicas
+                lista_ordenar = []
+                for key in criaturas_magicas:
+                    lista_ordenar.append(key)
+            elif opc == 6:
+                nombre = "Jefes"
+                opc2 = monstruos_jefes
+                lista_ordenar = []
+                for key in monstruos_jefes:
+                    lista_ordenar.append(key)
+            else:
+                flg_menu4 = True
+                flg_menu43 = False
+            listar_mostruos = "{}".format(nombre).center(40, "=") + "\n" + \
+                           "1) Por vida" + "\n" + \
+                           "2) Por ataque" + "\n" + \
+                           "3) Por defensa" + "\n" + \
+                           "4) Volver" + "\n"
+            print(listar_mostruos)
+            opc = input("Opcion :")
+            if not opc.isdigit():
+                print("Opcion no numerica:")
+                input("Enter to Continue")
+            elif not int(opc) in range(1, 5):
+                print("Opcion numerica fuera de rango")
+                input("Enter to Continue")
+            else:
+                opc = int(opc)
+                if opc == 1:
+                    for pasadas in range(len(lista_ordenar)):
+                        cambios = False
+                        for i in range(len(lista_ordenar) - 1 - pasadas):
+                            if opc2[lista_ordenar[i]]["vida"] < opc2[lista_ordenar[i + 1]]["vida"]:
+                                aux = lista_ordenar[i]
+                                lista_ordenar[i] = lista_ordenar[i + 1]
+                                lista_ordenar[i + 1] = aux
+                                cambios = True
+                        if not cambios:
+                            break
+                elif opc == 2:
+                    for pasadas in range(len(lista_ordenar)):
+                        cambios = False
+                        for i in range(len(lista_ordenar) - 1 - pasadas):
+                            if opc2[lista_ordenar[i]]["fuerza"] < opc2[lista_ordenar[i + 1]]["fuerza"]:
+                                aux = lista_ordenar[i]
+                                lista_ordenar[i] = lista_ordenar[i + 1]
+                                lista_ordenar[i + 1] = aux
+                                cambios = True
+                        if not cambios:
+                            break
+                elif opc == 3:
+                    for pasadas in range(len(lista_ordenar)):
+                        cambios = False
+                        for i in range(len(lista_ordenar) - 1 - pasadas):
+                            if opc2[lista_ordenar[i]]["defensa"] < opc2[lista_ordenar[i + 1]]["defensa"]:
+                                aux = lista_ordenar[i]
+                                lista_ordenar[i] = lista_ordenar[i + 1]
+                                lista_ordenar[i + 1] = aux
+                                cambios = True
+                        if not cambios:
+                            break
+                else:
+                    flg_menu4 = True
+                    flg_menu42 = False
+                if flg_menu43 :
+                    encabezado_ranking_monstruos= (
+                            ("Ranking "+nombre).center(50, "=") + "\n" +
+                            "Id".ljust(5) +
+                            "Nombre".ljust(25) +
+                            "Fuerza".ljust(8) +
+                            "Defensa".ljust(8) +
+                            "Vida".ljust(8))
+                    print(encabezado_ranking_monstruos)
+                    for i in range(len(opc2)):
+                        print(str(lista_ordenar[i]).ljust(5) +
+                              str(opc2[lista_ordenar[i]]["nombre"]).ljust(25) +
+                              str(opc2[lista_ordenar[i]]["fuerza"]).ljust(8) +
+                              str(opc2[lista_ordenar[i]]["defensa"]).ljust(8) +
+                              str(opc2[lista_ordenar[i]]["vida"]).ljust(8))
+                    print("".center(50,"="))
     #Creacion de personaje
     while flg_crear_pers:
         nombre = ""
