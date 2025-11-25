@@ -40,49 +40,48 @@ armas = {
 #MONSTRUOS
 monstruos_debiles = {
     #mountruos faciles de vencer
-    1:{"nombre":"Rata Gigante","fuerza":5,"defensa":2,"vida":20},
-    2:{"nombre":"Slime","fuerza":4,"defensa":3,"vida":25},
-    3:{"nombre":"Goblin","fuerza":7,"defensa":2,"vida":30},
-    4:{"nombre":"Esqueleto","fuerza":6,"defensa":3,"vida":35},
-    5:{"nombre":"Esqueleto","fuerza":6,"defensa":3,"vida":35}
+    1:{"nombre":"Rata Gigante","fuerza":5,"defensa":2,"vida":20,"xp_ganado":5},
+    2:{"nombre":"Slime","fuerza":4,"defensa":3,"vida":25,"xp_ganado":8},
+    3:{"nombre":"Goblin","fuerza":7,"defensa":2,"vida":30,"xp_ganado":12},
+    4:{"nombre":"Esqueleto","fuerza":6,"defensa":3,"vida":35,"xp_ganado":10},
 }
 
 bestias = {
-    1:{"nombre":"Lobo","fuerza":8,"defensa":3,"vida":40},
-    2:{"nombre":"Oso","fuerza":12,"defensa":6,"vida":80},
-    3:{"nombre":"Serpiente","fuerza":6,"defensa":2,"vida":35},
-    4:{"nombre":"Jabali","fuerza":10,"defensa":5,"vida":60}
+    1:{"nombre":"Lobo","fuerza":8,"defensa":3,"vida":40,"xp_ganado":15},
+    2:{"nombre":"Oso","fuerza":12,"defensa":6,"vida":80,"xp_ganado":35},
+    3:{"nombre":"Serpiente","fuerza":6,"defensa":2,"vida":35,"xp_ganado":20},
+    4:{"nombre":"Jabali","fuerza":10,"defensa":5,"vida":60,"xp_ganado":18}
 }
 
 monstruos_enemigos_humanoides = {
-    1:{"nombre":"Orco","fuerza":10,"defensa":4,"vida":50},
-    2:{"nombre":"Trol","fuerza":12,"defensa":6,"vida":90},
-    3:{"nombre":"Hombre lobo","fuerza":14,"defensa":4,"vida":70},
-    4:{"nombre":"Bruja","fuerza":12,"defensa":3,"vida":60},
-    5:{"nombre":"Nigromante enemigo","fuerza":10,"defensa":3,"vida":65}
+    1:{"nombre":"Orco","fuerza":10,"defensa":4,"vida":50,"xp_ganado":30},
+    2:{"nombre":"Trol","fuerza":12,"defensa":6,"vida":90,"xp_ganado":80},
+    3:{"nombre":"Hombre lobo","fuerza":14,"defensa":4,"vida":70,"xp_ganado":50},
+    4:{"nombre":"Bruja","fuerza":12,"defensa":3,"vida":60,"xp_ganado":40},
+    5:{"nombre":"Nigromante enemigo","fuerza":10,"defensa":3,"vida":65,"xp_ganado":70}
 }
 
 monstruos_oscuros =  {
-    1:{"nombre":"Ghoul","fuerza":6,"defensa":5,"vida":50},
-    2:{"nombre":"Espectro","fuerza":10,"defensa":2,"vida":45},
-    3:{"nombre":"Imp","fuerza":9,"defensa":3,"vida":35},
-    4:{"nombre":"Gárgola","fuerza":15,"defensa":8,"vida":80}
+    1:{"nombre":"Ghoul","fuerza":6,"defensa":5,"vida":50,"xp_ganado":18},
+    2:{"nombre":"Espectro","fuerza":10,"defensa":2,"vida":45,"xp_ganado":55},
+    3:{"nombre":"Imp","fuerza":9,"defensa":3,"vida":35,"xp_ganado":60},
+    4:{"nombre":"Gárgola","fuerza":15,"defensa":8,"vida":80,"xp_ganado":75}
 }
 
 criaturas_magicas = {
-    1: {"nombre": "Dragón joven", "fuerza": 20, "defensa": 10, "vida": 150},
-    2: {"nombre": "Quimera", "fuerza": 18, "defensa": 8, "vida": 120},
-    3: {"nombre": "Mantícora", "fuerza": 22, "defensa": 9, "vida": 130},
-    4: {"nombre": "Grifo", "fuerza": 20, "defensa": 10, "vida": 140},
-    5: {"nombre": "Hidra", "fuerza": 25, "defensa": 12, "vida": 180}
+    1: {"nombre": "Dragón joven", "fuerza": 20, "defensa": 10, "vida": 150,"xp_ganado":300},
+    2: {"nombre": "Quimera", "fuerza": 18, "defensa": 8, "vida": 120,"xp_ganado":180},
+    3: {"nombre": "Mantícora", "fuerza": 22, "defensa": 9, "vida": 130,"xp_ganado":150},
+    4: {"nombre": "Grifo", "fuerza": 20, "defensa": 10, "vida": 140,"xp_ganado":120},
+    5: {"nombre": "Hidra", "fuerza": 25, "defensa": 12, "vida": 180,"xp_ganado":250}
 }
 
 monstruos_jefes = {
-    1: {"nombre": "Rey goblin", "fuerza": 18, "defensa": 8, "vida": 100},
-    2: {"nombre": "Señor de los muertos", "fuerza": 25, "defensa": 12, "vida": 200},
-    3: {"nombre": "Golem", "fuerza": 30, "defensa": 20, "vida": 250},
-    4: {"nombre": "Dragón anciano", "fuerza": 40, "defensa": 25, "vida": 500},
-    5: {"nombre": "Señor demonio", "fuerza": 45, "defensa": 30, "vida": 600}
+    1: {"nombre": "Rey goblin", "fuerza": 18, "defensa": 8, "vida": 100,"xp_ganado":200},
+    2: {"nombre": "Señor de los muertos", "fuerza": 25, "defensa": 12, "vida": 200,"xp_ganado":450},
+    3: {"nombre": "Golem", "fuerza": 30, "defensa": 20, "vida": 250,"xp_ganado":5,"xp_ganado":350},
+    4: {"nombre": "Dragón anciano", "fuerza": 40, "defensa": 25, "vida": 500,"xp_ganado":800},
+    5: {"nombre": "Señor demonio", "fuerza": 45, "defensa": 30, "vida": 600,"xp_ganado":1200}
 }
 
 #--------------------MENUS--------------------
@@ -259,6 +258,7 @@ listar_jefes = "Jefes".center(40,"=") + "\n" + \
 #PRINCIPAL
 flg_salir = False
 flg_menu0 = True
+flg_jugar = False
 
 #CREAR
 flg_menu2 = False
@@ -342,7 +342,7 @@ while not flg_salir:
                 flg_salir = True
                 flg_menu0 = False
    
-    # Crear
+    # Elegir que crear
     while flg_menu2:
         print(menu2)
         opc = input("Opcion: \n")
