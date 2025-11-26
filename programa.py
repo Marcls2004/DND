@@ -353,7 +353,7 @@ while not flg_salir:
             if opc == 1:
                 winsound.PlaySound(r"musica_juego.wav", winsound.SND_FILENAME | winsound.SND_ASYNC | winsound.SND_LOOP)
                 resultado = ""
-                #time.sleep(2)
+                time.sleep(2)
                 flg_jugar = True
                 flg_menu0 = False
                 contador = 0
