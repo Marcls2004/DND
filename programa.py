@@ -1,4 +1,8 @@
 import random
+#--------------------Esto es solo para el juego no se puede utilizar en el servidor (PARTE1)--------------------
+import time
+import winsound
+introduccion = "Hola viajero, para salir de aqui tendras que ir derrotando todos los monstruos que te encuentres. Nos veremos en el final o no JAJAJAJAJAJAJA..."
 #--------------------HABILIDADES--------------------
 #esto no se pondra en el documento
 fuerza_total = 0
@@ -347,6 +351,9 @@ while not flg_salir:
         else:
             opc = int(opc)
             if opc == 1:
+                winsound.PlaySound(r"musica_juego.wav", winsound.SND_FILENAME | winsound.SND_ASYNC | winsound.SND_LOOP)
+                resultado = ""
+                #time.sleep(2)
                 flg_jugar = True
                 flg_menu0 = False
                 contador = 0
@@ -365,6 +372,16 @@ while not flg_salir:
     
     #Juego
     while flg_jugar:
+        #cada 10 pisos aumenta que enemigos puedes aparecer
+        #la barra de xp cada vez que se sube de nivel aumente un 1.5
+        #--------------------Esto es solo para el juego no se puede utilizar en el servidor (PARTE2)--------------------
+        for letra in introduccion:
+                resultado += letra
+                print("\r" + resultado, end="")
+                time.sleep(0.1)
+
+        input("\nPulsa ENTER para continuar")
+        
         monstruo = ""
         if contador < 10:
             monstruo = monstruos_debiles[random.randint(1,4)]
@@ -373,8 +390,7 @@ while not flg_salir:
         print(contador,monstruo)
         input()
         contador = contador + 1
-        #cada 10 pisos aumenta que enemigos puedes aparecer
-        #la barra de xp cada vez que se sube de nivel aumente un 1.5
+
 
     # Elegir que crear
     while flg_menu2:
