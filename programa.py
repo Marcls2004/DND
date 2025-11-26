@@ -12,7 +12,6 @@ clases = {
     9:"Monje",
     10:"Nigromante"
 }
-#al subir de nivel se multiplican a todos los estadisticas entre 1,1 y 1,5
 heroes = {
     1:{"nivel": 1,"nombre":"Manolo","clase":1,"arma":1,"fuerza":6,"magia":1,"defensa":6,"agilidad":3,"vida": 13,"xp": 0},
     2:{"nivel": 1,"nombre":"Antonia","clase":2,"arma":2,"fuerza":4,"magia":4,"defensa":4,"agilidad":4,"vida": 12,"xp": 0},
@@ -23,9 +22,8 @@ heroes = {
     7:{"nivel": 1,"nombre":"Marc","clase":7,"arma":7,"fuerza":3,"magia":5,"defensa":4,"agilidad":4,"vida": 10,"xp": 0},
     8:{"nivel": 1,"nombre":"Ivan","clase":8,"arma":8,"fuerza":2,"magia":6,"defensa":5,"agilidad":3,"vida": 9,"xp": 0},
     9:{"nivel": 1,"nombre":"Ziah","clase":9,"arma":9,"fuerza":5,"magia":4,"defensa":2,"agilidad":4,"vida": 10,"xp": 0},
-    10:{"nivel": 1,"nombre":"Marras","clase":10,"arma":10,"fuerza":2,"magia":7,"defensa":3,"agilidad":5,"vida": 10,"xp": 0}
+    10:{"nivel": 1,"nombre":"Teresa","clase":10,"arma":10,"fuerza":1,"magia":8,"defensa":2,"agilidad":3,"vida": 7,"xp": 0}
 }
-
 armas = {
     1:{"clase":1,"nombre":"Escudo Pesado","caracteristicas":{"fuerza":1,"defensa":6},"debuffo":{"agilidad":-2}},
     2:{"clase":2,"nombre":"Espada Larga","caracteristicas":{"fuerza":4,"agilidad":2}},
@@ -42,49 +40,48 @@ armas = {
 #MONSTRUOS
 monstruos_debiles = {
     #mountruos faciles de vencer
-    1:{"nombre":"Rata Gigante","fuerza":5,"defensa":2,"vida":20},
-    2:{"nombre":"Slime","fuerza":4,"defensa":3,"vida":25},
-    3:{"nombre":"Goblin","fuerza":7,"defensa":2,"vida":30},
-    4:{"nombre":"Esqueleto","fuerza":6,"defensa":3,"vida":35},
-    5:{"nombre":"Esqueleto Arquero","fuerza":10,"defensa":1,"vida":20}
+    1:{"nombre":"Rata Gigante","fuerza":5,"defensa":2,"vida":20,"xp_ganado":5},
+    2:{"nombre":"Slime","fuerza":4,"defensa":3,"vida":25,"xp_ganado":8},
+    3:{"nombre":"Goblin","fuerza":7,"defensa":2,"vida":30,"xp_ganado":12},
+    4:{"nombre":"Esqueleto","fuerza":6,"defensa":3,"vida":35,"xp_ganado":10},
 }
 
 bestias = {
-    1:{"nombre":"Lobo","fuerza":8,"defensa":3,"vida":40},
-    2:{"nombre":"Oso","fuerza":12,"defensa":6,"vida":80},
-    3:{"nombre":"Serpiente","fuerza":6,"defensa":2,"vida":35},
-    4:{"nombre":"Jabali","fuerza":10,"defensa":5,"vida":60}
+    1:{"nombre":"Lobo","fuerza":8,"defensa":3,"vida":40,"xp_ganado":15},
+    2:{"nombre":"Oso","fuerza":12,"defensa":6,"vida":80,"xp_ganado":35},
+    3:{"nombre":"Serpiente","fuerza":6,"defensa":2,"vida":35,"xp_ganado":20},
+    4:{"nombre":"Jabali","fuerza":10,"defensa":5,"vida":60,"xp_ganado":18}
 }
 
 monstruos_enemigos_humanoides = {
-    1:{"nombre":"Orco","fuerza":10,"defensa":4,"vida":50},
-    2:{"nombre":"Trol","fuerza":12,"defensa":6,"vida":90},
-    3:{"nombre":"Hombre lobo","fuerza":14,"defensa":4,"vida":70},
-    4:{"nombre":"Bruja","fuerza":12,"defensa":3,"vida":60},
-    5:{"nombre":"Nigromante enemigo","fuerza":10,"defensa":3,"vida":65}
+    1:{"nombre":"Orco","fuerza":10,"defensa":4,"vida":50,"xp_ganado":30},
+    2:{"nombre":"Trol","fuerza":12,"defensa":6,"vida":90,"xp_ganado":80},
+    3:{"nombre":"Hombre lobo","fuerza":14,"defensa":4,"vida":70,"xp_ganado":50},
+    4:{"nombre":"Bruja","fuerza":12,"defensa":3,"vida":60,"xp_ganado":40},
+    5:{"nombre":"Nigromante enemigo","fuerza":10,"defensa":3,"vida":65,"xp_ganado":70}
 }
 
 monstruos_oscuros =  {
-    1:{"nombre":"Ghoul","fuerza":6,"defensa":5,"vida":50},
-    2:{"nombre":"Espectro","fuerza":10,"defensa":2,"vida":45},
-    3:{"nombre":"Imp","fuerza":9,"defensa":3,"vida":35},
-    4:{"nombre":"Gárgola","fuerza":15,"defensa":8,"vida":80}
+    1:{"nombre":"Ghoul","fuerza":6,"defensa":5,"vida":50,"xp_ganado":18},
+    2:{"nombre":"Espectro","fuerza":10,"defensa":2,"vida":45,"xp_ganado":55},
+    3:{"nombre":"Imp","fuerza":9,"defensa":3,"vida":35,"xp_ganado":60},
+    4:{"nombre":"Gárgola","fuerza":15,"defensa":8,"vida":80,"xp_ganado":75}
 }
 
 criaturas_magicas = {
-    1: {"nombre": "Dragón joven", "fuerza": 20, "defensa": 10, "vida": 150},
-    2: {"nombre": "Quimera", "fuerza": 18, "defensa": 8, "vida": 120},
-    3: {"nombre": "Mantícora", "fuerza": 22, "defensa": 9, "vida": 130},
-    4: {"nombre": "Grifo", "fuerza": 20, "defensa": 10, "vida": 140},
-    5: {"nombre": "Hidra", "fuerza": 25, "defensa": 12, "vida": 180}
+    1: {"nombre": "Dragón joven", "fuerza": 20, "defensa": 10, "vida": 150,"xp_ganado":300},
+    2: {"nombre": "Quimera", "fuerza": 18, "defensa": 8, "vida": 120,"xp_ganado":180},
+    3: {"nombre": "Mantícora", "fuerza": 22, "defensa": 9, "vida": 130,"xp_ganado":150},
+    4: {"nombre": "Grifo", "fuerza": 20, "defensa": 10, "vida": 140,"xp_ganado":120},
+    5: {"nombre": "Hidra", "fuerza": 25, "defensa": 12, "vida": 180,"xp_ganado":250}
 }
 
 monstruos_jefes = {
-    1: {"nombre": "Rey goblin", "fuerza": 18, "defensa": 8, "vida": 100},
-    2: {"nombre": "Señor de los muertos", "fuerza": 25, "defensa": 12, "vida": 200},
-    3: {"nombre": "Golem", "fuerza": 30, "defensa": 20, "vida": 250},
-    4: {"nombre": "Dragón anciano", "fuerza": 40, "defensa": 25, "vida": 500},
-    5: {"nombre": "Señor demonio", "fuerza": 45, "defensa": 30, "vida": 600}
+    1: {"nombre": "Rey goblin", "fuerza": 18, "defensa": 8, "vida": 100,"xp_ganado":200},
+    2: {"nombre": "Señor de los muertos", "fuerza": 25, "defensa": 12, "vida": 200,"xp_ganado":450},
+    3: {"nombre": "Golem", "fuerza": 30, "defensa": 20, "vida": 250,"xp_ganado":5,"xp_ganado":350},
+    4: {"nombre": "Dragón anciano", "fuerza": 40, "defensa": 25, "vida": 500,"xp_ganado":800},
+    5: {"nombre": "Señor demonio", "fuerza": 45, "defensa": 30, "vida": 600,"xp_ganado":1200}
 }
 
 #--------------------MENUS--------------------
@@ -103,8 +100,10 @@ menu2 = "Menu de creacion".center(40,"=") + "\n"+ \
     "3) Volver" + "\n"
 
 nuevo_personaje = "Nuevo personaje".center(40,"=") + "\n"
-eleccion_clase = "Eleccion de clase".center(40,"=") + "\n"
-eleccion_arma = "Eleccion de arma".center(40,"=") + "\n"
+cabezera_eleccion_clase = "Eleccion de clase".center(40,"=") + "\n"
+eleccion_clase = ""
+cabezera_eleccion_arma = "Eleccion de arma".center(40,"=") + "\n"
+eleccion_arma = ""
 eleccion_estadisticas = "Selecciona una estadistica".center(40,"=") + "\n" + \
     "1) Fuerza" + "\n" + \
     "2) Magia" + "\n" + \
@@ -114,8 +113,9 @@ eleccion_estadisticas = "Selecciona una estadistica".center(40,"=") + "\n" + \
 muestra_pers = "Personaje creado".center(40,"-") + "\n" \
     "Nombre: {}" + "\n" + \
     "Clase: {}" + "\n" + \
+    "Nivel: {}" + "\n" + \
     "Arma: {}" + "\n" + \
-    "estadisticas".center(40,"·") + "\n" \
+    "Estadisticas".center(40,"·") + "\n" \
     "Fuerza: {}" + "\n" + \
     "Magia: {}" + "\n" + \
     "Defensa: {}" + "\n" + \
@@ -255,6 +255,7 @@ listar_jefes = "Jefes".center(40,"=") + "\n" + \
 #PRINCIPAL
 flg_salir = False
 flg_menu0 = True
+flg_jugar = False
 
 #CREAR
 flg_menu2 = False
@@ -269,6 +270,7 @@ flg_crear_arma = False
 
 #EDITAR
 flg_menu3 = False
+flg_nivel = False
 flg_edit_pers = False
 flg_edit_arma = False
 
@@ -281,9 +283,9 @@ nombre = ""
 opc2 = ""
 lista_ordenar = []
 
-opcion_invalida = "Opcion invalida"
 fuera_rango = "Opcion fuera de rango"
-formato_invalido = "Formato invalido tienen que ser letras."
+formato_invalido_letras = "Formato invalido tienen que ser letras."
+formato_invalido_numeros = "Formato invalido tienen que ser numeros."
 arma_seleccionada = ""
 encabezado_ranking_personajes = (
         "Ranking Personajes".center(123, "=") + "\n" +
@@ -312,7 +314,7 @@ while not flg_salir:
         opc = input("Opcion: \n")
 
         if not opc.isdigit():
-            print(opcion_invalida)
+            print(formato_invalido_numeros)
             input("Enter para continuar")
         elif not int(opc) in range(1,6):
             print(fuera_rango)
@@ -334,13 +336,14 @@ while not flg_salir:
             else:
                 flg_salir = True
                 flg_menu0 = False
-    # Crear
+   
+    # Elegir que crear
     while flg_menu2:
         print(menu2)
         opc = input("Opcion: \n")
 
         if not opc.isdigit():
-            print(opcion_invalida)
+            print(formato_invalido_numeros)
             input("Enter para continuar")
         elif not int(opc) in range(1,4):
             print(fuera_rango)
@@ -363,7 +366,7 @@ while not flg_salir:
         opc = input("Opcion: \n")
 
         if not opc.isdigit():
-            print(opcion_invalida)
+            print(formato_invalido_numeros)
             input("Enter para continuar")
         elif not int(opc) in range(1,4):
             print(fuera_rango)
@@ -385,7 +388,7 @@ while not flg_salir:
         opc = input("Opcion: \n")
 
         if not opc.isdigit():
-            print(opcion_invalida)
+            print(formato_invalido_numeros)
             input("Enter para continuar")
         elif not int(opc) in range(1,5):
             print(fuera_rango)
@@ -404,6 +407,7 @@ while not flg_salir:
             else:
                 flg_menu0 = True
                 flg_menu4 = False
+    
     # Listar personajes
     while flg_menu41:
         print(listar_personajes)
@@ -534,8 +538,9 @@ while not flg_salir:
                 print(fuera_rango)
                 input("Enter para continuar")
         else:
-            print(opcion_invalida)
+            print(formato_invalido_numeros)
             input("Enter para continuar")
+    
     # Listar armas
     while flg_menu42:
         print(listar_armas)
@@ -789,6 +794,7 @@ while not flg_salir:
 
                 print("".center(80, "="))
                 input("Pulsa para continuar")
+    
     # Listar Monstruos
     while flg_menu43:
         print(menu_lista_monstruos)
@@ -907,10 +913,12 @@ while not flg_salir:
                               str(opc2[lista_ordenar[i]]["defensa"]).ljust(8) +
                               str(opc2[lista_ordenar[i]]["vida"]).ljust(8))
                     print("".center(50,"="))
+    
     #Creacion de personaje
     while flg_crear_pers:
         nombre = ""
         clase = 0
+        nivel = 0
         armas_disponible = []
         arma_personaje = 0
         estadistica_frz = 0
@@ -918,9 +926,9 @@ while not flg_salir:
         estadistica_def = 0
         estadistica_agi = 0
         estadistica_vid = 0
+        eleccion_clase = ""
+        eleccion_arma = ""
 
-        for i in range(len(clases)):
-            eleccion_clase = eleccion_clase + "{}) ".format(i + 1) + clases[i + 1] + "\n"
         flg_nombre = True
 
         while flg_nombre:
@@ -928,18 +936,34 @@ while not flg_salir:
             nombre = input("Nombre del personaje: ")
 
             if not nombre.isalpha():
-                print(formato_invalido)
+                print(formato_invalido_letras)
             else:
                 print("Nuevo nombre creado {}".format(nombre))
                 input("Enter para continuar")
                 flg_clase = True
                 flg_nombre = False
+        
+        #ordenar clases
+        keys_clases = list(clases.keys())
+        for pasada in range(len(keys_clases)):
+            cambios = False
+            for i in range(len(keys_clases)-1-pasada):
+                if clases[keys_clases[i]] > clases[keys_clases[i+1]]:
+                    cambios = True
+                    aux = keys_clases[i]
+                    keys_clases[i] = keys_clases[i+1]
+                    keys_clases[i+1] = aux
+            if not cambios:
+                break
+        
+        for i in range(len(keys_clases)):
+            eleccion_clase = eleccion_clase + "{}) ".format(i + 1) + clases[keys_clases[i]] + "\n"
 
         while flg_clase:
-            print(eleccion_clase)
+            print(cabezera_eleccion_clase + eleccion_clase)
             opc = input("Opcion:\n")
             if not opc.isdigit():
-                print(opcion_invalida)
+                print(formato_invalido_numeros)
                 input("Enter para continuar")
 
             elif int(opc) < 1 or int(opc) > len(clases):
@@ -947,31 +971,53 @@ while not flg_salir:
                 input("Enter para continuar")
             else:
                 opc = int(opc)
-                print("Clase seleccionada {}".format(clases[opc]))
+                print("Clase seleccionada {}".format(clases[keys_clases[opc-1]]))
                 input("Enter para continuar")
-                clase = opc
-                flg_arma = True
+                clase = keys_clases[opc-1]
+                flg_nivel = True
                 flg_clase = False
 
-        identificador = 0
-        for i in range(len(armas)):
-            if armas[i + 1]["clase"] == clase:
-                identificador = identificador + 1
-                eleccion_arma = eleccion_arma + "{}) ".format(identificador) + armas[i + 1]["nombre"] + "\n"
-                armas_disponible.append(i + 1)
+        while flg_nivel:
+            new_nivel = input("Con que nivel quieres empezar la aventura? (1 - 5)\n")
+            if not new_nivel.isdigit():
+                print(formato_invalido_numeros)
+            elif not int(new_nivel) in range(1,6):
+                print("El nivel solo puede estar entre 1 y 5")
+            else:
+                nivel = int(new_nivel)
+                flg_arma = True
+                flg_nivel = False
+        
+        #ordenar armas
+        keys_arma = list(armas.keys())
+        for pasada in range(len(keys_arma)):
+            cambios = False
+            for i in range(len(keys_arma)-1-pasada):
+                if armas[keys_arma[i]]["nombre"] > armas[keys_arma[i+1]]["nombre"]:
+                    cambios = True
+                    aux = keys_arma[i]
+                    keys_arma[i] = keys_arma[i+1]
+                    keys_arma[i + 1] = aux
+            if not cambios:
+                break
+
+        for id in keys_arma:
+            if armas[id]["clase"] == clase:
+                armas_disponible.append(id)
+                eleccion_arma = eleccion_arma + "{}) ".format(len(armas_disponible)) + armas[id]["nombre"] + "\n"
 
         while flg_arma:
-            print(eleccion_arma)
+            print(cabezera_eleccion_arma + eleccion_arma)
             opc = input("Opcion:\n")
             if not opc.isdigit():
-                print(formato_invalido)
-            elif not int(opc) in range(1,len(armas_disponible) + 1) or int(opc) == 0:
+                print(formato_invalido_numeros)
+            elif not int(opc) in range(1,len(armas_disponible) + 1):
                 print(fuera_rango)
             else:
                 opc = int(opc)
-                print("Arma seleccionada {}.".format(armas[opc]["nombre"]))
+                print("Arma seleccionada {}.".format(armas[armas_disponible[opc-1]]["nombre"]))
                 input("Enter para continuar")
-                arma_personaje = opc
+                arma_personaje = armas_disponible[opc-1]
                 estadistica_frz = 0
                 estadistica_mag = 0
                 estadistica_def = 0
@@ -983,7 +1029,7 @@ while not flg_salir:
 
         while flg_estadisticas:
             if estadistica_frz > 0 and estadistica_mag > 0 and estadistica_def > 0 and estadistica_agi > 0 and estadistica_vid > 0:
-                print("\n"+"estadisticas Definitivos".center(40,"=") + "\nFuerza: {}\nMagia: {}\nDefensa: {}\nAgilidad: {}\nVida: {}\n".format(estadistica_frz,estadistica_mag,estadistica_def,estadistica_agi,estadistica_vid))
+                print("\n"+"estadisticas Definitivos".center(40,"=") + "\nFuerza: {}\nMagia: {}\nDefensa: {}\nAgilidad: {}\nVida: {}\nCuenta que al subir de nivel sube entre un 3% - 12%".format(estadistica_frz,estadistica_mag,estadistica_def,estadistica_agi,estadistica_vid))
                 input("Enter para continuar")
                 flg_muestra = True
                 flg_estadisticas = False
@@ -992,7 +1038,7 @@ while not flg_salir:
                 print("estadisticas Actuales".center(40,"=") + "\nFuerza: {} Magia: {} Defensa: {} Agilidad: {} Vida: {}\n".format(estadistica_frz, estadistica_mag, estadistica_def, estadistica_agi, estadistica_vid))
                 opc = input("Opcion:\n")
                 if not opc.isdigit():
-                    print(opcion_invalida)
+                    print(formato_invalido_numeros)
                     input("Enter para continuar")
                 elif not int(opc) in range(1,6):
                     print(fuera_rango)
@@ -1046,7 +1092,21 @@ while not flg_salir:
                             estadistica_vid = dado
 
         while flg_muestra:
-            print(muestra_pers.format(nombre, clases[clase], armas[arma_personaje]["nombre"], estadistica_frz, estadistica_mag, estadistica_def, estadistica_agi, estadistica_vid))
+            if nivel > 1:
+                for i in range(nivel):
+                    estadistica_frz = estadistica_frz * (1.0 + (random.randrange(30,140))/1000)
+                    estadistica_mag = estadistica_mag * (1.0 + (random.randrange(30,140))/1000)
+                    estadistica_def = estadistica_def * (1.0 + (random.randrange(30,140))/1000)
+                    estadistica_agi = estadistica_agi * (1.0 + (random.randrange(30,140))/1000)
+                    estadistica_vid = estadistica_vid * (1.0 + (random.randrange(30,140))/1000)
+            
+            estadistica_frz = int(estadistica_frz)
+            estadistica_mag = int(estadistica_mag)
+            estadistica_def = int(estadistica_def)
+            estadistica_agi = int(estadistica_agi)
+            estadistica_vid = int(estadistica_vid)
+
+            print(muestra_pers.format(nombre, clases[clase],nivel, armas[arma_personaje]["nombre"], estadistica_frz, estadistica_mag, estadistica_def, estadistica_agi, estadistica_vid))
             opc = input("Quieres empezar la aventura? S/N\n")
             if opc != "S" and opc != "N":
                 print("Tienes que poner una 'S' para aceptar o una 'N' para rechazar.")
@@ -1059,11 +1119,11 @@ while not flg_salir:
                 else:
                     print("Personaje creado")
                     input("Enter para continuar")
-                    heroes[len(heroes) + 1] = {"nivel":1, "nombre": nombre, "clase":clase, "arma" : armas[arma_personaje]["nombre"],
+                    heroes[len(heroes) + 1] = {"nivel":nivel, "nombre": nombre, "clase":clase, "arma" : arma_personaje,
                                                "fuerza":estadistica_frz, "magia":estadistica_mag, "defensa":estadistica_def, "agilidad":estadistica_agi,
                                                "vida":estadistica_vid, "xp":0}
                     flg_muestra = False
-
+        
         flg_menu0 = True
         flg_crear_pers = False
     #Creacion de arma 
@@ -1077,27 +1137,39 @@ while not flg_salir:
         estadistica2 = 0
         nombre_debufo = ""
         debuff = 0
-        
-        for i in range(len(clases)):
-            eleccion_clase_arma = eleccion_clase_arma + "{}) ".format(i + 1) + clases[i + 1] + "\n"
-            if i + 1 == len(clases):
-                break
+        eleccion_clase_arma = ""
        
         flg_clase = True  
+
+        keys_clases = list(clases.keys())
+        for pasada in range(len(keys_clases)):
+            cambios = False
+            for i in range(len(keys_clases)-1-pasada):
+                if clases[keys_clases[i]] > clases[keys_clases[i+1]]:
+                    cambios = True
+                    aux = keys_clases[i]
+                    keys_clases[i] = keys_clases[i+1]
+                    keys_clases[i+1] = aux
+            if not cambios:
+                break
+        
+        for i in range(len(keys_clases)):
+            eleccion_clase_arma = eleccion_clase_arma + "{}) ".format(i + 1) + clases[keys_clases[i]] + "\n"
 
         while flg_clase:
             print(eleccion_clase_arma)
             clase = input("Opcion:\n")
             if not clase.isdigit():
-                print(opcion_invalida)
+                print(formato_invalido_numeros)
                 input("Enter para continuar")
             elif not int(clase) in range(1,len(clases) + 1):
                 print(fuera_rango)
                 input("Enter para continuar")
             else:
-                clase = int(clase)
-                print("Requisito de {} para l'arma creado".format(clases[clase]))
+                opc = int(opc)
+                print("Clase seleccionada {}".format(clases[keys_clases[opc-2]]))
                 input("Enter para continuar")
+                clase = keys_clases[opc-2]
                 flg_clase = False
                 flg_nombre = True
         
@@ -1105,7 +1177,7 @@ while not flg_salir:
             nombre_arma = input("Nombre para l'arma:\n")
             probar_nombre = nombre_arma.replace(" ","")
             if not probar_nombre.isalpha():
-                print(formato_invalido)
+                print(formato_invalido_letras)
             else:
                 while True:
                     nombre_igual = nombre_arma
@@ -1127,7 +1199,7 @@ while not flg_salir:
                 print(eleccion_estadisticas_arma)
                 opc = input("Opcion:\n")
                 if not opc.isdigit():
-                    print(formato_invalido)
+                    print(formato_invalido_numeros)
                     input("Enter para continuar")
                 elif not int(opc) in range(1,6):
                     print(fuera_rango)
@@ -1184,7 +1256,7 @@ while not flg_salir:
             else:
                 dec_deb = input("Quieres poner un debuff aleatorio? S/N \n(Si pones un debuff las estadistica tendran un aumento de un 50% en las estadisticas.\n" \
                 "Pero el debuffo tembien sera de un aumento de 50%) ")
-                if dec_deb == "S":
+                if dec_deb.upper() == "S":
                     estadistica1 = int(estadistica1 * 1.5)
                     estadistica2 = int(estadistica2 * 1.5)
                     estadistica_random = random.randint(1,5)
@@ -1226,14 +1298,14 @@ while not flg_salir:
                     flg_muestra = True
                     flg_estadisticas = False
 
-                elif dec_deb == "N":
+                elif dec_deb.upper() == "N":
                     print("Las estadisticas del arma son:\n{} = {}\n{} = {}\n".format(nombre_estadistica1, estadistica1, nombre_estadistica2, estadistica2))
                     input("Enter para continuar")
                     flg_muestra = True
                     flg_estadisticas = False
 
                 else:
-                    print(opcion_invalida)
+                    print(formato_invalido_numeros)
                     input("Enter para continuar")
         
         while flg_muestra:
@@ -1244,11 +1316,11 @@ while not flg_salir:
                 print("Esta es la nueva arma:\n" + muestra_arma_deb.format(nombre_arma, clases[clase], nombre_estadistica1, estadistica1, nombre_estadistica2, estadistica2, nombre_debufo, debuff))
 
             opc = input("Quieres crear esta arma? S/N\n")
-            if opc != "S" and opc != "N":
-                print("Tienes que poner una 'S' para aceptar o una 'N' para rechazar.")
+            if opc.upper() != "S" and opc.upper() != "N":
+                print("Tienes que poner una 'S/s' para aceptar o una 'N/n' para rechazar.")
                 input("Enter para continuar")
             else:
-                if opc == "N":
+                if opc.upper() == "N":
                     print("Mala suerte la proxima intenta jugar con lo que te salga.")
                     input("Enter para continuar")
                     flg_muestra = False
@@ -1346,12 +1418,26 @@ while not flg_salir:
     #Editar armas
     while flg_edit_arma:
         eleccion_arma = ""
-        for i in range(len(armas)):
-            eleccion_arma = eleccion_arma + "{}) ".format(i + 1) + armas[i + 1]["nombre"] + "\n"
-        print(eleccion_arma)
+        keys_arma = list(armas.keys())
+        for pasada in range(len(keys_arma)):
+            cambios = False
+            for i in range(len(keys_arma)-1-pasada):
+                if armas[keys_arma[i]]["nombre"] > armas[keys_arma[i+1]]["nombre"]:
+                    cambios = True
+                    aux = keys_arma[i]
+                    keys_arma[i] = keys_arma[i+1]
+                    keys_arma[i + 1] = aux
+            if not cambios:
+                break
+
+        for i in range(len(keys_arma)):
+
+            eleccion_arma = eleccion_arma + "{}) ".format(i+1) + armas[keys_arma[i]]["nombre"] + "\n"
+
+        print(cabezera_eleccion_arma + eleccion_arma)
         opc = input("Opcion:\n")
         if not opc.isdigit():
-            print(formato_invalido)
+            print(formato_invalido_numeros)
             input("Enter para continuar")
         elif not int(opc) in range(1,len(armas) + 1):
             print(fuera_rango)
@@ -1359,29 +1445,30 @@ while not flg_salir:
         else:
             
             opc = int(opc)
-            nombre = armas[opc]["nombre"]
+            nombre = armas[keys_arma[opc-1]]["nombre"]
 
             print(arma_seleccion.format(nombre))
             opc_e = input("Opcion:\n")
 
             if not opc_e.isdigit():
-                print(formato_invalido)
+                print(formato_invalido_numeros)
                 input("Enter para continuar")
             elif not int(opc_e) in range(1,3):
                 print(fuera_rango)
                 input("Enter para continuar")
             else:
                 
+
                 opc_e = int(opc_e)
                 if opc_e == 1:
                     nuevo_nombre = input("Nuevo nombre:\n")
                     if not nuevo_nombre.isalpha():
-                            print(formato_invalido)
+                            print(formato_invalido_letras)
                             input("Enter to continue")
                     else:
                         print("El nombre: {}\nHa combiado por: {}".format(nombre,nuevo_nombre))
                         input("Enter para continuar")
-                        armas[opc]["nombre"] = nuevo_nombre
+                        armas[keys_arma[opc-1]]["nombre"] = nuevo_nombre
                         flg_menu3 = True
                         flg_edit_arma = False
                 else:
