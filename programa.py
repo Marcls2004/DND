@@ -1,4 +1,29 @@
 import random
+#--------------------HABILIDADES--------------------
+#esto no se pondra en el documento
+fuerza_total = 0
+magia_total = 0
+defensa_total = 0
+agilidad_total = 0
+vida_total = 0
+defensa_total_mon = 0
+fuerza_total_mon = 0
+#formula para hacer efecto de perforacion daño_total - (defensa_total_mon - perforacion)
+perforacion_basica = 0.1
+perforacion_principal = 0.25
+perforacion_ultimate = 0.6
+habilidades = {
+    "Guerrero":{"basico":{"nombre":"Golpe pesado","daño":fuerza_total},"principal":{"nombre":"Carga frontal","daño":fuerza_total*2,"retroceso":vida_total - (vida_total//5)},"ultimate":{"nombre":"Furia del titan","daño":fuerza_total,"buff":fuerza_total*1.5}},
+    "Paladin":{"basico":{"nombre":"Espadazo sagrado","daño":fuerza_total + magia_total},"principal":{"nombre":"Castigo divino","daño":fuerza_total + magia_total,"debuffo":defensa_total_mon - (defensa_total_mon//3)},"ultimate":{"nombre":"Juicio celestial","daño":fuerza_total,"buff":vida_total + (vida_total//5)}},
+    "Pícaro":{"basico":{"nombre":"Puñalada rápida","daño":fuerza_total*1.5},"principal":{"nombre":"Ataque furtivo","daño":fuerza_total*2},"ultimate":{"nombre":"Danza de sombras","daño":fuerza_total*3}},
+    "Cazador":{"basico":{"nombre":"Flecha precisa","daño":fuerza_total - (defensa_total_mon - perforacion_basica)},"principal":{"nombre":"Disparo perforante","daño":fuerza_total - (defensa_total_mon - perforacion_basica)},"ultimate":{"nombre":"Furia del titan","daño":fuerza_total - (defensa_total_mon - perforacion_basica)}},
+    "Mago":{"basico":{"nombre":"Bola mágica","daño":magia_total},"principal":{"nombre":"Explosión arcana","daño":magia_total*1.5},"ultimate":{"nombre":"Tormenta elemental","daño":magia_total*2}},
+    "Clérigo":{"basico":{"nombre":"Luz purificadora","daño":magia_total,"buff":vida_total + (magia_total//3)},"principal":{"nombre":"Bendicion sagrada","buff":defensa_total * 2},"ultimate":{"nombre":"Milagro divino","buff":vida_total + (magia_total//3) + (vida_total//3)}},
+    "Druida":{"basico":{"nombre":"Látigo de enredaderas","daño":magia_total + (fuerza_total)//5},"principal":{"nombre":"Forma bestial","buff":[fuerza_total * 1.5,agilidad_total * 1.5]},"ultimate":{"nombre":"Espiritu del bosque","buff":[magia_total*1.5,vida_total*1.5]}},
+    "Bardo":{"basico":{"nombre":"Nota disonante","daño":magia_total},"principal":{"nombre":"Canción inspiradora","buff":[magia_total*1.5,agilidad_total*1.5]},"ultimate":{"nombre":"Sinfonía legendaria","debuffo":defensa_total_mon - (defensa_total_mon//5),"buff":[magia_total*1.5,defensa_total*1.5,agilidad_total*1.5]}},
+    "Monje":{"basico":{"nombre":"Puño rapido","daño":fuerza_total + agilidad_total},"principal":{"nombre":"Combo devastador","daño":(fuerza_total*2)*3},"ultimate":{"nombre":"Técnica del dragón","daño":fuerza_total + defensa_total_mon}},
+    "Nigromante":{"basico":{"nombre":"Toque oscuro","daño":magia_total},"principal":{"nombre":"Maldición de decadencia","daño":magia_total,"debuffo":[fuerza_total_mon - (fuerza_total_mon//3),defensa_total_mon - (defensa_total_mon//3)]},"ultimate":{"nombre":"Rito de aniquilación","daño":magia_total - (defensa_total_mon - 50)}}
+}
 #--------------------DICCIONARIOS--------------------
 clases = {
     1:"Guerrero",
@@ -6,7 +31,7 @@ clases = {
     3:"Pícaro",
     4:"Cazador",
     5:"Mago",
-    6:"Clerigo",
+    6:"Clérigo",
     7:"Druida",
     8:"Bardo",
     9:"Monje",
@@ -252,6 +277,9 @@ listar_jefes = "Jefes".center(40,"=") + "\n" + \
     "3) Por defensa" + "\n" + \
     "4) Volver" + "\n"
 
+empezar_a_jugar = "Selecciona un heroe".center(50,"*") + "\n"
+
+
 #PRINCIPAL
 flg_salir = False
 flg_menu0 = True
@@ -322,8 +350,9 @@ while not flg_salir:
         else:
             opc = int(opc)
             if opc == 1:
-                print("Esta opcion de momento no esta implementada")
-                input("Enter para continuar")
+                flg_jugar = True
+                flg_menu0 = False
+                contador = 0
             elif opc == 2:
                 flg_menu2 = True
                 flg_menu0 = False
@@ -336,7 +365,21 @@ while not flg_salir:
             else:
                 flg_salir = True
                 flg_menu0 = False
-   
+    
+    #Juego
+    while flg_jugar:
+        monstruo = ""
+        if contador < 10:
+            monstruo = monstruos_debiles[random.randint(1,4)]
+        else:
+            monstruo = bestias[random.randint(1,4)]
+        print(contador,monstruo)
+        input()
+        contador = contador + 1
+        #cada 10 pisos aumenta que enemigos puedes aparecer
+        #la barra de xp cada vez que se sube de nivel aumente un 1.5
+
+
     # Elegir que crear
     while flg_menu2:
         print(menu2)
