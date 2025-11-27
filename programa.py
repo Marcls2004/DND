@@ -1,8 +1,9 @@
 import random
 #--------------------Esto es solo para el juego no se puede utilizar en el servidor (PARTE1)--------------------
 import time
-import winsound
-introduccion = "Hola viajero, para salir de aqui tendras que ir derrotando todos los monstruos que te encuentres. Nos veremos en el final o no JAJAJAJAJAJAJA..."
+introduccion = "Hola viajero, para salir de aqui tendras que ir derrotando todos los enemigos que te encuentres. Nos veremos en el piso final o no JAJAJAJAJAJAJA..."
+seleccion_heroe = "Primero tendras que seleccionar el heroe con el que querras emprender esta aventura."
+finalizacion = "Enhorabuena viajero has llegado al final, pero esto no se acaba aqui ya lo veras proximamente JAJAJAJAJAJAJA..."
 #--------------------HABILIDADES--------------------
 #esto no se pondra en el documento
 fuerza_total = 0
@@ -244,7 +245,7 @@ menu_lista_monstruos = "Listas monstruos".center(40,"=") + "\n" + \
 
 listar_debiles = "Monstruos debiles".center(40,"=") + "\n" + \
     "1) Por vida" + "\n" + \
-    "2) Por ataque" + "\n" + \
+    "2) Por fuerza" + "\n" + \
     "3) Por defensa" + "\n" + \
     "4) Volver" + "\n"
 
@@ -280,6 +281,9 @@ listar_jefes = "Jefes".center(40,"=") + "\n" + \
 
 empezar_a_jugar = "Selecciona un heroe".center(50,"*") + "\n"
 
+#JUEGO
+print_piso = "Piso {}".center(50,"=") + "\n"
+seleccionar_heroe = "Has seleccionado al heroe {}."
 
 #PRINCIPAL
 flg_salir = False
@@ -351,12 +355,16 @@ while not flg_salir:
         else:
             opc = int(opc)
             if opc == 1:
-                winsound.PlaySound(r"musica_juego.wav", winsound.SND_FILENAME | winsound.SND_ASYNC | winsound.SND_LOOP)
                 resultado = ""
-                time.sleep(2)
+                for letra in introduccion:
+                    resultado = resultado + letra
+                    print("\r" + resultado, end = "")
+                    time.sleep(0.1)
+                input("\n\nPulsa ENTER para continuar")
+                heroe = ""
                 flg_jugar = True
                 flg_menu0 = False
-                contador = 0
+                pisos = 1
             elif opc == 2:
                 flg_menu2 = True
                 flg_menu0 = False
@@ -375,21 +383,72 @@ while not flg_salir:
         #cada 10 pisos aumenta que enemigos puedes aparecer
         #la barra de xp cada vez que se sube de nivel aumente un 1.5
         #--------------------Esto es solo para el juego no se puede utilizar en el servidor (PARTE2)--------------------
-        for letra in introduccion:
-                resultado += letra
-                print("\r" + resultado, end="")
+        if heroe == "":
+            eleccion_pers = ""
+            keys_heroes = list(heroes.keys())
+            for pasada in range(len(keys_heroes)):
+                cambios = False
+                for i in range(len(keys_heroes) - 1 - pasada):
+                    if heroes[keys_heroes[i]]["nombre"].upper() > heroes[keys_heroes[i + 1]]["nombre"].upper():
+                        cambios = True
+                        aux = keys_heroes[i]
+                        keys_heroes[i] = keys_heroes[i+1]
+                        keys_heroes[i+1] = aux 
+                if not cambios:
+                    break
+            for i in range(len(keys_heroes)):
+                eleccion_pers = eleccion_pers + "{}) ".format(i + 1) + heroes[keys_heroes[i]]["nombre"] + "\n"
+            
+            resultado = ""
+            for letra in seleccion_heroe:
+                resultado = resultado + letra
+                print("\r" + resultado, end = "")
                 time.sleep(0.1)
 
-        input("\nPulsa ENTER para continuar")
-        
-        monstruo = ""
-        if contador < 10:
-            monstruo = monstruos_debiles[random.randint(1,4)]
+            print("\n" + menu_personaje + eleccion_pers)
+            opc = input("Selecciona con cual heroe quieres jugar:\n")
+
+            while not opc.isdigit() or not int(opc) in range(1,len(heroes) + 1):
+                print("Solo puedes seleccionar un heroe de la lista")
+                opc = input("Selecciona con cual heroe quieres jugar:\n")
+            opc = int(opc)
+
+            heroe = heroes[keys_heroes[opc-1]]
+            print(seleccionar_heroe.format(heroe["nombre"]))
+            
         else:
-            monstruo = bestias[random.randint(1,4)]
-        print(contador,monstruo)
-        input()
-        contador = contador + 1
+            monstruo = ""
+            if pisos <= 10:
+                monstruo = monstruos_debiles[random.randint(1,4)]
+            elif pisos <= 20:
+                monstruo = bestias[random.randint(1,4)]
+            elif pisos <= 30:
+                monstruo = monstruos_enemigos_humanoides[random.randint(1,4)]
+            elif pisos <= 40:
+                monstruo = monstruos_oscuros[random.randint(1,4)]
+            elif pisos <= 50:
+                monstruo = criaturas_magicas[random.randint(1,4)]
+            elif pisos <= 60:
+                monstruo = monstruos_jefes[random.randint(1,4)]
+            else:
+                resultado = ""
+                for letra in finalizacion:
+                    resultado += letra
+                    print("\r" + resultado, end="")
+                    time.sleep(0.1)
+                input("\n\nPulsa ENTER para continuar")
+
+            
+            while True:
+                print(print_piso.format(pisos))
+                
+                if 
+                break                
+            print(pisos,monstruo)
+            input()
+        
+        input("acabado la prueba")
+        pisos = pisos + 1
 
 
     # Elegir que crear
@@ -871,13 +930,13 @@ while not flg_salir:
                 for key in monstruos_debiles:
                     lista_ordenar.append(key)
             elif opc == 2:
-                nombre= "Bestias "
+                nombre= "Bestias"
                 opc2 = bestias
                 lista_ordenar = []
                 for key in bestias:
                     lista_ordenar.append(key)
             elif opc == 3:
-                nombre= "Monstruo Enemigos Humanoides "
+                nombre= "Monstruo Enemigos Humanoides"
                 opc2 = monstruos_enemigos_humanoides
                 lista_ordenar = []
                 for key in monstruos_enemigos_humanoides:
@@ -1411,7 +1470,7 @@ while not flg_salir:
                     keys_heroes[i+1] = aux 
             if not cambios:
                 break
-        print(keys_heroes)
+
         for i in range(len(keys_heroes)):
            eleccion_pers = eleccion_pers + "{}) ".format(i + 1) + heroes[keys_heroes[i]]["nombre"] + "\n"
         eleccion_pers = eleccion_pers + str(len(keys_heroes)+1) + ")" + " Salir" + "\n"
