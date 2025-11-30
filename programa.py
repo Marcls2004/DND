@@ -110,7 +110,7 @@ criaturas_magicas = {
 monstruos_jefes = {
     1: {"nombre": "Rey goblin", "fuerza": 18, "defensa": 8, "vida": 100,"xp_ganado":200},
     2: {"nombre": "Señor de los muertos", "fuerza": 25, "defensa": 12, "vida": 200,"xp_ganado":450},
-    3: {"nombre": "Golem", "fuerza": 30, "defensa": 20, "vida": 250,"xp_ganado":5,"xp_ganado":350},
+    3: {"nombre": "Golem", "fuerza": 30, "defensa": 20, "vida": 250,"xp_ganado":350},
     4: {"nombre": "Dragón anciano", "fuerza": 40, "defensa": 25, "vida": 500,"xp_ganado":800},
     5: {"nombre": "Señor demonio", "fuerza": 45, "defensa": 30, "vida": 600,"xp_ganado":1200}
 }
@@ -746,6 +746,7 @@ while not flg_salir:
                 flg_menu4 = False
     
     # Listar personajes
+    # Al listar tambien le sumamos las stats de armas
     while flg_menu41:
         print(listar_personajes)
         opc = input("Opcion: \n")
@@ -756,6 +757,7 @@ while not flg_salir:
                 for key in heroes:
                     lista_ordenar.append(key)
                 if opc == 1:
+                    #Listamos por id de personaje
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
@@ -767,6 +769,7 @@ while not flg_salir:
                         if not cambios:
                             break
                 elif opc == 2:
+                    #Listamos por nombre de personaje
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
@@ -778,10 +781,31 @@ while not flg_salir:
                         if not cambios:
                             break
                 elif opc == 3:
+                    #Listamos por fuerza de personaje
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
-                            if heroes[lista_ordenar[i]]["fuerza"] < heroes[lista_ordenar[i + 1]]["fuerza"]:
+                            hero_a_id = lista_ordenar[i]
+                            hero_b_id = lista_ordenar[i + 1]
+
+                            fuerza_a = heroes[hero_a_id]["fuerza"]
+                            id_arma_a = heroes[hero_a_id]["arma"]
+
+                            caracts_a = armas[id_arma_a].get("caracteristicas", {})
+                            fuerza_a += caracts_a.get("fuerza", 0)
+
+                            debuffos_a = armas[id_arma_a].get("debuffo", {})
+                            fuerza_a += debuffos_a.get("fuerza", 0)
+
+                            fuerza_b = heroes[hero_b_id]["fuerza"]
+                            id_arma_b = heroes[hero_b_id]["arma"]
+
+                            caracts_b = armas[id_arma_b].get("caracteristicas", {})
+                            fuerza_b += caracts_b.get("fuerza", 0)
+
+                            debuffos_b = armas[id_arma_b].get("debuffo", {})
+                            fuerza_b += debuffos_b.get("fuerza", 0)
+                            if fuerza_a < fuerza_b:
                                 aux = lista_ordenar[i]
                                 lista_ordenar[i] = lista_ordenar[i + 1]
                                 lista_ordenar[i + 1] = aux
@@ -789,10 +813,31 @@ while not flg_salir:
                         if not cambios:
                             break
                 elif opc == 4:
+                    #Listamos por magia
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
-                            if heroes[lista_ordenar[i]]["magia"] < heroes[lista_ordenar[i + 1]]["magia"]:
+                            hero_a_id = lista_ordenar[i]
+                            hero_b_id = lista_ordenar[i + 1]
+
+                            magia_a = heroes[hero_a_id]["magia"]
+                            id_arma_a = heroes[hero_a_id]["arma"]
+
+                            caracts_a = armas[id_arma_a].get("caracteristicas", {})
+                            magia_a += caracts_a.get("magia", 0)
+
+                            debuffos_a = armas[id_arma_a].get("debuffo", {})
+                            magia_a += debuffos_a.get("magia", 0)
+
+                            magia_b = heroes[hero_b_id]["magia"]
+                            id_arma_b = heroes[hero_b_id]["arma"]
+
+                            caracts_b = armas[id_arma_b].get("caracteristicas", {})
+                            magia_b += caracts_b.get("magia", 0)
+
+                            debuffos_b = armas[id_arma_b].get("debuffo", {})
+                            magia_b += debuffos_b.get("magia", 0)
+                            if magia_a < magia_b:
                                 aux = lista_ordenar[i]
                                 lista_ordenar[i] = lista_ordenar[i + 1]
                                 lista_ordenar[i + 1] = aux
@@ -800,10 +845,31 @@ while not flg_salir:
                         if not cambios:
                             break
                 elif opc == 5:
+                    #Listamos por defensa
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
-                            if heroes[lista_ordenar[i]]["defensa"] < heroes[lista_ordenar[i + 1]]["defensa"]:
+                            hero_a_id = lista_ordenar[i]
+                            hero_b_id = lista_ordenar[i + 1]
+
+                            defensa_a = heroes[hero_a_id]["defensa"]
+                            id_arma_a = heroes[hero_a_id]["arma"]
+
+                            caracts_a = armas[id_arma_a].get("caracteristicas", {})
+                            defensa_a += caracts_a.get("defensa", 0)
+
+                            debuffos_a = armas[id_arma_a].get("debuffo", {})
+                            defensa_a += debuffos_a.get("defensa", 0)
+
+                            defensa_b = heroes[hero_b_id]["defensa"]
+                            id_arma_b = heroes[hero_b_id]["arma"]
+
+                            caracts_b = armas[id_arma_b].get("caracteristicas", {})
+                            defensa_b += caracts_b.get("defensa", 0)
+
+                            debuffos_b = armas[id_arma_b].get("debuffo", {})
+                            defensa_b += debuffos_b.get("defensa", 0)
+                            if defensa_a < defensa_b:
                                 aux = lista_ordenar[i]
                                 lista_ordenar[i] = lista_ordenar[i + 1]
                                 lista_ordenar[i + 1] = aux
@@ -811,10 +877,31 @@ while not flg_salir:
                         if not cambios:
                             break
                 elif opc == 6:
+                    #Listamos por agilidad
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
-                            if heroes[lista_ordenar[i]]["agilidad"] < heroes[lista_ordenar[i + 1]]["agilidad"]:
+                            hero_a_id = lista_ordenar[i]
+                            hero_b_id = lista_ordenar[i + 1]
+
+                            agilidad_a = heroes[hero_a_id]["agilidad"]
+                            id_arma_a = heroes[hero_a_id]["arma"]
+
+                            caracts_a = armas[id_arma_a].get("caracteristicas", {})
+                            agilidad_a += caracts_a.get("agilidad", 0)
+
+                            debuffos_a = armas[id_arma_a].get("debuffo", {})
+                            agilidad_a += debuffos_a.get("agilidad", 0)
+
+                            agilidad_b = heroes[hero_b_id]["agilidad"]
+                            id_arma_b = heroes[hero_b_id]["arma"]
+
+                            caracts_b = armas[id_arma_b].get("caracteristicas", {})
+                            agilidad_b += caracts_b.get("agilidad", 0)
+
+                            debuffos_b = armas[id_arma_b].get("debuffo", {})
+                            agilidad_b += debuffos_b.get("agilidad", 0)
+                            if agilidad_b < agilidad_b:
                                 aux = lista_ordenar[i]
                                 lista_ordenar[i] = lista_ordenar[i + 1]
                                 lista_ordenar[i + 1] = aux
@@ -822,10 +909,31 @@ while not flg_salir:
                         if not cambios:
                             break
                 elif opc == 7:
+                    #Listamos por vida
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
-                            if heroes[lista_ordenar[i]]["vida"] < heroes[lista_ordenar[i + 1]]["vida"]:
+                            hero_a_id = lista_ordenar[i]
+                            hero_b_id = lista_ordenar[i + 1]
+
+                            vida_a = heroes[hero_a_id]["vida"]
+                            id_arma_a = heroes[hero_a_id]["arma"]
+
+                            caracts_a = armas[id_arma_a].get("caracteristicas", {})
+                            vida_a += caracts_a.get("vida", 0)
+
+                            debuffos_a = armas[id_arma_a].get("debuffo", {})
+                            vida_a += debuffos_a.get("vida", 0)
+
+                            vida_b = heroes[hero_b_id]["vida"]
+                            id_arma_b = heroes[hero_b_id]["arma"]
+
+                            caracts_b = armas[id_arma_b].get("caracteristicas", {})
+                            vida_b += caracts_b.get("vida", 0)
+
+                            debuffos_b = armas[id_arma_b].get("debuffo", {})
+                            vida_b += debuffos_b.get("vida", 0)
+                            if vida_a < vida_b:
                                 aux = lista_ordenar[i]
                                 lista_ordenar[i] = lista_ordenar[i + 1]
                                 lista_ordenar[i + 1] = aux
@@ -1199,6 +1307,7 @@ while not flg_salir:
             else:
                 opc = int(opc)
                 if opc == 1:
+                    #Listamos por vida
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
@@ -1210,6 +1319,7 @@ while not flg_salir:
                         if not cambios:
                             break
                 elif opc == 2:
+                    #Listamos por fuerza
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
@@ -1221,6 +1331,7 @@ while not flg_salir:
                         if not cambios:
                             break
                 elif opc == 3:
+                    #Listamos por defensa
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
@@ -1769,11 +1880,17 @@ while not flg_salir:
                                 if opc_a == len(armas_disponible)+1:
                                     break
                                 else:
-                                    print("El arma a cambiado de {} a {}".format(armas[heroes[keys_heroes[opc-1]]["arma"]]["nombre"],armas[armas_disponible[opc_a-1]]["nombre"]))
-                                    input("Enter para continuar")
-                                    heroes[keys_heroes[opc-1]]["arma"]  = armas_disponible[opc_a-1]
-                                    flg_menu3 = True
-                                    flg_edit_pers = False
+                                    if armas[heroes[keys_heroes[opc-1]]["arma"]]["nombre"] ==armas[armas_disponible[opc_a-1]]["nombre"]:
+                                        print("Elegiste la misma arma ")
+                                        input("Enter para continuar")
+                                        break
+                                    else:
+                                        print("El arma a cambiado de {} a {}".format(
+                                            armas[heroes[keys_heroes[opc - 1]]["arma"]]["nombre"],
+                                            armas[armas_disponible[opc_a - 1]]["nombre"]))
+                                        input("Enter para continuar")
+                                        heroes[keys_heroes[opc - 1]]["arma"] = armas_disponible[opc_a - 1]
+                                        break
                     else:
                         flg_menu3 = True
                         flg_edit_pers = False
@@ -1794,7 +1911,6 @@ while not flg_salir:
                 break
 
         for i in range(len(keys_arma)):
-
             eleccion_arma = eleccion_arma + "{}) ".format(i+1) + armas[keys_arma[i]]["nombre"] + "\n"
 
         print(cabezera_eleccion_arma + eleccion_arma)
@@ -1820,8 +1936,6 @@ while not flg_salir:
                 print(fuera_rango)
                 input("Enter para continuar")
             else:
-                
-
                 opc_e = int(opc_e)
                 if opc_e == 1:
                     nuevo_nombre = input("Nuevo nombre:\n")
