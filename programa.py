@@ -450,6 +450,7 @@ while not flg_salir:
                 flg_menu4 = False
     
     # Listar personajes
+    # Al listar tambien le sumamos las stats de armas
     while flg_menu41:
         print(listar_personajes)
         opc = input("Opcion: \n")
@@ -460,6 +461,7 @@ while not flg_salir:
                 for key in heroes:
                     lista_ordenar.append(key)
                 if opc == 1:
+                    #Listamos por id de personaje
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
@@ -471,6 +473,7 @@ while not flg_salir:
                         if not cambios:
                             break
                 elif opc == 2:
+                    #Listamos por nombre de personaje
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
@@ -482,6 +485,7 @@ while not flg_salir:
                         if not cambios:
                             break
                 elif opc == 3:
+                    #Listamos por fuerza de personaje
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
@@ -513,6 +517,7 @@ while not flg_salir:
                         if not cambios:
                             break
                 elif opc == 4:
+                    #Listamos por magia
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
@@ -544,6 +549,7 @@ while not flg_salir:
                         if not cambios:
                             break
                 elif opc == 5:
+                    #Listamos por defensa
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
@@ -575,6 +581,7 @@ while not flg_salir:
                         if not cambios:
                             break
                 elif opc == 6:
+                    #Listamos por agilidad
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
@@ -606,6 +613,7 @@ while not flg_salir:
                         if not cambios:
                             break
                 elif opc == 7:
+                    #Listamos por vida
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
@@ -1003,6 +1011,7 @@ while not flg_salir:
             else:
                 opc = int(opc)
                 if opc == 1:
+                    #Listamos por vida
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
@@ -1014,6 +1023,7 @@ while not flg_salir:
                         if not cambios:
                             break
                 elif opc == 2:
+                    #Listamos por fuerza
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
@@ -1025,6 +1035,7 @@ while not flg_salir:
                         if not cambios:
                             break
                 elif opc == 3:
+                    #Listamos por defensa
                     for pasadas in range(len(lista_ordenar)):
                         cambios = False
                         for i in range(len(lista_ordenar) - 1 - pasadas):
@@ -1572,6 +1583,7 @@ while not flg_salir:
                                 else:
                                     if armas[heroes[keys_heroes[opc-1]]["arma"]]["nombre"] ==armas[armas_disponible[opc_a-1]]["nombre"]:
                                         print("Elegiste la misma arma ")
+                                        input("Enter para continuar")
                                         break
                                     else:
                                         print("El arma a cambiado de {} a {}".format(
@@ -1600,7 +1612,6 @@ while not flg_salir:
                 break
 
         for i in range(len(keys_arma)):
-
             eleccion_arma = eleccion_arma + "{}) ".format(i+1) + armas[keys_arma[i]]["nombre"] + "\n"
 
         print(cabezera_eleccion_arma + eleccion_arma)
@@ -1626,8 +1637,6 @@ while not flg_salir:
                 print(fuera_rango)
                 input("Enter para continuar")
             else:
-                
-
                 opc_e = int(opc_e)
                 if opc_e == 1:
                     nuevo_nombre = input("Nuevo nombre:\n")
