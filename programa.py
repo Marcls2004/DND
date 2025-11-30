@@ -585,6 +585,15 @@ while not flg_salir:
             if ataca:
                 daño_mon = fuerza_total_mon
                 
+                daño_mon = daño_mon - defensa_total
+
+                resultado = ""
+                for letra in atacan.format(monstruo["nombre"],daño_mon,vida_total):
+                    resultado += letra
+                    print("\r" + resultado, end="")
+                    time.sleep(0.1)
+                input("\n\nPulsa ENTER para continuar")
+
                 if vida_total - (daño_mon - defensa_total ) <= 0:
                     print("Has muerto...")
                     input("Enter para continuar")
@@ -597,15 +606,6 @@ while not flg_salir:
 
                     vida_total = vida_total - daño_real
                     ataca = False
-            
-            daño_mon = daño_mon - defensa_total
-
-            resultado = ""
-            for letra in atacan.format(monstruo["nombre"],daño_mon,vida_total):
-                resultado += letra
-                print("\r" + resultado, end="")
-                time.sleep(0.1)
-            input("\n\nPulsa ENTER para continuar")
 
             turno = turno + 1
 
