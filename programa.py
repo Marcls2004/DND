@@ -1,6 +1,12 @@
 import random
+#--------------------Esto es solo para el juego no se puede utilizar en el servidor (PARTE1)--------------------
+import time
+introduccion = "Hola viajero, para salir de aqui tendras que ir derrotando todos los enemigos que te encuentres. Nos veremos en el piso final o no JAJAJAJAJAJAJA..."
+seleccion_heroe = "Primero tendras que seleccionar el heroe con el que querras emprender esta aventura."
+finalizacion = "Enhorabuena viajero has llegado al final, pero esto no se acaba aqui ya lo veras proximamente JAJAJAJAJAJAJA..."
 #--------------------HABILIDADES--------------------
 #esto no se pondra en el documento
+rec_piso = 140
 fuerza_total = 0
 magia_total = 0
 defensa_total = 0
@@ -16,7 +22,7 @@ habilidades = {
     "Guerrero":{"basico":{"nombre":"Golpe pesado","daño":fuerza_total},"principal":{"nombre":"Carga frontal","daño":fuerza_total*2,"retroceso":vida_total - (vida_total//5)},"ultimate":{"nombre":"Furia del titan","daño":fuerza_total,"buff":fuerza_total*1.5}},
     "Paladin":{"basico":{"nombre":"Espadazo sagrado","daño":fuerza_total + magia_total},"principal":{"nombre":"Castigo divino","daño":fuerza_total + magia_total,"debuffo":defensa_total_mon - (defensa_total_mon//3)},"ultimate":{"nombre":"Juicio celestial","daño":fuerza_total,"buff":vida_total + (vida_total//5)}},
     "Pícaro":{"basico":{"nombre":"Puñalada rápida","daño":fuerza_total*1.5},"principal":{"nombre":"Ataque furtivo","daño":fuerza_total*2},"ultimate":{"nombre":"Danza de sombras","daño":fuerza_total*3}},
-    "Cazador":{"basico":{"nombre":"Flecha precisa","daño":fuerza_total - (defensa_total_mon - perforacion_basica)},"principal":{"nombre":"Disparo perforante","daño":fuerza_total - (defensa_total_mon - perforacion_basica)},"ultimate":{"nombre":"Furia del titan","daño":fuerza_total - (defensa_total_mon - perforacion_basica)}},
+    "Cazador":{"basico":{"nombre":"Flecha precisa","daño":fuerza_total - (defensa_total_mon - perforacion_basica)},"principal":{"nombre":"Disparo perforante","daño":fuerza_total - (defensa_total_mon - perforacion_principal)},"ultimate":{"nombre":"Furia del titan","daño":fuerza_total - (defensa_total_mon - perforacion_ultimate)}},
     "Mago":{"basico":{"nombre":"Bola mágica","daño":magia_total},"principal":{"nombre":"Explosión arcana","daño":magia_total*1.5},"ultimate":{"nombre":"Tormenta elemental","daño":magia_total*2}},
     "Clérigo":{"basico":{"nombre":"Luz purificadora","daño":magia_total,"buff":vida_total + (magia_total//3)},"principal":{"nombre":"Bendicion sagrada","buff":defensa_total * 2},"ultimate":{"nombre":"Milagro divino","buff":vida_total + (magia_total//3) + (vida_total//3)}},
     "Druida":{"basico":{"nombre":"Látigo de enredaderas","daño":magia_total + (fuerza_total)//5},"principal":{"nombre":"Forma bestial","buff":[fuerza_total * 1.5,agilidad_total * 1.5]},"ultimate":{"nombre":"Espiritu del bosque","buff":[magia_total*1.5,vida_total*1.5]}},
@@ -240,7 +246,7 @@ menu_lista_monstruos = "Listas monstruos".center(40,"=") + "\n" + \
 
 listar_debiles = "Monstruos debiles".center(40,"=") + "\n" + \
     "1) Por vida" + "\n" + \
-    "2) Por ataque" + "\n" + \
+    "2) Por fuerza" + "\n" + \
     "3) Por defensa" + "\n" + \
     "4) Volver" + "\n"
 
@@ -276,6 +282,16 @@ listar_jefes = "Jefes".center(40,"=") + "\n" + \
 
 empezar_a_jugar = "Selecciona un heroe".center(50,"*") + "\n"
 
+#JUEGO
+print_piso = "Ronda {}".center(50,"=") + "\n"
+seleccionar_heroe = "Has seleccionado al heroe {}."
+info_turno = "Turno {}".center(50,"=") + "\n" +\
+    "1) Bàsico: {}" + "\n" + \
+    "2) Habilidad: {}" + "\n" + \
+    "3) Ultimate: {}" + "\n"
+atacas = "A {} le has hecho {} de daño, le quedan {} puntos de vida."
+atacan = "El {} te ha hecho {} de daño, te quedan {} puntos de vida."
+    
 
 #PRINCIPAL
 flg_salir = False
@@ -308,6 +324,7 @@ nombre = ""
 opc2 = ""
 lista_ordenar = []
 
+en_cooldown = "Aun no puedes utilizar esta habilidad."
 fuera_rango = "Opcion fuera de rango"
 formato_invalido_letras = "Formato invalido tienen que ser letras."
 formato_invalido_numeros = "Formato invalido tienen que ser numeros."
@@ -347,9 +364,37 @@ while not flg_salir:
         else:
             opc = int(opc)
             if opc == 1:
+                resultado = ""
+                for letra in introduccion:
+                    resultado = resultado + letra
+                    print("\r" + resultado, end = "")
+                    time.sleep(0.1)
+                input("\n\nPulsa ENTER para continuar")
+                heroe = ""
+                eleccion_pers = ""
+                keys_heroes = list(heroes.keys())
+                for pasada in range(len(keys_heroes)):
+                    cambios = False
+                    for i in range(len(keys_heroes) - 1 - pasada):
+                        if heroes[keys_heroes[i]]["nombre"].upper() > heroes[keys_heroes[i + 1]]["nombre"].upper():
+                            cambios = True
+                            aux = keys_heroes[i]
+                            keys_heroes[i] = keys_heroes[i+1]
+                            keys_heroes[i+1] = aux 
+                    if not cambios:
+                        break
+                
+                for i in range(len(keys_heroes)):
+                    eleccion_pers = eleccion_pers + "{}) ".format(i + 1) + heroes[keys_heroes[i]]["nombre"] + "\n"
+                
+                resultado = ""
+                for letra in seleccion_heroe:
+                    resultado = resultado + letra
+                    print("\r" + resultado, end = "")
+                    time.sleep(0.1)
                 flg_jugar = True
                 flg_menu0 = False
-                contador = 0
+                pisos = 1
             elif opc == 2:
                 flg_menu2 = True
                 flg_menu0 = False
@@ -365,16 +410,267 @@ while not flg_salir:
     
     #Juego
     while flg_jugar:
+        #--------------------Esto es solo para el juego no se puede utilizar en el servidor (PARTE2)--------------------
+        #INICIO
+        
+        #SELECCIONAR HEROE
+        while heroe == "":
+            print("\n" + menu_personaje + eleccion_pers)
+            opc = input("Selecciona con cual heroe quieres jugar:\n")
+
+            while not opc.isdigit() or not int(opc) in range(1,len(heroes) + 1):
+                print("Solo puedes seleccionar un heroe de la lista")
+                opc = input("Selecciona con cual heroe quieres jugar:\n")
+            opc = int(opc)
+            
+            heroe = heroes[keys_heroes[opc-1]]
+            arma = armas[heroe["arma"]]
+            arma_guardado = [[],[]]
+            guardado_heroe = [heroes[keys_heroes[opc-1]]["nivel"],heroes[keys_heroes[opc-1]]["fuerza"],heroes[keys_heroes[opc-1]]["magia"],heroes[keys_heroes[opc-1]]["defensa"],heroes[keys_heroes[opc-1]]["agilidad"],heroes[keys_heroes[opc-1]]["vida"]]
+            print(seleccionar_heroe.format(heroe["nombre"]))
+            
+            for key in arma["caracteristicas"]:
+                arma_guardado[0].append(arma["caracteristicas"][key])
+
+            if "debuffo" in arma:
+                arma_guardado[1].append(arma["debuffo"])
+
+
+            stats_personaje = [0,0,0,0,0]
+
+            caracts = armas[heroe["arma"]].get("caracteristicas", {})
+            stats_personaje[0] += caracts.get("fuerza", 0)
+            stats_personaje[1] += caracts.get("magia", 0)
+            stats_personaje[2] += caracts.get("defensa", 0)
+            stats_personaje[3] += caracts.get("agilidad", 0)
+            stats_personaje[4] += caracts.get("vida", 0)
+
+            debuffos = armas[heroe["arma"]].get("debuffo", {})
+            stats_personaje[0] += debuffos.get("fuerza", 0)
+            stats_personaje[1] += debuffos.get("magia", 0)
+            stats_personaje[2] += debuffos.get("defensa", 0)
+            stats_personaje[3] += debuffos.get("agilidad", 0)
+            stats_personaje[4] += debuffos.get("vida", 0)
+
+            limite_nivel = 100
+            if heroe["nivel"] > 1:
+                limite_nivel = 100 * (1.15 ** (heroe["nivel"] - 1))
+                for i in range(1):
+                    heroe["fuerza"] = heroe["fuerza"] * (1.0 + (random.randrange(30,140))/1000)
+                    heroe["magia"] = heroe["magia"] * (1.0 + (random.randrange(30,140))/1000)
+                    heroe["defensa"] = heroe["defensa"] * (1.0 + (random.randrange(30,140))/1000)
+                    heroe["agilidad"] = heroe["agilidad"] * (1.0 + (random.randrange(30,140))/1000)
+                    heroe["vida"] = heroe["vida"] * (1.0 + (random.randrange(30,140))/1000)
+
+        #SELECCION DE ENEMIGO
         monstruo = ""
-        if contador < 10:
+        if pisos <= 10:
             monstruo = monstruos_debiles[random.randint(1,4)]
-        else:
+        elif pisos <= 20:
             monstruo = bestias[random.randint(1,4)]
-        print(contador,monstruo)
-        input()
-        contador = contador + 1
-        #cada 10 pisos aumenta que enemigos puedes aparecer
-        #la barra de xp cada vez que se sube de nivel aumente un 1.5
+        elif pisos <= 30:
+            monstruo = monstruos_enemigos_humanoides[random.randint(1,4)]
+        elif pisos <= 40:
+            monstruo = monstruos_oscuros[random.randint(1,4)]
+        elif pisos <= 50:
+            monstruo = criaturas_magicas[random.randint(1,4)]
+        elif pisos <= 60:
+            monstruo = monstruos_jefes[random.randint(1,4)]
+        else:
+            resultado = ""
+            for letra in finalizacion:
+                resultado += letra
+                print("\r" + resultado, end="")
+                time.sleep(0.1)
+            input("\n\nPulsa ENTER para continuar")
+
+        monstruo_guardado = [monstruo["vida"], monstruo["fuerza"], monstruo["defensa"], monstruo["xp_ganado"]]
+
+        resultado = ""
+        informacion = "En el piso {} te enfrentaras a {}".format(pisos,monstruo["nombre"])
+        for letra in informacion:
+            resultado += letra
+            print("\r" + resultado, end="")
+            time.sleep(0.1)
+        input("\n\nPulsa ENTER para continuar")
+
+        #subida de stats de monstruo para dificultad
+        if pisos > 1:
+            if pisos % 10 == 0:
+                monstruo["vida"] = monstruo["vida"] * (1.50 ** pisos)
+                monstruo["fuerza"] = monstruo["fuerza"] * (1.50 ** pisos)
+                monstruo["defensa"] = monstruo["defensa"] * (1.50 ** pisos)
+                monstruo["xp_ganado"] = monstruo["xp_ganado"] * (2.00 ** pisos)
+            else:
+                if pisos % 5 == 0:
+                    monstruo["vida"] = monstruo["vida"] * (1.30 ** pisos)
+                    monstruo["fuerza"] = monstruo["fuerza"] * (1.30 ** pisos)
+                    monstruo["defensa"] = monstruo["defensa"] * (1.30 ** pisos)
+                    monstruo["xp_ganado"] = monstruo["xp_ganado"] * (1.50 ** pisos)
+                else:
+                    monstruo["vida"] = monstruo["vida"] * (1.10 ** pisos)
+                    monstruo["fuerza"] = monstruo["fuerza"] * (1.10 ** pisos)
+                    monstruo["defensa"] = monstruo["defensa"] * (1.10 ** pisos)
+
+        ataca = False
+        defensa_total_mon = int(monstruo["defensa"])
+        fuerza_total_mon = int(monstruo["fuerza"])
+        vida_total_mon = int(monstruo["vida"])
+        
+        turno = 1
+        cooldown_principal = 0
+        cooldown_ultimate = 0
+        vida_total = int(heroe["vida"] + stats_personaje[4])
+        fuerza_total = int(heroe["fuerza"] + stats_personaje[0])
+        magia_total = int(heroe["magia"] + stats_personaje[1])
+        defensa_total = int(heroe["defensa"] + stats_personaje[2])
+        agilidad_total = int(heroe["agilidad"] + stats_personaje[3])
+
+
+        while vida_total_mon > 0 and vida_total > 0:
+            if cooldown_ultimate != 0:
+                cooldown_ultimate = cooldown_ultimate -1
+            if cooldown_principal != 0:
+                cooldown_principal = cooldown_principal -1 
+
+            while True:
+                print(info_turno.format(turno,habilidades[clases[heroe["clase"]]]["basico"]["nombre"],habilidades[clases[heroe["clase"]]]["principal"]["nombre"],habilidades[clases[heroe["clase"]]]["ultimate"]["nombre"])
+                    + "Nivel: {}\nVida: {}".format(str(heroe["nivel"]),str(vida_total)))
+                opc = input("Opcion:\n")
+                if not opc.isdigit():
+                    print(formato_invalido_numeros)
+                elif not int(opc) in range(1,4):
+                    print(fuera_rango)
+                else:
+                    opc = int(opc)
+
+                    if opc == 3:
+                        if cooldown_ultimate == 0:
+                            daño = (fuerza_total + magia_total ) * 5
+                            cooldown_ultimate = cooldown_ultimate + 5
+                            break
+                        else:
+                            print(en_cooldown + "\nQuedan {} turnos.".format(cooldown_ultimate))
+                    elif opc == 2:
+                        if cooldown_principal == 0:
+                            daño = (fuerza_total + magia_total ) * 2
+                            cooldown_principal = cooldown_principal + 2
+                            break
+                        else:
+                            print(en_cooldown + "\nQuedan {} turnos.".format(cooldown_principal))
+                    else:
+                        daño = fuerza_total + magia_total
+                        break
+
+            if vida_total_mon - (daño - defensa_total_mon) <= 0:
+                print("Has matado al enemigo. FELICIDADES!!!")
+                input("Enter para continuar")
+                vida_total_mon = 0
+                break
+            else:
+                daño_real = daño - defensa_total_mon
+                if daño_real < 0:
+                    daño_real = 0
+
+                vida_total_mon = vida_total_mon - daño_real
+                ataca = True
+            
+            resultado = ""
+            for letra in atacas.format(monstruo["nombre"],daño_real,vida_total_mon):
+                resultado += letra
+                print("\r" + resultado, end="")
+                time.sleep(0.1)
+            input("\n\nPulsa ENTER para continuar")
+
+            if ataca:
+                daño_mon = fuerza_total_mon
+                
+                daño_mon = daño_mon - defensa_total
+
+                resultado = ""
+                for letra in atacan.format(monstruo["nombre"],daño_mon,vida_total):
+                    resultado += letra
+                    print("\r" + resultado, end="")
+                    time.sleep(0.1)
+                input("\n\nPulsa ENTER para continuar")
+
+                if vida_total - (daño_mon - defensa_total ) <= 0:
+                    print("Has muerto...")
+                    input("Enter para continuar")
+                    vida_total = 0
+                    break
+                else:
+                    daño_real = daño_mon - defensa_total
+                    if daño_real < 0:
+                        daño_real = 0
+
+                    vida_total = vida_total - daño_real
+                    ataca = False
+
+            turno = turno + 1
+
+        if vida_total == 0:
+            resultado = ""
+            finalizacion = "JAJAJAJAJA... Ya sabia yo que te ibas a morir en piso {}".format(str(pisos))
+            for letra in finalizacion:
+                resultado += letra
+                print("\r" + resultado, end="")
+                time.sleep(0.1)
+            input("\n\nPulsa ENTER para continuar")
+            
+            heroe["xp"] = 0
+            heroe["nivel"] = guardado_heroe[0]
+            heroe["fuerza"] = guardado_heroe[1]
+            heroe["magia"] = guardado_heroe[2]
+            heroe["defensa"] = guardado_heroe[3]
+            heroe["agilidad"] = guardado_heroe[4]
+            heroe["vida"] = guardado_heroe[5]
+
+            car = 0
+            for key in arma["caracteristicas"]:
+                arma["caracteristicas"][key] = arma_guardado[0][car]
+                car = car + 1
+            if "debuffo" in arma:
+                car = 0
+                for key in arma["debuffo"]:
+                    arma["debuffo"][key] = arma_guardado[1][car]
+                    car = car + 1
+
+            flg_menu0 = True
+            flg_jugar = False
+        else:
+            #derrota de monstruo
+            heroe["xp"] = heroe["xp"] + monstruo["xp_ganado"]
+            monstruo["vida"] = monstruo_guardado[0]
+            monstruo["fuerza"] = monstruo_guardado[1]
+            monstruo["defensa"] = monstruo_guardado[2]
+            monstruo["xp_ganado"] = monstruo_guardado[3]
+
+            #recompensa/subida de piso     
+            rec_piso = rec_piso * (1.12 ** (pisos-1))
+            pisos = pisos + 1
+            heroe["xp"] = heroe["xp"] + rec_piso
+            
+            #subida de nivel
+            while heroe["xp"] > limite_nivel:
+                heroe["xp"] = heroe["xp"] - limite_nivel
+                heroe["nivel"] = heroe["nivel"] + 1 
+                limite_nivel = 100 * (1.15 ** (heroe["nivel"] - 1))
+                print("Subida de nivel!!!")
+                input("Enter para continuar")
+                for i in range(1):
+                    heroe["fuerza"] = heroe["fuerza"] * (1.0 + (random.randrange(30,140))/1000)
+                    heroe["magia"] = heroe["magia"] * (1.0 + (random.randrange(30,140))/1000)
+                    heroe["defensa"] = heroe["defensa"] * (1.0 + (random.randrange(30,140))/1000)
+                    heroe["agilidad"] = heroe["agilidad"] * (1.0 + (random.randrange(30,140))/1000)
+                    heroe["vida"] = heroe["vida"] * (1.0 + (random.randrange(30,140))/1000)
+                    
+            #subida de stats de arma
+            for key in arma["caracteristicas"]:
+                arma["caracteristicas"][key] = arma["caracteristicas"][key] * (1 + heroe["nivel"] * 0.05)
+            if "debuffo" in arma:
+                for key in arma["debuffo"]:
+                    arma["debuffo"][key] = arma["debuffo"][key] * (1 + heroe["nivel"] * 0.05)
 
     # Elegir que crear
     while flg_menu2:
@@ -963,13 +1259,13 @@ while not flg_salir:
                 for key in monstruos_debiles:
                     lista_ordenar.append(key)
             elif opc == 2:
-                nombre= "Bestias "
+                nombre= "Bestias"
                 opc2 = bestias
                 lista_ordenar = []
                 for key in bestias:
                     lista_ordenar.append(key)
             elif opc == 3:
-                nombre= "Monstruo Enemigos Humanoides "
+                nombre= "Monstruo Enemigos Humanoides"
                 opc2 = monstruos_enemigos_humanoides
                 lista_ordenar = []
                 for key in monstruos_enemigos_humanoides:
@@ -1506,9 +1802,11 @@ while not flg_salir:
                     keys_heroes[i+1] = aux 
             if not cambios:
                 break
+
         for i in range(len(keys_heroes)):
            eleccion_pers = eleccion_pers + "{}) ".format(i + 1) + heroes[keys_heroes[i]]["nombre"] + "\n"
         eleccion_pers = eleccion_pers + str(len(keys_heroes)+1) + ")" + " Salir" + "\n"
+        
         print(menu_personaje + eleccion_pers)
         opc = input("Opcion:\n")
         if not opc.isdigit():
@@ -1568,6 +1866,7 @@ while not flg_salir:
                                     armas_disponible.append(keys_arma[i])
                                     eleccion_arma = eleccion_arma + "{}) ".format(len(armas_disponible)) + armas[keys_arma[i]]["nombre"] + "\n"
                             eleccion_arma = eleccion_arma + "{}) Salir".format(len(armas_disponible)+1)
+
                             print(menu_arma + eleccion_arma)
                             opc_a = input("Seleciona la arma por cual quieres cambiar la tuya:\n")
                             if not opc_a.isdigit():
