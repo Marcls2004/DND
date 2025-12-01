@@ -586,7 +586,6 @@ while not flg_salir:
                     break
                 else:
                     daño_real = daño_mon - defensa_total
-                    print(daño_real)
                     if daño_real < 0:
                         print("hola")
                         daño_real = 0
