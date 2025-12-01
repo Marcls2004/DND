@@ -528,11 +528,6 @@ while not flg_salir:
 
 
         while vida_total_mon > 0 and vida_total > 0:
-            if cooldown_ultimate != 0:
-                cooldown_ultimate = cooldown_ultimate -1
-            if cooldown_principal != 0:
-                cooldown_principal = cooldown_principal -1 
-
             while True:
                 print(info_turno.format(turno,habilidades[clases[heroe["clase"]]]["basico"]["nombre"],habilidades[clases[heroe["clase"]]]["principal"]["nombre"],habilidades[clases[heroe["clase"]]]["ultimate"]["nombre"])
                     + "Nivel: {}\nVida: {}".format(str(heroe["nivel"]),str(vida_total)))
@@ -554,7 +549,7 @@ while not flg_salir:
                     elif opc == 2:
                         if cooldown_principal == 0:
                             daño = (fuerza_total + magia_total ) * 2
-                            cooldown_principal = cooldown_principal + 2
+                            cooldown_principal = cooldown_principal + 3
                             break
                         else:
                             print(en_cooldown + "\nQuedan {} turnos.".format(cooldown_principal))
@@ -584,16 +579,6 @@ while not flg_salir:
 
             if ataca:
                 daño_mon = fuerza_total_mon
-                
-                daño_mon = daño_mon - defensa_total
-
-                resultado = ""
-                for letra in atacan.format(monstruo["nombre"],daño_mon,vida_total):
-                    resultado += letra
-                    print("\r" + resultado, end="")
-                    time.sleep(0.1)
-                input("\n\nPulsa ENTER para continuar")
-
                 if vida_total - (daño_mon - defensa_total ) <= 0:
                     print("Has muerto...")
                     input("Enter para continuar")
@@ -601,13 +586,27 @@ while not flg_salir:
                     break
                 else:
                     daño_real = daño_mon - defensa_total
+                    print(daño_real)
                     if daño_real < 0:
+                        print("hola")
                         daño_real = 0
 
                     vida_total = vida_total - daño_real
                     ataca = False
+                
+            resultado = ""
+            texto = atacan.format(monstruo["nombre"],daño_real,vida_total)
+            for letra in texto:
+                resultado += letra
+                print("\r" + resultado, end="")
+                time.sleep(0.1)
+            input("\n\nPulsa ENTER para continuar")
 
             turno = turno + 1
+            if cooldown_ultimate != 0:
+                cooldown_ultimate = cooldown_ultimate -1
+            if cooldown_principal != 0:
+                cooldown_principal = cooldown_principal -1 
 
         if vida_total == 0:
             resultado = ""
@@ -658,12 +657,11 @@ while not flg_salir:
                 limite_nivel = 100 * (1.15 ** (heroe["nivel"] - 1))
                 print("Subida de nivel!!!")
                 input("Enter para continuar")
-                for i in range(1):
-                    heroe["fuerza"] = heroe["fuerza"] * (1.0 + (random.randrange(30,140))/1000)
-                    heroe["magia"] = heroe["magia"] * (1.0 + (random.randrange(30,140))/1000)
-                    heroe["defensa"] = heroe["defensa"] * (1.0 + (random.randrange(30,140))/1000)
-                    heroe["agilidad"] = heroe["agilidad"] * (1.0 + (random.randrange(30,140))/1000)
-                    heroe["vida"] = heroe["vida"] * (1.0 + (random.randrange(30,140))/1000)
+                heroe["fuerza"] = heroe["fuerza"] * 1 + ((random.randrange(30,140))/1000)
+                heroe["magia"] = heroe["magia"] * 1 + ((random.randrange(30,140))/1000)
+                heroe["defensa"] = heroe["defensa"] * 1 + ((random.randrange(30,140))/1000)
+                heroe["agilidad"] = heroe["agilidad"] * 1 + ((random.randrange(30,140))/1000)
+                heroe["vida"] = heroe["vida"] * 1 + ((random.randrange(30,140))/1000)
                     
             #subida de stats de arma
             for key in arma["caracteristicas"]:
