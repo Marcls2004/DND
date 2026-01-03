@@ -1,4 +1,3 @@
-
 heroes = {
     1:{"nivel": 1,"nombre":"Manolo","clase":1,"arma":1,"fuerza":6,"magia":1,"defensa":6,"agilidad":3,"vida": 13,"xp": 0},
     2:{"nivel": 1,"nombre":"Antonia","clase":2,"arma":2,"fuerza":4,"magia":4,"defensa":4,"agilidad":4,"vida": 12,"xp": 0},
@@ -22,6 +21,52 @@ armas = {
     8:{"clase":8,"nombre":"Laúd","caracteristicas":{"defensa":2,"agilidad":4}},
     9:{"clase":9,"nombre":"Nudilleras","caracteristicas":{"fuerza":2,"magia":4}},
     10:{"clase":10,"nombre":"Baston Oscuro","caracteristicas":{"magia":1,"defensa":5},"debuffo":{"vida": -3}}
+}
+#MONSTRUOS
+monstruos_debiles = {
+    #mountruos faciles de vencer
+    1:{"nombre":"Rata Gigante","fuerza":5,"defensa":2,"vida":20,"xp_ganado":5},
+    2:{"nombre":"Slime","fuerza":4,"defensa":3,"vida":25,"xp_ganado":8},
+    3:{"nombre":"Goblin","fuerza":7,"defensa":2,"vida":30,"xp_ganado":12},
+    4:{"nombre":"Esqueleto","fuerza":6,"defensa":3,"vida":35,"xp_ganado":10},
+}
+
+bestias = {
+    1:{"nombre":"Lobo","fuerza":8,"defensa":3,"vida":40,"xp_ganado":15},
+    2:{"nombre":"Oso","fuerza":12,"defensa":6,"vida":80,"xp_ganado":35},
+    3:{"nombre":"Serpiente","fuerza":6,"defensa":2,"vida":35,"xp_ganado":20},
+    4:{"nombre":"Jabali","fuerza":10,"defensa":5,"vida":60,"xp_ganado":18}
+}
+
+monstruos_enemigos_humanoides = {
+    1:{"nombre":"Orco","fuerza":10,"defensa":4,"vida":50,"xp_ganado":30},
+    2:{"nombre":"Trol","fuerza":12,"defensa":6,"vida":90,"xp_ganado":80},
+    3:{"nombre":"Hombre lobo","fuerza":14,"defensa":4,"vida":70,"xp_ganado":50},
+    4:{"nombre":"Bruja","fuerza":12,"defensa":3,"vida":60,"xp_ganado":40},
+    5:{"nombre":"Nigromante enemigo","fuerza":10,"defensa":3,"vida":65,"xp_ganado":70}
+}
+
+monstruos_oscuros =  {
+    1:{"nombre":"Ghoul","fuerza":6,"defensa":5,"vida":50,"xp_ganado":18},
+    2:{"nombre":"Espectro","fuerza":10,"defensa":2,"vida":45,"xp_ganado":55},
+    3:{"nombre":"Imp","fuerza":9,"defensa":3,"vida":35,"xp_ganado":60},
+    4:{"nombre":"Gárgola","fuerza":15,"defensa":8,"vida":80,"xp_ganado":75}
+}
+
+criaturas_magicas = {
+    1: {"nombre": "Dragón joven", "fuerza": 20, "defensa": 10, "vida": 150,"xp_ganado":300},
+    2: {"nombre": "Quimera", "fuerza": 18, "defensa": 8, "vida": 120,"xp_ganado":180},
+    3: {"nombre": "Mantícora", "fuerza": 22, "defensa": 9, "vida": 130,"xp_ganado":150},
+    4: {"nombre": "Grifo", "fuerza": 20, "defensa": 10, "vida": 140,"xp_ganado":120},
+    5: {"nombre": "Hidra", "fuerza": 25, "defensa": 12, "vida": 180,"xp_ganado":250}
+}
+
+monstruos_jefes = {
+    1: {"nombre": "Rey goblin", "fuerza": 18, "defensa": 8, "vida": 100,"xp_ganado":200},
+    2: {"nombre": "Señor de los muertos", "fuerza": 25, "defensa": 12, "vida": 200,"xp_ganado":450},
+    3: {"nombre": "Golem", "fuerza": 30, "defensa": 20, "vida": 250,"xp_ganado":350},
+    4: {"nombre": "Dragón anciano", "fuerza": 40, "defensa": 25, "vida": 500,"xp_ganado":800},
+    5: {"nombre": "Señor demonio", "fuerza": 45, "defensa": 30, "vida": 600,"xp_ganado":1200}
 }
 def funcion_personaje(criterio,orden="asc"):
     lista = list(heroes)
@@ -101,7 +146,88 @@ def funcion_personaje(criterio,orden="asc"):
 
 
 
-def funcion_monstruos(nombre,criterio,orden):
+def saber_lista_de_monstruos(nombre_lista,lista_mosntruos):
+    nombre = nombre_lista
+    opc2 = lista_mosntruos
+    lista = list(lista_mosntruos)
+    print("{}".format(nombre).center(40, "=") + "\n" + \
+                      "1) Por vida" + "\n" + \
+                      "2) Por ataque" + "\n" + \
+                      "3) Por defensa" + "\n" + \
+                      "4) Volver" )
+    return opc2,lista
+
+#opc2,lista = saber_lista_de_monstruos("monstruos_oscuros",monstruos_oscuros)
+
+def listar_monstruos(lista,criterio,opc2,orden="asc"):
+    lista = lista
+    for pasadas in range(len(lista)):
+        cambios = False
+        for i in range(len(lista) - 1 - pasadas):
+            if  orden == "asc":
+                if opc2[lista[i]][criterio] < opc2[lista[i + 1]][criterio]:
+                    lista[i], lista[i + 1] = lista[i + 1], lista[i]
+                    cambios = True
+            else:
+                if opc2[lista[i]][criterio] < opc2[lista[i + 1]][criterio]:
+                    lista[i], lista[i + 1] = lista[i + 1], lista[i]
+                    cambios = True
+        if not cambios:
+            break
+    return lista
+#print(listar_monstruos(lista,"fuerza",opc2))
 
 
+def listar_armas(criterio,orden = "asc"):
+    lista = list(armas)
+    if criterio not in ("id","nombre"):
+        lista_filtrada = []
+        for key in lista:
+            if criterio in armas[key].get("caracteristicas", {}) or \
+                    criterio in armas[key].get("debuffo", {}):
+                lista_filtrada.append(key)
+        lista = lista_filtrada
+    for pasada in range(len(lista)-1):
+        cambios = False
+        for i in range(len(lista)-pasada-1):
+            if criterio == "Id":
+                if orden == "asc":
+                    if lista[i] > lista[i + 1]:
+                        lista[i], lista[i + 1] = lista[i + 1], lista[i]
+                        cambios = True
+                else:
+                    if lista[i] < lista[i + 1]:
+                        lista[i], lista[i + 1] = lista[i + 1], lista[i]
+                        cambios = True
+            elif criterio == "nombre":
+                if orden == "asc":
+                    if armas[lista[i]]["nombre"] >armas[lista[i+1]]["nombre"]:
+                        lista[i], lista[i + 1] = lista[i + 1], lista[i]
+                        cambios = True
+                else:
+                    if armas[lista[i]]["nombre"] <armas[lista[i+1]]["nombre"]:
+                        lista[i], lista[i + 1] = lista[i + 1], lista[i]
+                        cambios = True
+            else:
 
+                valor1 = armas[lista[i]].get("debuffo", {}).get(criterio,
+                                                                        armas[lista[i]].get(
+                                                                            "caracteristicas", {}).get(
+                                                                            criterio, 0))
+                valor2 = armas[lista[i + 1]].get("debuffo", {}).get(criterio,
+                                                                            armas[lista[i + 1]].get(
+                                                                                "caracteristicas", {}).get(
+                                                                                criterio, 0))
+                if orden == "asc":
+                    if valor1 < valor2:
+                        lista[i], lista[i + 1] = lista[i + 1], lista[i]
+                        cambios = True
+                else:
+                    if valor1 >valor2:
+                        lista[i], lista[i + 1] = lista[i + 1], lista[i]
+                        cambios = True
+        if not cambios:
+            break
+    return lista
+
+print(listar_armas("fuerza"))
