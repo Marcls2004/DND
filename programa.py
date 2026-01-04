@@ -145,13 +145,11 @@ menu2 = {"cabezera":"Menu de creacion",
 PARTE PERSONAJE
 """
 #Para eleccionar su clase/arma/estadisticas
-cabezera_eleccion_clase = "Eleccion de clase".center(40,"=") + "\n"
+eleccion_clase = {"cabezera":"Eleccion de clase",
+                  "opciones":[]}
 
-eleccion_clase = ""
-
-cabezera_eleccion_arma = "Eleccion de arma".center(40,"=") + "\n"
-
-eleccion_arma = ""
+eleccion_arma = {"cabezera":"Eleccion de arma",
+                  "opciones":[]}
 
 eleccion_estadisticas = {"cabezera":"Selecciona una estadistica",
     "opciones": ["Fuerza",
@@ -160,6 +158,9 @@ eleccion_estadisticas = {"cabezera":"Selecciona una estadistica",
     "Agilidad",
     "Vida"]}
 
+"""
+FUNCION PARA ESTO?
+"""
 #Para mostrar
 nuevo_personaje = "Nuevo personaje".center(40,"=") + "\n"
 
@@ -179,10 +180,8 @@ muestra_pers = "Personaje creado".center(40,"-") + "\n" \
 PARTE ARMA
 """
 #Seleccion de clase
-eleccion_clase_arma = "Eleccion de clase de arma".center(40,"=") + "\n"
-
-#Para mostrar l'arma
-nueva_arma = "Nueva arma".center(40,"=") + "\n"
+clase_nueva_arma = {"cabezera":"Clase nueva arma",
+              "opciones":[]}
 
 muestra_arma = "Arma creada".center(40,"=") + "\n" \
     "Nombre: {}" + "\n" + \
@@ -207,20 +206,6 @@ menu3 = {"cabezera":"Menu de editar",
 menu_personaje = {"cabezera":"Selecciona personaje",
                   "opciones":[]}
 
-menu_arma = {"cabezera":"Selecciona arma",
-                  "opciones":[]}
-
-"""
-    ESTO ES PARA QUE EDITAR LO QUE QUIERAS EL ARMA HAY QUE CAMBIAR ----
-                                                                       |
-                                                                       |
-                                                                       |
-                                     ----------------------------------
-                                     |
-                                     |
-                                    \ /                            
-                                     º                         
-"""
 arma_seleccion = {"cabezera":"Editar {}",
     "opciones": ["Nombre",
     "Salir"]}
@@ -265,42 +250,6 @@ menu_lista_monstruos = {"cabezera":"Listas monstruos",
     "Criaturas magicas",
     "Jefes",
     "Volver"]}
-
-listar_debiles = {"cabezera":"Monstruos debiles",
-                  "opciones":["1) Por vida",
-                              "2) Por fuerza",
-                              "3) Por defensa",
-                              "4) Volver"]}
-
-listar_bestia = {"cabezera":"Monstruos bestia",
-                  "opciones":["1) Por vida",
-                              "2) Por fuerza",
-                              "3) Por defensa",
-                              "4) Volver"]}
-
-listar_humanoides = {"cabezera":"Monstruos humanoides",
-                  "opciones":["1) Por vida",
-                              "2) Por fuerza",
-                              "3) Por defensa",
-                              "4) Volver"]}
-
-listar_oscuros = {"cabezera":"Monstruos oscuros",
-                  "opciones":["1) Por vida",
-                              "2) Por fuerza",
-                              "3) Por defensa",
-                              "4) Volver"]}
-
-listar_criaturas = {"cabezera":"Criaturas magicas",
-                  "opciones":["1) Por vida",
-                              "2) Por fuerza",
-                              "3) Por defensa",
-                              "4) Volver"]}
-
-listar_jefes = {"cabezera":"Jefes",
-                  "opciones":["1) Por vida",
-                              "2) Por fuerza",
-                              "3) Por defensa",
-                              "4) Volver"]}
 
 empezar_a_jugar = "Selecciona un heroe".center(50,"*") + "\n"
 
@@ -372,11 +321,9 @@ encabezado_ranking_armas = (
     "Nombre".ljust(15)
 )
 
-menu3
-
 while not flg_salir:
     while flg_menu0:
-        print(menu0)
+        print(gen_menu(menu0))
         opc = input("Opcion: \n")
 
         if not opc.isdigit():
@@ -395,7 +342,7 @@ while not flg_salir:
                     time.sleep(0.1)
                 input("\n\nPulsa ENTER para continuar")
                 heroe = ""
-                eleccion_pers = ""
+                menu_personaje["opciones"] = ""
                 keys_heroes = list(heroes.keys())
                 for pasada in range(len(keys_heroes)):
                     cambios = False
@@ -409,7 +356,7 @@ while not flg_salir:
                         break
                 
                 for i in range(len(keys_heroes)):
-                    eleccion_pers = eleccion_pers + "{}) ".format(i + 1) + heroes[keys_heroes[i]]["nombre"] + "\n"
+                    menu_personaje["opciones"].append(heroes[keys_heroes[i]]["nombre"])
                 
                 resultado = ""
                 for letra in seleccion_heroe:
@@ -439,7 +386,7 @@ while not flg_salir:
         
         #SELECCIONAR HEROE
         while heroe == "":
-            print("\n" + menu_personaje + eleccion_pers)
+            print("\n" + gen_menu(menu_personaje))
             opc = input("Selecciona con cual heroe quieres jugar:\n")
 
             while not opc.isdigit() or not int(opc) in range(1,len(heroes) + 1):
@@ -695,7 +642,7 @@ while not flg_salir:
 
     # Elegir que crear
     while flg_menu2:
-        print(menu2)
+        print(gen_menu(menu2))
         opc = input("Opcion: \n")
 
         if not opc.isdigit():
@@ -719,7 +666,7 @@ while not flg_salir:
     
     # Editar
     while flg_menu3:
-        print(menu3)
+        print(gen_menu(menu3))
         opc = input("Opcion: \n")
 
         if not opc.isdigit():
@@ -742,7 +689,7 @@ while not flg_salir:
     
     #Listar
     while flg_menu4:
-        print(menu4)
+        print(gen_menu(menu4))
         opc = input("Opcion: \n")
 
         if not opc.isdigit():
@@ -769,7 +716,7 @@ while not flg_salir:
     # Listar personajes
     # Al listar tambien le sumamos las stats de armas
     while flg_menu41:
-        print(listar_personajes)
+        print(gen_menu(listar_personajes))
         opc = input("Opcion: \n")
         if opc.isdigit():
             opc = int(opc)
@@ -1009,7 +956,7 @@ while not flg_salir:
     
     # Listar armas
     while flg_menu42:
-        print(listar_armas)
+        print(gen_menu(listar_armas))
         opc_input = input("Opcion :")
 
         if not opc_input.isdigit():
@@ -1263,7 +1210,7 @@ while not flg_salir:
     
     # Listar Monstruos
     while flg_menu43:
-        print(menu_lista_monstruos)
+        print(gen_menu(menu_lista_monstruos))
         opc = input("Opcion :")
         if not opc.isdigit():
             print("Opcion no numerica:")
@@ -1312,12 +1259,13 @@ while not flg_salir:
             else:
                 flg_menu4 = True
                 flg_menu43 = False
-            listar_mostruos = "{}".format(nombre).center(40, "=") + "\n" + \
-                           "1) Por vida" + "\n" + \
-                           "2) Por ataque" + "\n" + \
-                           "3) Por defensa" + "\n" + \
-                           "4) Volver" + "\n"
-            print(listar_mostruos)
+                
+            listar_monstruos = {"cabezera":nombre,
+                                "opciones":["1) Por vida",
+                                            "2) Por ataque",
+                                            "3) Por defensa",
+                                            "4) Volver"]}
+            print(gen_menu(listar_monstruos))
             opc = input("Opcion :")
             if not opc.isdigit():
                 print("Opcion no numerica:")
@@ -1388,15 +1336,14 @@ while not flg_salir:
         nombre = ""
         clase = 0
         nivel = 0
-        armas_disponible = []
         arma_personaje = 0
         estadistica_frz = 0
         estadistica_mag = 0
         estadistica_def = 0
         estadistica_agi = 0
         estadistica_vid = 0
-        eleccion_clase = ""
-        eleccion_arma = ""
+        eleccion_clase["opciones"] = []
+        eleccion_arma["opciones"] = []
 
         flg_nombre = True
 
@@ -1426,10 +1373,10 @@ while not flg_salir:
                 break
         
         for i in range(len(keys_clases)):
-            eleccion_clase = eleccion_clase + "{}) ".format(i + 1) + clases[keys_clases[i]] + "\n"
+            eleccion_clase["opciones"].append(clases[keys_clases[i]])
 
         while flg_clase:
-            print(cabezera_eleccion_clase + eleccion_clase)
+            print(gen_menu(eleccion_clase))
             opc = input("Opcion:\n")
             if not opc.isdigit():
                 print(formato_invalido_numeros)
@@ -1472,11 +1419,10 @@ while not flg_salir:
 
         for id in keys_arma:
             if armas[id]["clase"] == clase:
-                armas_disponible.append(id)
-                eleccion_arma = eleccion_arma + "{}) ".format(len(armas_disponible)) + armas[id]["nombre"] + "\n"
+                eleccion_arma["opciones"].append(armas[id]["nombre"])
 
         while flg_arma:
-            print(cabezera_eleccion_arma + eleccion_arma)
+            print(gen_menu(eleccion_arma))
             opc = input("Opcion:\n")
             if not opc.isdigit():
                 print(formato_invalido_numeros)
@@ -1503,7 +1449,7 @@ while not flg_salir:
                 flg_muestra = True
                 flg_estadisticas = False
             else:
-                print(eleccion_estadisticas)
+                print(gen_menu(eleccion_estadisticas))
                 print("estadisticas Actuales".center(40,"=") + "\nFuerza: {} Magia: {} Defensa: {} Agilidad: {} Vida: {}\n".format(estadistica_frz, estadistica_mag, estadistica_def, estadistica_agi, estadistica_vid))
                 opc = input("Opcion:\n")
                 if not opc.isdigit():
@@ -1606,7 +1552,7 @@ while not flg_salir:
         estadistica2 = 0
         nombre_debufo = ""
         debuff = 0
-        eleccion_clase_arma = ""
+        clase_nueva_arma["opciones"] = []
        
         flg_clase = True  
 
@@ -1623,10 +1569,10 @@ while not flg_salir:
                 break
         
         for i in range(len(keys_clases)):
-            eleccion_clase_arma = eleccion_clase_arma + "{}) ".format(i + 1) + clases[keys_clases[i]] + "\n"
+            clase_nueva_arma["opciones"].append(clases[keys_clases[i]])
 
         while flg_clase:
-            print(nueva_arma + eleccion_clase_arma)
+            print(gen_menu(clase_nueva_arma))
             opc = input("Opcion:\n")
             if not opc.isdigit():
                 print(formato_invalido_numeros)
@@ -1665,7 +1611,7 @@ while not flg_salir:
         contador_stats = 0
         while flg_estadisticas:
             if estadistica1 == 0 or estadistica2 == 0:
-                print(eleccion_estadisticas)
+                print(gen_menu(eleccion_estadisticas))
                 opc = input("Opcion:\n")
                 if not opc.isdigit():
                     print(formato_invalido_numeros)
@@ -1811,7 +1757,8 @@ while not flg_salir:
     
     #Editar personaje
     while flg_edit_pers:
-        eleccion_pers = ""
+
+        menu_personaje["opciones"] = []
         keys_heroes = list(heroes.keys())
         for pasada in range(len(keys_heroes)):
             cambios = False
@@ -1825,6 +1772,7 @@ while not flg_salir:
                 break
 
         for i in range(len(keys_heroes)):
+           menu_personaje["opciones"].append(heroes[keys_heroes[i]]["nombre"])
            eleccion_pers = eleccion_pers + "{}) ".format(i + 1) + heroes[keys_heroes[i]]["nombre"] + "\n"
         eleccion_pers = eleccion_pers + str(len(keys_heroes)+1) + ")" + " Salir" + "\n"
         
@@ -1867,8 +1815,7 @@ while not flg_salir:
                         flg_edit_pers = False
                     elif opc_e == 2:
                         while True:
-                            eleccion_arma = ""
-                            armas_disponible = []
+                            eleccion_arma["opciones"] = []
                             clase = heroes[keys_heroes[opc-1]]["clase"]
                             keys_arma = list(armas.keys())
                             for pasada in range(len(keys_arma)):
@@ -1884,11 +1831,10 @@ while not flg_salir:
 
                             for i in range(len(keys_arma)):
                                 if armas[keys_arma[i]]["clase"] == clase:
-                                    armas_disponible.append(keys_arma[i])
-                                    eleccion_arma = eleccion_arma + "{}) ".format(len(armas_disponible)) + armas[keys_arma[i]]["nombre"] + "\n"
-                            eleccion_arma = eleccion_arma + "{}) Salir".format(len(armas_disponible)+1)
+                                    eleccion_arma["opciones"].append(armas[keys_arma[i]]["nombre"])
+                            eleccion_arma["opciones"].append("Salir")
 
-                            print(menu_arma + eleccion_arma)
+                            print(gen_menu(eleccion_arma))
                             opc_a = input("Seleciona la arma por cual quieres cambiar la tuya:\n")
                             if not opc_a.isdigit():
                                 print(formato_invalido_numeros)
@@ -1918,7 +1864,7 @@ while not flg_salir:
     
     #Editar armas
     while flg_edit_arma:
-        eleccion_arma = ""
+        eleccion_arma["opciones"] = []
         keys_arma = list(armas.keys())
         for pasada in range(len(keys_arma)):
             cambios = False
@@ -1932,9 +1878,9 @@ while not flg_salir:
                 break
 
         for i in range(len(keys_arma)):
-            eleccion_arma = eleccion_arma + "{}) ".format(i+1) + armas[keys_arma[i]]["nombre"] + "\n"
+            eleccion_arma["opciones"].append(armas[keys_arma[i]]["nombre"]) 
 
-        print(cabezera_eleccion_arma + eleccion_arma)
+        print(gen_menu(eleccion_arma))
         opc = input("Opcion:\n")
         if not opc.isdigit():
             print(formato_invalido_numeros)
@@ -1946,8 +1892,9 @@ while not flg_salir:
             
             opc = int(opc)
             nombre = armas[keys_arma[opc-1]]["nombre"]
+            arma_seleccion["cabezera"] = arma_seleccion["cabezera"].format(nombre)
 
-            print(arma_seleccion.format(nombre))
+            print(gen_menu(arma_seleccion))
             opc_e = input("Opcion:\n")
 
             if not opc_e.isdigit():
@@ -1968,8 +1915,10 @@ while not flg_salir:
                     print("El nombre: {}\nHa combiado por: {}".format(nombre,nuevo_nombre))
                     input("Enter para continuar")
                     armas[keys_arma[opc-1]]["nombre"] = nuevo_nombre
+                    arma_seleccion["cabezera"] = "Editar {}"
                     flg_menu3 = True
                     flg_edit_arma = False
                 else:
+                    arma_seleccion["cabezera"] = "Editar {}"
                     flg_menu3 = True
                     flg_edit_arma = False
