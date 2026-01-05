@@ -11,16 +11,16 @@ heroes = {
     10:{"nivel": 1,"nombre":"Teresa","clase":10,"arma":10,"fuerza":1,"magia":8,"defensa":2,"agilidad":3,"vida": 7,"xp": 0}
 }
 armas = {
-    1:{"clase":1,"nombre":"Escudo Pesado","caracteristicas":{"fuerza":1,"defensa":6},"debuffo":{"agilidad":-2}},
-    2:{"clase":2,"nombre":"Espada Larga","caracteristicas":{"fuerza":4,"agilidad":2}},
-    3:{"clase":3,"nombre":"Dagas","caracteristicas":{"fuerza":2,"agilidad":4}},
-    4:{"clase":4,"nombre":"Cuchillos de Caza","caracteristicas":{"fuerza":3,"agilidad":3}},
-    5:{"clase":5,"nombre":"Baston Magico","caracteristicas":{"magia":5,"defensa":1}},
-    6:{"clase":6,"nombre":"Stigma Sagrado","caracteristicas":{"magia":4,"defensa":2},"debuffo":{"vida": -2}},
-    7:{"clase":7,"nombre":"Totem","caracteristicas":{"fuerza":2,"defensa":4}},
-    8:{"clase":8,"nombre":"Laúd","caracteristicas":{"defensa":2,"agilidad":4}},
-    9:{"clase":9,"nombre":"Nudilleras","caracteristicas":{"fuerza":2,"magia":4}},
-    10:{"clase":10,"nombre":"Baston Oscuro","caracteristicas":{"magia":1,"defensa":5},"debuffo":{"vida": -3}}
+    1:{"clase":1,"nombre":"Escudo Pesado","características":{"fuerza":1,"defensa":6},"debuffo":{"agilidad":-2}},
+    2:{"clase":2,"nombre":"Espada Larga","características":{"fuerza":4,"agilidad":2}},
+    3:{"clase":3,"nombre":"Dagas","características":{"fuerza":2,"agilidad":4}},
+    4:{"clase":4,"nombre":"Cuchillos de Caza","características":{"fuerza":3,"agilidad":3}},
+    5:{"clase":5,"nombre":"Baston Magico","características":{"magia":5,"defensa":1}},
+    6:{"clase":6,"nombre":"Stigma Sagrado","características":{"magia":4,"defensa":2},"debuffo":{"vida": -2}},
+    7:{"clase":7,"nombre":"Totem","características":{"fuerza":2,"defensa":4}},
+    8:{"clase":8,"nombre":"Laúd","características":{"defensa":2,"agilidad":4}},
+    9:{"clase":9,"nombre":"Nudilleras","características":{"fuerza":2,"magia":4}},
+    10:{"clase":10,"nombre":"Baston Oscuro","características":{"magia":1,"defensa":5},"debuffo":{"vida": -3}}
 }
 #MONSTRUOS
 monstruos_debiles = {
@@ -113,7 +113,7 @@ def funcion_personaje(criterio,orden="asc"):
 
                     debuffos_b = armas[id_arma_b].get("debuffo", {})
                     fuerza_b += debuffos_b.get(criterio, 0)
-                    if fuerza_a < fuerza_b:
+                    if fuerza_a > fuerza_b:
                         lista[i], lista[i + 1] = lista[i + 1], lista[i]
                         cambios = True
                 else:
@@ -146,10 +146,10 @@ def funcion_personaje(criterio,orden="asc"):
 
 
 
-def saber_lista_de_monstruos(nombre_lista,lista_mosntruos):
+def saber_lista_de_monstruos(nombre_lista,lista_monstruos):
     nombre = nombre_lista
-    opc2 = lista_mosntruos
-    lista = list(lista_mosntruos)
+    opc2 = lista_monstruos
+    lista = list(lista_monstruos)
     print("{}".format(nombre).center(40, "=") + "\n" + \
                       "1) Por vida" + "\n" + \
                       "2) Por ataque" + "\n" + \
@@ -159,7 +159,7 @@ def saber_lista_de_monstruos(nombre_lista,lista_mosntruos):
 
 #opc2,lista = saber_lista_de_monstruos("monstruos_oscuros",monstruos_oscuros)
 
-def listar_monstruos(lista,criterio,opc2,orden="asc"):
+def funcion_monstruos(lista,criterio,opc2,orden="asc"):
     lista = lista
     for pasadas in range(len(lista)):
         cambios = False
@@ -178,19 +178,19 @@ def listar_monstruos(lista,criterio,opc2,orden="asc"):
 #print(listar_monstruos(lista,"fuerza",opc2))
 
 
-def listar_armas(criterio,orden = "asc"):
+def funcion_armas(criterio,orden = "asc"):
     lista = list(armas)
     if criterio not in ("id","nombre"):
         lista_filtrada = []
         for key in lista:
-            if criterio in armas[key].get("caracteristicas", {}) or \
+            if criterio in armas[key].get("características", {}) or \
                     criterio in armas[key].get("debuffo", {}):
                 lista_filtrada.append(key)
         lista = lista_filtrada
     for pasada in range(len(lista)-1):
         cambios = False
         for i in range(len(lista)-pasada-1):
-            if criterio == "Id":
+            if criterio == "id":
                 if orden == "asc":
                     if lista[i] > lista[i + 1]:
                         lista[i], lista[i + 1] = lista[i + 1], lista[i]
@@ -212,11 +212,11 @@ def listar_armas(criterio,orden = "asc"):
 
                 valor1 = armas[lista[i]].get("debuffo", {}).get(criterio,
                                                                         armas[lista[i]].get(
-                                                                            "caracteristicas", {}).get(
+                                                                            "características", {}).get(
                                                                             criterio, 0))
                 valor2 = armas[lista[i + 1]].get("debuffo", {}).get(criterio,
                                                                             armas[lista[i + 1]].get(
-                                                                                "caracteristicas", {}).get(
+                                                                                "características", {}).get(
                                                                                 criterio, 0))
                 if orden == "asc":
                     if valor1 < valor2:
@@ -230,4 +230,4 @@ def listar_armas(criterio,orden = "asc"):
             break
     return lista
 
-print(listar_armas("fuerza"))
+#print(listar_armas("fuerza"))
