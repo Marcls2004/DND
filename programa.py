@@ -158,9 +158,6 @@ eleccion_estadisticas = {"cabezera":"Selecciona una estadistica",
     "Agilidad",
     "Vida"]}
 
-"""
-FUNCION PARA ESTO?
-"""
 #Para mostrar
 nuevo_personaje = "Nuevo personaje".center(40,"=") + "\n"
 
@@ -1773,10 +1770,9 @@ while not flg_salir:
 
         for i in range(len(keys_heroes)):
            menu_personaje["opciones"].append(heroes[keys_heroes[i]]["nombre"])
-           eleccion_pers = eleccion_pers + "{}) ".format(i + 1) + heroes[keys_heroes[i]]["nombre"] + "\n"
-        eleccion_pers = eleccion_pers + str(len(keys_heroes)+1) + ")" + " Salir" + "\n"
+        menu_personaje["opciones"].append("Salir")
         
-        print(menu_personaje + eleccion_pers)
+        print(gen_menu(menu_personaje))
         opc = input("Opcion:\n")
         if not opc.isdigit():
             print(formato_invalido_numeros)
@@ -1792,7 +1788,8 @@ while not flg_salir:
             else:
                 opc = int(opc)
                 nombre = heroes[keys_heroes[opc-1]]["nombre"]
-                print(pers_seleccion.format(nombre))
+                pers_seleccion["cabezera"] = pers_seleccion["cabezera"].format(nombre)
+                print(gen_menu(pers_seleccion))
                 opc_e = input("Opcion:\n")
                 if not opc_e.isdigit():
                     print(formato_invalido_numeros)
@@ -1811,6 +1808,7 @@ while not flg_salir:
                         print("El nombre: {}\nHa combiado por: {}".format(nombre, nuevo_nombre))
                         input("Enter para continuar")
                         heroes[keys_heroes[opc-1]]["nombre"] = nuevo_nombre
+                        pers_seleccion["cabezera"] = "Editar {}"
                         flg_menu3 = True
                         flg_edit_pers = False
                     elif opc_e == 2:
@@ -1858,7 +1856,9 @@ while not flg_salir:
                                         input("Enter para continuar")
                                         heroes[keys_heroes[opc - 1]]["arma"] = armas_disponible[opc_a - 1]
                                         break
+                        pers_seleccion["cabezera"] = "Editar {}"
                     else:
+                        pers_seleccion["cabezera"] = "Editar {}"
                         flg_menu3 = True
                         flg_edit_pers = False
     
