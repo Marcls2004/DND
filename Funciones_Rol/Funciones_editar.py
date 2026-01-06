@@ -15,7 +15,6 @@ def editar_nombre(opc,lista,dic):
 def ordenar_y_generar_opciones(data_dict, eleccion):
     keys = list(data_dict.keys())
 
-    # Ordenar con burbujeo (igual que tú)
     for pasada in range(len(keys)):
         cambios = False
         for i in range(len(keys) - 1 - pasada):
@@ -27,7 +26,6 @@ def ordenar_y_generar_opciones(data_dict, eleccion):
         if not cambios:
             break
 
-    # Generar opciones EXACTAMENTE como tú lo haces
     eleccion["opciones"] = []
     for i in range(len(keys)):
         eleccion["opciones"].append(data_dict[keys[i]]["nombre"])
