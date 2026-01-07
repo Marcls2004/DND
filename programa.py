@@ -842,19 +842,10 @@ while not flg_salir:
         flg_clase = True  
 
         keys_clases = list(clases.keys())
-        for pasada in range(len(keys_clases)):
-            cambios = False
-            for i in range(len(keys_clases)-1-pasada):
-                if clases[keys_clases[i]] > clases[keys_clases[i+1]]:
-                    cambios = True
-                    aux = keys_clases[i]
-                    keys_clases[i] = keys_clases[i+1]
-                    keys_clases[i+1] = aux
-            if not cambios:
-                break
+        clases_ordenadas = burbuja(keys_clases,clases)
         
         for i in range(len(keys_clases)):
-            clase_nueva_arma["opciones"].append(clases[keys_clases[i]])
+            clase_nueva_arma["opciones"].append(clases[clases_ordenadas[i]])
 
         while flg_clase:
             print(gen_menu(clase_nueva_arma))
