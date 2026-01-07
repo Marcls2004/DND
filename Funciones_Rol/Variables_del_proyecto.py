@@ -244,11 +244,11 @@ menu_personaje = {"cabezera": "Selecciona personaje",
                   "opciones": []}
 
 arma_seleccion = {"cabezera": "Editar {}",
-                  "opciones": ["Nombre",
+                  "opciones": ["Editar Nombre",
                                "Salir"]}
 
 pers_seleccion = {"cabezera": "Editar {}",
-                  "opciones": ["Nombre",
+                  "opciones": ["Editar Nombre",
                                "Cambiar arma",
                                "Salir"]}
 
