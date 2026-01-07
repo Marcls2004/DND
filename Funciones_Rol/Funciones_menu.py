@@ -15,3 +15,17 @@ def gen_menu_2(menu, nombre):
         datos += str(i + 1) + ") " + menu["opciones"][i] + "\n"
     return cabezera + datos
 
+def menu(tupla):
+    texto = ""
+    for i in range(len((tupla))):
+        texto += str(i+1)+")"+ tupla[i] + "\n"
+    while True:
+        print(texto)
+        opc = input("Option:")
+        if not opc.isdigit():
+            print("Only Numeric Options")
+        elif opc in range(1, len(tupla) + 1):
+            print("Option Out Of range")
+        else:
+            opc = int(opc)
+            return opc 
