@@ -271,18 +271,19 @@ listar_personajes = {"cabezera": "Listar personajes",
                                   "Volver"]}
 
 listar_armas = {"cabezera": "Listar armas",
-                "opciones": ["1) Listar por ID",
-                             "2) Listar por  nombre",
-                             "3) Listar por característica fuerza",
-                             "4) Listar por característica magia",
-                             "5) Listar por característica defensa",
-                             "6) Listar por característica agilidad",
-                             "7) Volver"]}
+                "opciones": ["Listar por ID",
+                             "Listar por  nombre",
+                             "Listar por característica fuerza",
+                             "Listar por característica magia",
+                             "Listar por característica defensa",
+                             "Listar por característica agilidad",
+                             "Volver"]}
 
 menu_lista_monstruos = {"cabezera": "Listas monstruos",
                         "opciones": ["Monstruos debiles",
                                      "Monstruos bestia",
                                      "Monstruos humanoides",
+                                     "Monstruos Oscuros",
                                      "Criaturas magicas",
                                      "Jefes",
                                      "Volver"]}

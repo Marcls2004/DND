@@ -795,14 +795,12 @@ while not flg_salir:
         nombre_arma = nuevo_nombre_arma()
 
         estadisticas = nuevas_estadisticas_arma()
-        
-        print(estadisticas)
-        input()
 
-        final_arma_nueva(nombre_arma,selec_clase,estadisticas)
-                                                
+        nueva_arma = final_arma_nueva(nombre_arma,selec_clase,estadisticas)
+
+        armas[len(armas) + 1] = nueva_arma                                   
                     
-        flg_menu0 = True
+        flg_menu2 = True
         flg_crear_arma = False
     
     #Editar personaje

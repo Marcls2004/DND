@@ -130,12 +130,12 @@ def nuevas_estadisticas_arma():
     return stats
     
 def final_arma_nueva(nombre,clase,estadisticas):
-    while flg_muestra:
+    while True:
         if estadisticas["debuffo"][0] == "":
-            print("Esta es la nueva arma:\n" + muestra_arma.format(nombre, clases[clase], estadisticas["características"][0], estadisticas["características"][1], estadisticas["características"][3], estadisticas["características"][4]))
+            print("Esta es la nueva arma:\n" + muestra_arma.format(nombre, clases[clase], estadisticas["características"][0], estadisticas["características"][1], estadisticas["características"][2], estadisticas["características"][3]))
         
         else:
-            print("Esta es la nueva arma:\n" + muestra_arma_deb.format(nombre, clases[clase], estadisticas["características"][0], estadisticas["características"][1], estadisticas["características"][3], estadisticas["características"][4]
+            print("Esta es la nueva arma:\n" + muestra_arma_deb.format(nombre, clases[clase], estadisticas["características"][0], estadisticas["características"][1], estadisticas["características"][2], estadisticas["características"][3]
                                                                        ,estadisticas["debuffo"][0],estadisticas["debuffo"][1]))
 
         opc = input("Quieres crear esta arma? S/N\n")
@@ -150,11 +150,14 @@ def final_arma_nueva(nombre,clase,estadisticas):
             else:
                 print("Arma guardada en el arsenal")
                 input("Enter para continuar")
-                print(debuff == 0)
-                if debuff == 0:
-                    armas[len(armas) + 1] = {"clase" : clase, "nombre": nombre_arma,
-                                            "características":{nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2}}
+                if estadisticas["debuffo"][0] == "": 
+                    nueva_arma = {"clase" : clase, "nombre": nombre,
+                                            "características":{estadisticas["características"][0] : estadisticas["características"][1], 
+                                                               estadisticas["características"][2] : estadisticas["características"][3]}}
+                    return nueva_arma
                 else:
-                    armas[len(armas) + 1] = {"clase" : clase, "nombre": nombre_arma,
-                                            "características":{nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2},
-                                            "debuffo":{nombre_debuffo:debuff}}
+                    nueva_arma = {"clase" : clase, "nombre": nombre,
+                                            "características":{estadisticas["características"][0] : estadisticas["características"][1], 
+                                                               estadisticas["características"][2] : estadisticas["características"][3]},
+                                            "debuffo":{estadisticas["debuffo"][0],estadisticas["debuffo"][1]}}
+                    return nueva_arma
