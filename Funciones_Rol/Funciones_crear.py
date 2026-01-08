@@ -1,7 +1,7 @@
 import random
 from Funciones_Rol.Funciones_menu import *
 from Funciones_Rol.Variables_del_proyecto import  *
-print(armas)
+
 def clase(menu_clase,keys):
     while True:
         opc = gen_menu(menu_clase)
@@ -32,9 +32,10 @@ def ini_nivel():
 
 def selec_arma(armas,keys):
     while True:
+            print(armas)
             opc = gen_menu(armas)
             
-            print("Arma seleccionada {}.".format(armas[int(keys[opc-1])]["nombre"]))
+            print("Arma seleccionada {}.".format(armas[keys[opc-1]]["nombre"]))
             input("Enter para continuar")
             return keys[opc-1]
 
