@@ -15,7 +15,7 @@ def funcion_personaje(criterio,orden="asc"):
                         cambios = True
             elif criterio == "nombre":
                 if orden == "asc":
-                    if heroes[lista[i]]["nombre"] > heroes[lista[i+1]]["nombre"]:
+                    if heroes[lista[i]]["nombre"].upper() > heroes[lista[i+1]]["nombre"].upper():
                         lista[i], lista[i + 1] = lista[i + 1], lista[i]
                         cambios = True
                 else:

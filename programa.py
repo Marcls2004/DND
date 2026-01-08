@@ -7,7 +7,6 @@ from Funciones_Rol.Funciones_listas import *
 from Funciones_Rol.Variables_del_proyecto import *
 from Funciones_Rol.Funciones_crear import *
 
-
 while not flg_salir:
     while flg_menu0:
         
@@ -604,9 +603,9 @@ while not flg_salir:
         eleccion_clase["opciones"] = []
         eleccion_arma["opciones"] = []
         armas_disponibles =[]
+        stats = [0,0,0,0,0]
 
         nombre = nuevo_nombre_heroe()
-        print(nombre)
 
         #ordenar clases
         keys_clases = list(clases.keys())
@@ -645,100 +644,20 @@ while not flg_salir:
             if armas[id]["clase"] == selec_clase:
                 armas_disponibles.append(id)
                 eleccion_arma["opciones"].append(armas[id]["nombre"])
-        print(keys_arma)
+
         arma_personaje = selec_arma(eleccion_arma,armas_disponibles)
-        print(arma_personaje)
 
-        while flg_estadisticas:
-            if estadistica_frz > 0 and estadistica_mag > 0 and estadistica_def > 0 and estadistica_agi > 0 and estadistica_vid > 0:
-                print("\n"+"estadisticas Definitivos".center(40,"=") + "\nFuerza: {}\nMagia: {}\nDefensa: {}\nAgilidad: {}\nVida: {}\nCuenta que al subir de nivel sube entre un 3% - 12%".format(estadistica_frz,estadistica_mag,estadistica_def,estadistica_agi,estadistica_vid))
-                input("Enter para continuar")
-                flg_muestra = True
-                flg_estadisticas = False
-            else:
-                print("estadisticas Actuales".center(40,"=") + "\nFuerza: {} Magia: {} Defensa: {} Agilidad: {} Vida: {}\n".format(estadistica_frz, estadistica_mag, estadistica_def, estadistica_agi, estadistica_vid))
-                opc = gen_menu(eleccion_estadisticas)
-                if opc == 1:
-                    if estadistica_frz > 0:
-                        print("No puedes cambiar el destino.")
-                        input("Enter para continuar")
-                    else:
-                        dado = random.randint(10,20)
-                        print("La fuerza sera de {} puntos.".format(dado))
-                        input("Enter para continuar")
-                        estadistica_frz = dado
-                elif opc == 2:
-                    if estadistica_mag > 0:
-                        print("No puedes cambiar el destino.")
-                        input("Enter para continuar")
-                    else:
-                        dado = random.randint(10, 20)
-                        print("La magia sera de {} puntos.".format(dado))
-                        input("Enter para continuar")
-                        estadistica_mag = dado
-                elif opc == 3:
-                    if estadistica_def > 0:
-                        print("No puedes cambiar el destino.")
-                        input("Enter para continuar")
-                    else:
-                        dado = random.randint(10, 20)
-                        print("La defensa sera de {} puntos.".format(dado))
-                        input("Enter para continuar")
-                        estadistica_def = dado
-                elif opc == 4:
-                    if estadistica_agi > 0:
-                        print("No puedes cambiar el destino.")
-                        input("Enter para continuar")
-                    else:
-                        dado = random.randint(10, 20)
-                        print("La agilidad sera de {} puntos.".format(dado))
-                        input("Enter para continuar")
-                        estadistica_agi = dado
-                else:
-                    if estadistica_vid > 0:
-                        print("No puedes cambiar el destino.")
-                        input("Enter para continuar")
-                    else:
-                        dado = random.randint(10, 20)
-                        print("La vida sera de {} puntos.".format(dado))
-                        input("Enter para continuar")
-                        estadistica_vid = dado
+        stats = selec_stats(stats)
 
-        while flg_muestra:
-            if nivel > 1:
-                for i in range(nivel):
-                    estadistica_frz = estadistica_frz * (1.0 + (random.randrange(30,140))/1000)
-                    estadistica_mag = estadistica_mag * (1.0 + (random.randrange(30,140))/1000)
-                    estadistica_def = estadistica_def * (1.0 + (random.randrange(30,140))/1000)
-                    estadistica_agi = estadistica_agi * (1.0 + (random.randrange(30,140))/1000)
-                    estadistica_vid = estadistica_vid * (1.0 + (random.randrange(30,140))/1000)
-            
-            estadistica_frz = int(estadistica_frz)
-            estadistica_mag = int(estadistica_mag)
-            estadistica_def = int(estadistica_def)
-            estadistica_agi = int(estadistica_agi)
-            estadistica_vid = int(estadistica_vid)
+        nuevo_heroe = mostrar_nuevo_heroe(nombre,selec_clase,nivel,arma_personaje,stats)
 
-            print(muestra_pers.format(nombre, clases[clase],nivel, armas[arma_personaje]["nombre"], estadistica_frz, estadistica_mag, estadistica_def, estadistica_agi, estadistica_vid))
-            opc = input("Quieres empezar la aventura? S/N\n")
-            if opc.upper() != "S" and opc.upper() != "N":
-                print("Tienes que poner una 'S' para aceptar o una 'N' para rechazar.")
-                input("Enter para continuar")
-            else:
-                if opc.upper() == "N":
-                    print("Mala suerte la proxima intenta jugar con lo que te salga.")
-                    input("Enter para continuar")
-                    flg_muestra = False
-                else:
-                    print("Personaje creado")
-                    input("Enter para continuar")
-                    heroes[len(heroes) + 1] = {"nivel":nivel, "nombre": nombre, "clase":clase, "arma" : arma_personaje,
-                                               "fuerza":estadistica_frz, "magia":estadistica_mag, "defensa":estadistica_def, "agilidad":estadistica_agi,
-                                               "vida":estadistica_vid, "xp":0}
-                    flg_muestra = False
-        
-        flg_menu0 = True
-        flg_crear_pers = False
+        if nuevo_heroe == "":
+            flg_menu2 = True
+            flg_crear_pers = False
+        else:
+            heroes[len(heroes) + 1] = nuevo_heroe
+            flg_menu2 = True
+            flg_crear_pers = False
 
     #Creacion de arma 
     while flg_crear_arma:
