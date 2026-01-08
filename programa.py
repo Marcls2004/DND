@@ -5,6 +5,7 @@ from Funciones_Rol.Funciones_menu import *
 from Funciones_Rol.Funciones_editar import *
 from Funciones_Rol.Funciones_listas import *
 from Funciones_Rol.Variables_del_proyecto import *
+from Funciones_Rol.Funciones_crear import *
 
 
 while not flg_salir:
@@ -772,17 +773,7 @@ while not flg_salir:
 
     #Creacion de arma 
     while flg_crear_arma:
-        clase = 0
-        nombre_arma = ""
-        nombre_estadistica1 = ""
-        nombre_estadistica2 = ""
-        estadistica1 = 0
-        estadistica2 = 0
-        nombre_debufo = ""
-        debuff = 0
-        clase_nueva_arma["opciones"] = []
-       
-        flg_clase = True  
+        clase_nueva_arma["opciones"] = [] 
 
         keys_clases = list(clases.keys())
         for pasada in range(len(keys_clases)):
@@ -799,187 +790,18 @@ while not flg_salir:
         for i in range(len(keys_clases)):
             clase_nueva_arma["opciones"].append(clases[keys_clases[i]])
 
-        while flg_clase:
-            print(gen_menu(clase_nueva_arma))
-            opc = input("Opcion:\n")
-            if not opc.isdigit():
-                print(formato_invalido_numeros)
-                input("Enter para continuar")
-            elif not int(opc) in range(1,len(clases) + 1):
-                print(fuera_rango)
-                input("Enter para continuar")
-            else:
-                opc = int(opc)
-                print("Clase seleccionada {}".format(clases[keys_clases[opc-1]]))
-                input("Enter para continuar")
-                clase = keys_clases[opc-1]
-                flg_clase = False
-                flg_nombre = True
+        selec_clase = clase(clase_nueva_arma,keys_clases)
         
-        while flg_nombre:
-            nombre_arma = input("Nombre para l'arma:\n")
-            probar_nombre = nombre_arma.replace(" ","")
-            if not probar_nombre.isalpha():
-                print(formato_invalido_letras)
-            else:
-                while True:
-                    nombre_igual = nombre_arma
-                    for i in range(len(armas)):
-                        if armas[i + 1]["nombre"] == nombre_arma:
-                            print("Este nombre ya existe.")
-                            nombre_arma = input("Nombre para l'arma:\n")
-                    if nombre_igual == nombre_arma:
-                        break
-                print("Nuevo nombre creado {}".format(nombre_arma))
-                input("Enter para continuar")
-                flg_estadisticas = True
-                flg_nombre = False
+        nombre_arma = nuevo_nombre_arma()
+
+        estadisticas = nuevas_estadisticas_arma()
         
+        print(estadisticas)
+        input()
 
-        contador_stats = 0
-        while flg_estadisticas:
-            if estadistica1 == 0 or estadistica2 == 0:
-                print(gen_menu(eleccion_estadisticas))
-                opc = input("Opcion:\n")
-                if not opc.isdigit():
-                    print(formato_invalido_numeros)
-                    input("Enter para continuar")
-                elif not int(opc) in range(1,6):
-                    print(fuera_rango)
-                    input("Enter para continuar")
-                else:
-                    opc = int(opc)
-                    if opc == 1 and contador_stats !=1:
-                        if estadistica1 == 0:
-                            nombre_estadistica1 = "fuerza"
-                            estadistica1 = random.randint(1,6)
-                            contador_stats = 1
-                        else:
-                            nombre_estadistica2 = "fuerza"
-                            estadistica2 = random.randint(1,6)
-
-                    elif opc == 2 and contador_stats != 2:
-                        if estadistica1 == 0:
-                            nombre_estadistica1 = "magia"
-                            estadistica1 = random.randint(1,6)
-                            contador_stats = 2
-                        else:
-                            nombre_estadistica2 = "magia"
-                            estadistica2 = random.randint(1,6)
+        final_arma_nueva(nombre_arma,selec_clase,estadisticas)
+                                                
                     
-                    elif opc == 3 and contador_stats != 3:
-                        if estadistica1 == 0:
-                            nombre_estadistica1 = "defensa"
-                            estadistica1 = random.randint(1,6)
-                            contador_stats = 3
-                        else:
-                            nombre_estadistica2 = "defensa"
-                            estadistica2 = random.randint(1,6)
-                        
-                    elif opc == 4 and contador_stats != 4:
-                        if estadistica1 == 0:
-                            nombre_estadistica1 = "agilidad"
-                            estadistica1 = random.randint(1,6)
-                            contador_stats = 4
-                        else:
-                            nombre_estadistica2 = "agilidad"
-                            estadistica2 = random.randint(1,6)
-                    
-                    elif opc == 5 and contador_stats != 5:
-                        if estadistica1 == 0:
-                            nombre_estadistica1 = "vida"
-                            estadistica1 = random.randint(1,6)
-                            contador_stats = 5
-                        else:
-                            nombre_estadistica2 = "vida"
-                            estadistica2 = random.randint(1,6)
-                    else:
-                        print("Esta característica ya la has elegido, elige otra.")
-                        input("Enter para continuar")
-            else:
-                dec_deb = input("Quieres poner un debuff aleatorio? S/N \n(Si pones un debuff las estadistica tendran un aumento de un 50% en las estadisticas.\n" \
-                "Pero el debuffo tembien sera de un aumento de 50%) ")
-                if dec_deb.upper() == "S":
-                    estadistica1 = int(estadistica1 * 1.5)
-                    estadistica2 = int(estadistica2 * 1.5)
-                    estadistica_random = random.randint(1,5)
-                    flg_muestra = True
-                    flg_estadisticas = False
-
-                    if estadistica_random == 1:
-                        nombre_debufo = "fuerza"
-                        debuff = -int(random.randint(1,6) * 1.5)
-                        flg_muestra = True
-                        flg_estadisticas = False
-                    
-                    elif estadistica_random == 2:
-                        nombre_debufo = "magia"
-                        debuff = -int(random.randint(1,6) * 1.5)
-                        flg_muestra = True
-                        flg_estadisticas = False                   
-
-                    elif estadistica_random == 3:
-                        nombre_debufo = "defensa"
-                        debuff = -int(random.randint(1,6) * 1.5)
-                        flg_muestra = True
-                        flg_estadisticas = False
-
-                    elif estadistica_random == 4:
-                        nombre_debufo = "agilidad"
-                        debuff = -int(random.randint(1,6) * 1.5)
-                        flg_muestra = True
-                        flg_estadisticas = False
-
-                    else:
-                        nombre_debufo = "vida"
-                        debuff = -int(random.randint(1,6) * 1.5)
-                        flg_muestra = True
-                        flg_estadisticas = False
-                    
-                    print("Las estadisticas del arma son:\n{} = {}\n{} = {}\n{} = {}".format(nombre_estadistica1, estadistica1, nombre_estadistica2, estadistica2, nombre_debufo, debuff))
-                    input("Enter para continuar")
-                    flg_muestra = True
-                    flg_estadisticas = False
-
-                elif dec_deb.upper() == "N":
-                    print("Las estadisticas del arma son:\n{} = {}\n{} = {}\n".format(nombre_estadistica1, estadistica1, nombre_estadistica2, estadistica2))
-                    input("Enter para continuar")
-                    flg_muestra = True
-                    flg_estadisticas = False
-
-                else:
-                    print(formato_invalido_letras)
-                    input("Enter para continuar")
-        
-        while flg_muestra:
-            if debuff == 0:
-                print("Esta es la nueva arma:\n" + muestra_arma.format(nombre_arma, clases[clase], nombre_estadistica1, estadistica1, nombre_estadistica2, estadistica2))
-            
-            else:
-                print("Esta es la nueva arma:\n" + muestra_arma_deb.format(nombre_arma, clases[clase], nombre_estadistica1, estadistica1, nombre_estadistica2, estadistica2, nombre_debufo, debuff))
-
-            opc = input("Quieres crear esta arma? S/N\n")
-            if opc.upper() != "S" and opc.upper() != "N":
-                print("Tienes que poner una 'S/s' para aceptar o una 'N/n' para rechazar.")
-                input("Enter para continuar")
-            else:
-                if opc.upper() == "N":
-                    print("Mala suerte la proxima intenta jugar con lo que te salga.")
-                    input("Enter para continuar")
-                    flg_muestra = False
-                else:
-                    print("Arma guardada en el arsenal")
-                    input("Enter para continuar")
-                    print(debuff == 0)
-                    if debuff == 0:
-                        armas[len(armas) + 1] = {"clase" : clase, "nombre": nombre_arma,
-                                               "características":{nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2}}
-                    else:
-                        armas[len(armas) + 1] = {"clase" : clase, "nombre": nombre_arma,
-                                               "características":{nombre_estadistica1 : estadistica1, nombre_estadistica2 : estadistica2},
-                                               "debuffo":{nombre_debufo:debuff}}
-                                        
-                    flg_muestra = False
         flg_menu0 = True
         flg_crear_arma = False
     
