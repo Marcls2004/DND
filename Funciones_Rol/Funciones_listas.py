@@ -15,7 +15,7 @@ def funcion_personaje(criterio,orden="asc"):
                         cambios = True
             elif criterio == "nombre":
                 if orden == "asc":
-                    if heroes[lista[i]]["nombre"] > heroes[lista[i+1]]["nombre"]:
+                    if heroes[lista[i]]["nombre"].upper() > heroes[lista[i+1]]["nombre"].upper():
                         lista[i], lista[i + 1] = lista[i + 1], lista[i]
                         cambios = True
                 else:
@@ -81,11 +81,6 @@ def saber_lista_de_monstruos(nombre_lista,lista_monstruos):
     nombre = nombre_lista
     opc2 = lista_monstruos
     lista = list(lista_monstruos)
-    print("{}".format(nombre).center(40, "=") + "\n" + \
-                      "1) Por vida" + "\n" + \
-                      "2) Por ataque" + "\n" + \
-                      "3) Por defensa" + "\n" + \
-                      "4) Volver" )
     return opc2,lista,nombre
 
 #opc2,lista = saber_lista_de_monstruos("monstruos_oscuros",monstruos_oscuros)
