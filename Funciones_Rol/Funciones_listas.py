@@ -132,7 +132,7 @@ def funcion_armas(criterio,orden = "asc"):
                         cambios = True
             elif criterio == "nombre":
                 if orden == "asc":
-                    if armas[lista[i]]["nombre"] >armas[lista[i+1]]["nombre"]:
+                    if armas[lista[i]]["nombre"].upper() >armas[lista[i+1]]["nombre"].upper():
                         lista[i], lista[i + 1] = lista[i + 1], lista[i]
                         cambios = True
                 else:
