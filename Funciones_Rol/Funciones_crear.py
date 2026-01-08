@@ -1,7 +1,6 @@
 import random
 from Funciones_Rol.Funciones_menu import *
 from Funciones_Rol.Variables_del_proyecto import  *
-print(armas)
 def clase(menu_clase,keys):
     while True:
         opc = gen_menu(menu_clase)
