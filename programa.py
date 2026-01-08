@@ -599,20 +599,8 @@ while not flg_salir:
         eleccion_clase["opciones"] = []
         eleccion_arma["opciones"] = []
 
-        flg_nombre = True
+        nombre = nuevo_nombre_heroe()
 
-        while flg_nombre:
-            print(nuevo_personaje)
-            nombre = input("Nombre del personaje: ")
-
-            if not nombre.isalpha():
-                print(formato_invalido_letras)
-            else:
-                print("Nuevo nombre creado {}".format(nombre))
-                input("Enter para continuar")
-                flg_clase = True
-                flg_nombre = False
-        
         #ordenar clases
         keys_clases = list(clases.keys())
         for pasada in range(len(keys_clases)):
@@ -629,14 +617,7 @@ while not flg_salir:
         for i in range(len(keys_clases)):
             eleccion_clase["opciones"].append(clases[keys_clases[i]])
 
-        while flg_clase:
-            opc = gen_menu(eleccion_clase)
-            opc = int(opc)
-            print("Clase seleccionada {}".format(clases[keys_clases[opc-1]]))
-            input("Enter para continuar")
-            clase = keys_clases[opc-1]
-            flg_nivel = True
-            flg_clase = False
+        selec_clase = clase(eleccion_clase)
 
         while flg_nivel:
             new_nivel = input("Con que nivel quieres empezar la aventura? (1 - 5)\n")

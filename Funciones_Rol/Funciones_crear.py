@@ -1,14 +1,27 @@
 import random
 from Funciones_Rol.Funciones_menu import *
 from Funciones_Rol.Variables_del_proyecto import  *
-
 def clase(menu_clase,keys):
     while True:
         opc = gen_menu(menu_clase)
         print("Clase seleccionada {}".format(clases[keys[opc-1]]))
         input("Enter para continuar")
         return keys[opc-1]
-    
+#---------------------------------------------------------------CREAR HEROE---------------------------------------------------------------------
+def nuevo_nombre_heroe():
+            while flg_nombre:
+            print(nuevo_personaje)
+            nombre = input("Nombre del personaje: ")
+
+            if not nombre.isalpha():
+                print(formato_invalido_letras)
+            else:
+                print("Nuevo nombre creado {}".format(nombre))
+                input("Enter para continuar")
+                flg_clase = True
+                flg_nombre = False
+
+#---------------------------------------------------------------CREAR ARMA----------------------------------------------------------------------
 def nuevo_nombre_arma():
     while True:
         nombre_arma = input("Nombre para l'arma:\n")
