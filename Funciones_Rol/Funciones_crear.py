@@ -262,7 +262,6 @@ def final_arma_nueva(nombre,clase,estadisticas):
             if opc.upper() == "N":
                 print("Mala suerte la proxima intenta jugar con lo que te salga.")
                 input("Enter para continuar")
-                flg_muestra = False
             else:
                 print("Arma guardada en el arsenal")
                 input("Enter para continuar")
