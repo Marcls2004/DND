@@ -527,28 +527,34 @@ while not flg_salir:
 
     # Listar Monstruos
     while flg_menu43:
-
+        cabezera = ""
         opc = gen_menu(menu_lista_monstruos)
 
         if opc == 1:
+            cabezera = "Monstruos Debiles"
             opc2, lista, nombre = saber_lista_de_monstruos("Monstruos Debiles", monstruos_debiles)
         elif opc == 2:
+            cabezera = "Bestias"
             opc2, lista, nombre = saber_lista_de_monstruos("Bestias", bestias)
         elif opc == 3:
+            cabezera = "Monstruo Humanoides"
             opc2, lista, nombre = saber_lista_de_monstruos("Monstruo Enemigos Humanoides",
                                                            monstruos_enemigos_humanoides)
         elif opc == 4:
+            cabezera = "Monstruos Oscuros"
             opc2, lista, nombre = saber_lista_de_monstruos("Monstruos Oscuros", monstruos_oscuros)
         elif opc == 5:
+            cabezera = "Criaturas Magicas"
             opc2, lista, nombre = saber_lista_de_monstruos("Criaturas Magicas", criaturas_magicas)
         elif opc == 6:
+            cabezera = "Jefes"
             opc2, lista, nombre = saber_lista_de_monstruos("Jefes", monstruos_jefes)
         else:
             flg_menu4 = True
             flg_menu43 = False
             continue
 
-        opc = menu(["Ordenar por Vida", "Ordenar por Fuerza", "Ordenar por Defensa", "Salir"])
+        opc = gen_menu({"cabezera":cabezera,"opciones":["Ordenar por Vida", "Ordenar por Fuerza", "Ordenar por Defensa", "Salir"]})
 
         if opc == 1:
             lista_ordenar = funcion_monstruos(lista, "vida", opc2, orden="asc")
@@ -588,7 +594,6 @@ while not flg_salir:
     #Creacion de personaje
     while flg_crear_pers:
         nombre = ""
-        clase = 0
         nivel = 0
         arma_personaje = 0
         estadistica_frz = 0
@@ -598,8 +603,10 @@ while not flg_salir:
         estadistica_vid = 0
         eleccion_clase["opciones"] = []
         eleccion_arma["opciones"] = []
+        armas_disponibles =[]
 
         nombre = nuevo_nombre_heroe()
+        print(nombre)
 
         #ordenar clases
         keys_clases = list(clases.keys())
@@ -617,18 +624,9 @@ while not flg_salir:
         for i in range(len(keys_clases)):
             eleccion_clase["opciones"].append(clases[keys_clases[i]])
 
-        selec_clase = clase(eleccion_clase)
+        selec_clase = clase(eleccion_clase,keys_clases)
 
-        while flg_nivel:
-            new_nivel = input("Con que nivel quieres empezar la aventura? (1 - 5)\n")
-            if not new_nivel.isdigit():
-                print(formato_invalido_numeros)
-            elif not int(new_nivel) in range(1,6):
-                print("El nivel solo puede estar entre 1 y 5")
-            else:
-                nivel = int(new_nivel)
-                flg_arma = True
-                flg_nivel = False
+        nivel = ini_nivel()
         
         #ordenar armas
         keys_arma = list(armas.keys())
@@ -644,22 +642,12 @@ while not flg_salir:
                 break
 
         for id in keys_arma:
-            if armas[id]["clase"] == clase:
+            if armas[id]["clase"] == selec_clase:
+                armas_disponibles.append(id)
                 eleccion_arma["opciones"].append(armas[id]["nombre"])
-
-        while flg_arma:
-            opc = gen_menu(eleccion_arma)
-            print("Arma seleccionada {}.".format(armas[armas_disponible[opc-1]]["nombre"]))
-            input("Enter para continuar")
-            arma_personaje = armas_disponible[opc-1]
-            estadistica_frz = 0
-            estadistica_mag = 0
-            estadistica_def = 0
-            estadistica_agi = 0
-            estadistica_vid = 0
-            dado = 0
-            flg_estadisticas = True
-            flg_arma = False
+        print(keys_arma)
+        arma_personaje = selec_arma(eleccion_arma,armas_disponibles)
+        print(arma_personaje)
 
         while flg_estadisticas:
             if estadistica_frz > 0 and estadistica_mag > 0 and estadistica_def > 0 and estadistica_agi > 0 and estadistica_vid > 0:

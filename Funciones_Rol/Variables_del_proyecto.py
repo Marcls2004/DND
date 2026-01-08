@@ -112,7 +112,6 @@ armas = {
     9: {"clase": 9, "nombre": "Nudilleras", "características": {"fuerza": 2, "magia": 4}},
     10: {"clase": 10, "nombre": "Baston Oscuro", "características": {"magia": 1, "defensa": 5}, "debuffo": {"vida": -3}}
 }
-
 """
 MONSTRUOS
 """

@@ -81,11 +81,6 @@ def saber_lista_de_monstruos(nombre_lista,lista_monstruos):
     nombre = nombre_lista
     opc2 = lista_monstruos
     lista = list(lista_monstruos)
-    print("{}".format(nombre).center(40, "=") + "\n" + \
-                      "1) Por vida" + "\n" + \
-                      "2) Por ataque" + "\n" + \
-                      "3) Por defensa" + "\n" + \
-                      "4) Volver" )
     return opc2,lista,nombre
 
 #opc2,lista = saber_lista_de_monstruos("monstruos_oscuros",monstruos_oscuros)

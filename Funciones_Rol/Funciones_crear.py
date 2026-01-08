@@ -1,6 +1,7 @@
 import random
 from Funciones_Rol.Funciones_menu import *
 from Funciones_Rol.Variables_del_proyecto import  *
+print(armas)
 def clase(menu_clase,keys):
     while True:
         opc = gen_menu(menu_clase)
@@ -9,17 +10,33 @@ def clase(menu_clase,keys):
         return keys[opc-1]
 #---------------------------------------------------------------CREAR HEROE---------------------------------------------------------------------
 def nuevo_nombre_heroe():
-            while flg_nombre:
-            print(nuevo_personaje)
-            nombre = input("Nombre del personaje: ")
+    while True:
+        print(nuevo_personaje)
+        nombre = input("Nombre del personaje: ")
+        if not nombre.isalpha():
+            print(formato_invalido_letras)
+        else:
+            print("Nuevo nombre creado {}".format(nombre))
+            input("Enter para continuar")
+            return nombre
 
-            if not nombre.isalpha():
-                print(formato_invalido_letras)
+def ini_nivel():
+    while True:
+            new_nivel = input("Con que nivel quieres empezar la aventura? (1 - 5)\n")
+            if not new_nivel.isdigit():
+                print(formato_invalido_numeros)
+            elif not int(new_nivel) in range(1,6):
+                print("El nivel solo puede estar entre 1 y 5")
             else:
-                print("Nuevo nombre creado {}".format(nombre))
-                input("Enter para continuar")
-                flg_clase = True
-                flg_nombre = False
+                return int(new_nivel)
+
+def selec_arma(armas,keys):
+    while True:
+            opc = gen_menu(armas)
+            
+            print("Arma seleccionada {}.".format(armas[int(keys[opc-1])]["nombre"]))
+            input("Enter para continuar")
+            return keys[opc-1]
 
 #---------------------------------------------------------------CREAR ARMA----------------------------------------------------------------------
 def nuevo_nombre_arma():
