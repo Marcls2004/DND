@@ -75,7 +75,7 @@ clases = {
 HEROES
 """
 heroes = {
-    1: {"nivel": 1, "nombre": "Manolo", "clase": 1, "arma": 1, "fuerza": 6, "magia": 1, "defensa": 6, "agilidad": 3,
+    1: {"nivel": 10, "nombre": "Manolo", "clase": 1, "arma": 1, "fuerza": 6, "magia": 1, "defensa": 6, "agilidad": 3,
         "vida": 13, "xp": 0},
     2: {"nivel": 1, "nombre": "Antonia", "clase": 2, "arma": 2, "fuerza": 4, "magia": 4, "defensa": 4, "agilidad": 4,
         "vida": 12, "xp": 0},
@@ -112,7 +112,6 @@ armas = {
     9: {"clase": 9, "nombre": "Nudilleras", "características": {"fuerza": 2, "magia": 4}},
     10: {"clase": 10, "nombre": "Baston Oscuro", "características": {"magia": 1, "defensa": 5}, "debuffo": {"vida": -3}}
 }
-
 """
 MONSTRUOS
 """
@@ -298,27 +297,21 @@ info_turno = "Turno {}".center(50, "=") + "\n" + \
              "2) Habilidad: {}" + "\n" + \
              "3) Ultimate: {}" + "\n"
 atacas = "A {} le has hecho {} de daño, le quedan {} puntos de vida."
-atacan = "El {} te ha hecho {} de daño, te quedan {} puntos de vida."
+atacan = "{} te ha hecho {} de daño, te quedan {} puntos de vida."
 
 # PRINCIPAL
 flg_salir = False
 flg_menu0 = True
-flg_jugar = False
 
 # CREAR
 flg_menu2 = False
 flg_crear_pers = False
-flg_nombre = False
-flg_clase = False
-flg_arma = False
-flg_estadisticas = False
 flg_muestra = False
 
 flg_crear_arma = False
 
 # EDITAR
 flg_menu3 = False
-flg_nivel = False
 flg_edit_pers = False
 flg_edit_arma = False
 
@@ -335,7 +328,6 @@ en_cooldown = "Aun no puedes utilizar esta habilidad."
 fuera_rango = "Opcion fuera de rango"
 formato_invalido_letras = "Formato invalido tienen que ser letras."
 formato_invalido_numeros = "Formato invalido tienen que ser numeros."
-arma_seleccionada = ""
 encabezado_ranking_personajes = (
         "Ranking Personajes".center(123, "=") + "\n" +
         "Id".ljust(5) +

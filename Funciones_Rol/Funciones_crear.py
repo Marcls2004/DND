@@ -8,7 +8,123 @@ def clase(menu_clase,keys):
         print("Clase seleccionada {}".format(clases[keys[opc-1]]))
         input("Enter para continuar")
         return keys[opc-1]
+#---------------------------------------------------------------CREAR HEROE---------------------------------------------------------------------
+def nuevo_nombre_heroe():
+    while True:
+        print(nuevo_personaje)
+        nombre = input("Nombre del personaje: ")
+        if not nombre.isalpha():
+            print(formato_invalido_letras)
+        else:
+            print("Nuevo nombre creado {}".format(nombre))
+            input("Enter para continuar")
+            return nombre
+
+def ini_nivel():
+    while True:
+            new_nivel = input("Con que nivel quieres empezar la aventura? (1 - 5)\n")
+            if not new_nivel.isdigit():
+                print(formato_invalido_numeros)
+            elif not int(new_nivel) in range(1,6):
+                print("El nivel solo puede estar entre 1 y 5")
+            else:
+                return int(new_nivel)
+
+def selec_arma(armas_dispo,keys):
+    while True:
+            opc = gen_menu(armas_dispo)
+            
+            print("Arma seleccionada {}.".format(armas[keys[opc-1]]["nombre"]))
+            input("Enter para continuar")
+            return keys[opc-1]
+def selec_stats(stats):
+    while stats[0] == 0 or stats[1] == 0 or stats[2] == 0 or stats[3] == 0 or stats[4] == 0:        
+        print("estadisticas Actuales".center(40,"=") + "\nFuerza: {} Magia: {} Defensa: {} Agilidad: {} Vida: {}\n".format(stats[0], stats[1], stats[2], stats[3], stats[4]))
+        opc = gen_menu(eleccion_estadisticas)
+        if opc == 1:
+            if stats[0] > 0:
+                print("No puedes cambiar el destino.")
+                input("Enter para continuar")
+            else:
+                dado = random.randint(10,20)
+                print("La fuerza sera de {} puntos.".format(dado))
+                input("Enter para continuar")
+                stats[0] = dado
+        elif opc == 2:
+            if stats[1] > 0:
+                print("No puedes cambiar el destino.")
+                input("Enter para continuar")
+            else:
+                dado = random.randint(10, 20)
+                print("La magia sera de {} puntos.".format(dado))
+                input("Enter para continuar")
+                stats[1] = dado
+        elif opc == 3:
+            if stats[2] > 0:
+                print("No puedes cambiar el destino.")
+                input("Enter para continuar")
+            else:
+                dado = random.randint(10, 20)
+                print("La defensa sera de {} puntos.".format(dado))
+                input("Enter para continuar")
+                stats[2] = dado
+        elif opc == 4:
+            if stats[3] > 0:
+                print("No puedes cambiar el destino.")
+                input("Enter para continuar")
+            else:
+                dado = random.randint(10, 20)
+                print("La agilidad sera de {} puntos.".format(dado))
+                input("Enter para continuar")
+                stats[3] = dado
+        else:
+            if stats[4] > 0:
+                print("No puedes cambiar el destino.")
+                input("Enter para continuar")
+            else:
+                dado = random.randint(10, 20)
+                print("La vida sera de {} puntos.".format(dado))
+                input("Enter para continuar")
+                stats[4] = dado
+    print("\n"+"Estadisticas Definitivos".center(40,"=") + "\nFuerza: {}\nMagia: {}\nDefensa: {}\nAgilidad: {}\nVida: {}\nCuenta que al subir de nivel sube entre un 3% - 12%".format(stats[0],stats[1],stats[2],stats[3],stats[4]))
+    input("Enter para continuar")
+    return stats
+
+def mostrar_nuevo_heroe(nombre,clase,nivel,arma,stats):
+    while True:
+        if nivel > 1:
+            for i in range(nivel):
+                stats[0] = stats[0] * (1.0 + (random.randrange(30,140))/1000)
+                stats[1] = stats[1] * (1.0 + (random.randrange(30,140))/1000)
+                stats[2] = stats[2] * (1.0 + (random.randrange(30,140))/1000)
+                stats[3] = stats[3] * (1.0 + (random.randrange(30,140))/1000)
+                stats[4] = stats[4] * (1.0 + (random.randrange(30,140))/1000)
+        
+        stats[0] = int(stats[0])
+        stats[1] = int(stats[1])
+        stats[2] = int(stats[2])
+        stats[3] = int(stats[3])
+        stats[4] = int(stats[4])
+
+        print(muestra_pers.format(nombre, clases[clase],nivel, armas[arma]["nombre"], stats[0], stats[1], stats[2], stats[3], stats[4]))
+        opc = input("Quieres empezar la aventura? S/N\n")
+        if opc.upper() != "S" and opc.upper() != "N":
+            print("Tienes que poner una 'S' para aceptar o una 'N' para rechazar.")
+            input("Enter para continuar")
+        else:
+            if opc.upper() == "N":
+                print("Mala suerte la proxima intenta jugar con lo que te salga.")
+                input("Enter para continuar")
+                return ""
+            else:
+                print("Personaje creado")
+                input("Enter para continuar")
+                return {"nivel":nivel, "nombre": nombre, "clase":clase, "arma" : arma,
+                                            "fuerza":stats[0], "magia":stats[1], "defensa":stats[2], "agilidad":stats[3],
+                                            "vida":stats[4], "xp":0}
     
+
+#---------------------------------------------------------------CREAR ARMA----------------------------------------------------------------------
 def nuevo_nombre_arma():
     while True:
         nombre_arma = input("Nombre para l'arma:\n")
@@ -146,7 +262,6 @@ def final_arma_nueva(nombre,clase,estadisticas):
             if opc.upper() == "N":
                 print("Mala suerte la proxima intenta jugar con lo que te salga.")
                 input("Enter para continuar")
-                flg_muestra = False
             else:
                 print("Arma guardada en el arsenal")
                 input("Enter para continuar")
