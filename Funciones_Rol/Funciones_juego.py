@@ -97,9 +97,6 @@ def subir_nivel(heroe,limite_nivel):
         heroe["vida"] = heroe["vida"] * 1 + ((random.randrange(30,140))/1000)
     return heroe,limite_nivel
 
-def habilidades_activas():
-    return
-
 def jugar(rec_piso,heroe):
     while True:
         #INTRODUCCION ENTRE VARIAS COSAS
@@ -207,20 +204,20 @@ def jugar(rec_piso,heroe):
 
                         if opc == 3:
                             if cooldown_ultimate == 0:
-                                daño = (fuerza_total + magia_total ) * 5
+                                daño = (fuerza_total + magia_total + agilidad_total ) * 5
                                 cooldown_ultimate = cooldown_ultimate + 5
                                 break
                             else:
                                 print(en_cooldown + "\nQuedan {} turnos.".format(cooldown_ultimate))
                         elif opc == 2:
                             if cooldown_principal == 0:
-                                daño = (fuerza_total + magia_total ) * 2
+                                daño = (fuerza_total + magia_total + agilidad_total) * 2
                                 cooldown_principal = cooldown_principal + 3
                                 break
                             else:
                                 print(en_cooldown + "\nQuedan {} turnos.".format(cooldown_principal))
                         else:
-                            daño = fuerza_total + magia_total
+                            daño = fuerza_total + magia_total + agilidad_total
                             break
 
                 if vida_total_mon - (daño - defensa_total_mon) <= 0:
